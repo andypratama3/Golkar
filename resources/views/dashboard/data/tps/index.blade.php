@@ -1,16 +1,14 @@
 @extends('layouts.dashboard')
-@section('title', 'Kecamatan')
+@section('title', 'Tps')
 @section('content')
-
-
 <section class="section">
     <div class="row">
         <div class="col-lg-12">
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Data Kecamatan
-                        <a href="{{ route('dashboard.datamaster.kecamatan.create') }}" class="btn btn-sm btn-primary"
+                    <h5 class="card-title text-center">Data Tps
+                        <a href="{{ route('dashboard.datamaster.tps.create') }}" class="btn btn-sm btn-primary"
                             style="float: right;">Tambah Data</a>
                     </h5>
 
@@ -19,20 +17,20 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Nama Kecamatan</th>
+                                <th scope="col">Nama tps</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kecamatans as $kecamatan)
+                            @foreach ($tpss as $tps)
                             <tr>
                                 <th scope="row">{{ ++$no }}</th>
-                                <td>{{ $kecamatan->name }}</td>
+                                <td>{{ $tps->name }}</td>
                                 <td>
-                                    <a href="{{ route('dashboard.datamaster.kecamatan.edit', $kecamatan->slug) }}" class="btn btn-primary"><i class="bi bi-pen"></i></a>
-                                    <a href="#" data-id="{{ $kecamatan->slug }}" class="btn btn-danger delete" title="Hapus">
-                                        <form action="{{ route('dashboard.datamaster.kecamatan.destroy', $kecamatan->slug) }}"
-                                            id="delete-{{ $kecamatan->slug }}" method="POST" enctype="multipart/form-data">
+                                    <a href="{{ route('dashboard.datamaster.tps.edit', $tps->slug) }}" class="btn btn-primary"><i class="bi bi-pen"></i></a>
+                                    <a href="#" data-id="{{ $tps->slug }}" class="btn btn-danger delete" title="Hapus">
+                                        <form action="{{ route('dashboard.datamaster.tps.destroy', $tps->slug) }}"
+                                            id="delete-{{ $tps->slug }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('delete')
                                         </form>

@@ -3,21 +3,23 @@
 namespace App\DataTransferObjects;
 
 use Spatie\LaravelData\Data;
-use App\Http\Requests\Dashboard\KecamatanRequest;
+use App\Http\Requests\Dashboard\DesaRequest;
 
-class KecamatanData extends Data{
+class DesaData extends Data{
 
     public function __construct(
         public readonly string $name,
+        public readonly array $tps,
         public readonly ?string $slug,
 
     ) {
         //
     }
-    public static function fromRequest(KecamatanRequest $request): self
+    public static function fromRequest(DesaRequest $request): self
     {
         return self::from([
             $request->getName(),
+            $request->getTps(),
             $request->getSlug(),
         ]);
     }
@@ -25,7 +27,7 @@ class KecamatanData extends Data{
     public static function messages()
     {
         return [
-            'name.required' => 'Kolom Nama Kecamatan tidak boleh kosong!',
+            'name.required' => 'Kolom Nama Desa tidak boleh kosong!',
         ];
     }
 }

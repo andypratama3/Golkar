@@ -3,9 +3,9 @@
 namespace App\DataTransferObjects;
 
 use Spatie\LaravelData\Data;
-use App\Http\Requests\Dashboard\KecamatanRequest;
+use App\Http\Requests\Dashboard\TpsRequest;
 
-class KecamatanData extends Data{
+class TpsData extends Data{
 
     public function __construct(
         public readonly string $name,
@@ -14,7 +14,7 @@ class KecamatanData extends Data{
     ) {
         //
     }
-    public static function fromRequest(KecamatanRequest $request): self
+    public static function fromRequest(TpsRequest $request): self
     {
         return self::from([
             $request->getName(),
@@ -25,7 +25,7 @@ class KecamatanData extends Data{
     public static function messages()
     {
         return [
-            'name.required' => 'Kolom Nama Kecamatan tidak boleh kosong!',
+            'name.required' => 'Kolom Nama Desa tidak boleh kosong!',
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Actions\Dashboard\KecamatanAction;
+use App\Actions\Dashboard\KecamatanDelete;
 use App\DataTransferObjects\KecamatanData;
 
 class KecamatanController extends Controller
@@ -40,6 +41,12 @@ class KecamatanController extends Controller
     {
         $kecamatanAciton->execute($kecamatanData);
         return redirect()->route('dashboard.datamaster.kecamatan.index')->with('success','Berhasil Edit Kecamatan');
+    }
+    public function destroy(KecamatanDelete $kecamatanDelete, Kecamatan $kecamatan)
+    {
+        $kecamatanDelete->execute($kecamatan);
+        return redirect()->route('dashboard.datamaster.kecamatan.index')->with('success','Berhasil Hapus Kecamatan');
+
     }
 
 

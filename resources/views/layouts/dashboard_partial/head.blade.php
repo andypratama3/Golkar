@@ -23,7 +23,7 @@
     <link href="{{ asset('assets_dashboard/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('assets_dashboard/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets_dashboard/vendor/simple-datatables/style.css') }}" rel="stylesheet">
-
+    @stack('css')
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets_dashboard/css/style.css') }}" rel="stylesheet">
   </head>

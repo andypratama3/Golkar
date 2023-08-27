@@ -16,11 +16,15 @@
         <ul id="components-nav" class="nav-content" data-bs-parent="#sidebar-nav">
           <li>
             <a href="{{ route('dashboard.datamaster.kecamatan.index') }}"  class="nav-link {{ Request::routeIs('datamaster.kecamatan.*') ? 'collapsed' : '' }} ">
-              <i class="bi bi-circle"></i><span>Kecamatan</span>
+                <i class="bi bi-circle"></i><span>Kecamatan</span>
             </a>
             <a href="{{ route('dashboard.datamaster.desa.index') }}"  class="nav-link {{ Request::routeIs('datamaster.desa.*') ? 'collapsed' : '' }} ">
-              <i class="bi bi-circle"></i><span>Desa</span>
+                <i class="bi bi-circle"></i><span>Desa</span>
             </a>
+            <a href="{{ route('dashboard.datamaster.tps.index') }}"  class="nav-link {{ Request::routeIs('datamaster.tps.*') ? 'collapsed' : '' }} ">
+              <i class="bi bi-circle"></i><span>tps</span>
+            </a>
+
           </li>
         </ul>
       </li><!-- End Components Nav -->

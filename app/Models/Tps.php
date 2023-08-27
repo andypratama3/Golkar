@@ -2,21 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
+use App\Models\Desa;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Desa extends Model
+class Tps extends Model
 {
     use HasFactory;
     use UsesUuid;
     use NameHasSlug;
     use SoftDeletes;
 
-    protected $table = 'desas';
+    protected $table = 'tps';
 
     protected $guarded = ['id'];
 
@@ -28,9 +28,8 @@ class Desa extends Model
     //data deleted
     protected $dates = ['deleted_at'];
 
-    public function tps()
+    public function desa()
     {
-        return $this->belongsToMany(Tps::class, 'tps_desa');
+        return $this->belongsToMany(Desa::class, 'tps_desa');
     }
-
 }

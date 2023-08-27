@@ -18,14 +18,15 @@
   <script src="{{ asset('assets_dashboard/vendor/simple-datatables/simple-datatables.js') }}"></script>
   <script src="{{ asset('assets_dashboard/vendor/tinymce/tinymce.min.js') }}"></script>
   <script src="{{ asset('assets_dashboard/vendor/php-email-form/validate.js') }}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="{{ asset('assets_dashboard/jquery/jquery.js') }}"></script>
+
 
   <!-- Template Main JS File -->
   <script src="{{ asset('assets_dashboard/js/main.js') }}"></script>
+  <script src="{{ asset('assets_dashboard/vendor/SwetAlert/index.js') }}"></script>
   @stack('js')
   <script>
-    
+
     $(document).ready(function () {
         $(".delete").click(function (e) {
             slug = e.target.dataset.id;

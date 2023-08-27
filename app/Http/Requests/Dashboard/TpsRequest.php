@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Kecamatan;
+namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestKecamatan extends FormRequest
+class TpsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,6 @@ class RequestKecamatan extends FormRequest
         return $this->slug;
     }
 
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -34,5 +33,4 @@ class RequestKecamatan extends FormRequest
             'name' => 'required'
         ];
     }
-
 }

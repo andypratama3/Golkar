@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
 use Illuminate\Database\Eloquent\Model;
@@ -15,11 +16,10 @@ class Kecamatan extends Model
     use NameHasSlug;
     use SoftDeletes;
 
-
     protected $table = 'kecamatans';
 
     protected $guarded = ['id'];
-    
+
     protected $fillable = [
         'name',
         'slug'
@@ -27,4 +27,5 @@ class Kecamatan extends Model
 
     //data deleted
     protected $dates = ['deleted_at'];
+
 }
