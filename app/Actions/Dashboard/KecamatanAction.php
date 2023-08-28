@@ -16,6 +16,13 @@ class KecamatanAction {
             ],
         );
 
+        if(empty($kecamatanData->slug)){
+            $kecamatan->desa()->attach($kecamatanData->desa);
+        }else{
+            $kecamatan->desa()->sync($kecamatanData->desa);
+        }
+
+
         return $kecamatan;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Kecamatan;
+namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -16,6 +16,10 @@ class KecamatanRequest extends FormRequest
     public function getName()
     {
         return $this->name;
+    }
+    public function getDesa()
+    {
+        return $this->desa;
     }
     public function getSlug()
     {

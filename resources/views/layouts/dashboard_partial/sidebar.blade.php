@@ -27,7 +27,14 @@
 
           </li>
         </ul>
-      </li><!-- End Components Nav -->
+      </li>
+      <!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link {{ Request::routeIs('dashboard.data.*') ? '' : 'collapsed' }}" href="{{ route('dashboard.data.index') }}">
+          <i class="bi bi-person"></i>
+          <span>Data</span>
+        </a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -123,12 +130,8 @@
 
       <li class="nav-heading">Pages</li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
+
+      <!-- End Profile Page Nav -->
     </ul>
 
   </aside>

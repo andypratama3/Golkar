@@ -9,6 +9,7 @@ class KecamatanData extends Data{
 
     public function __construct(
         public readonly string $name,
+        public readonly string $desa,
         public readonly ?string $slug,
 
     ) {
@@ -18,6 +19,7 @@ class KecamatanData extends Data{
     {
         return self::from([
             $request->getName(),
+            $request->getDesa(),
             $request->getSlug(),
         ]);
     }

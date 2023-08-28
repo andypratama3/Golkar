@@ -37,7 +37,6 @@
         </div>
     </div>
     <div class="text-center">
-        <button type="submit" class="btn btn-primary">Tambah</button>
         <a href="{{ route('dashboard.datamaster.desa.index') }}" type="reset" class="btn btn-danger">Kembali</a>
     </div>
     </form>

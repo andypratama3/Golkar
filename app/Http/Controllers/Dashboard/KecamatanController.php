@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Models\Desa;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -26,7 +27,8 @@ class KecamatanController extends Controller
     }
     public function create()
     {
-        return view('dashboard.data.kecamatan.create');
+        $desas = Desa::select(['id','name','slug'])->orderBy('name')->get();
+        return view('dashboard.data.kecamatan.create',compact('desas'));
     }
     public function store(KecamatanData $kecamatanData, KecamatanAction $kecamatanAciton)
     {

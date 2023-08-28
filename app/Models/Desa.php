@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Tps;
+use App\Models\Kecamatan;
 use Illuminate\Support\Str;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
@@ -32,5 +34,10 @@ class Desa extends Model
     {
         return $this->belongsToMany(Tps::class, 'tps_desa');
     }
+    public function kecamatan()
+    {
+        return $this->belongsToMany(Kecamatan::class, 'kecamatan_desa');
+    }
+
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Desa;
 use Illuminate\Support\Str;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
@@ -28,4 +29,9 @@ class Kecamatan extends Model
     //data deleted
     protected $dates = ['deleted_at'];
 
+
+    public function desa()
+    {
+        return $this->belongsToMany(Desa::class, 'kecamatan_desa');
+    }
 }
