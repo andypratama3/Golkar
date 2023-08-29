@@ -17,6 +17,19 @@
                     <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                     @endif
                 </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Desa</label>
+                        <select class="form-control select2" name="desa" >
+                            @foreach ($kecamatan->desa as $desa)
+                            <option value="{{ $kecamatan->id }}" selected>{{ $desa->name }}</option>
+                            @endforeach
+                            @foreach ($desas as $desa)
+                                <option value="{{ $desa->id }}">{{ $desa->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Ubah Data</button>

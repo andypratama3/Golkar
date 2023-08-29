@@ -37,7 +37,8 @@ class KecamatanController extends Controller
     }
     public function edit(Kecamatan $kecamatan)
     {
-        return view('dashboard.data.kecamatan.edit', compact('kecamatan'));
+        $desas = Desa::select(['id','name','slug'])->orderBy('name')->get();
+        return view('dashboard.data.kecamatan.edit', compact('kecamatan','desas'));
     }
     public function update(KecamatanData $kecamatanData, KecamatanAction $kecamatanAciton)
     {

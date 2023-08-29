@@ -18,7 +18,6 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Nama Desa</th>
-                                <th scope="col">Jumlah Tps</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -27,9 +26,7 @@
                             <tr>
                                 <th scope="row">{{ ++$no }}</th>
                                 <td>{{ $desa->name }}</td>
-                                <td>
-                                    {{-- {{ $desa->tps->count() }} --}}
-                                </td>
+
                                 <td>
                                     <a href="{{ route('dashboard.datamaster.desa.show', $desa->slug) }}" class="btn btn-warning"><i class="bi bi-eye"></i></a>
                                     <a href="{{ route('dashboard.datamaster.desa.edit', $desa->slug) }}" class="btn btn-primary"><i class="bi bi-pen"></i></a>

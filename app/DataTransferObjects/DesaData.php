@@ -28,6 +28,7 @@ class DesaData extends Data{
     {
         return [
             'name.required' => 'Kolom Nama Desa tidak boleh kosong!',
+            'tps.required' => 'Tps Desa tidak boleh kosong!',
         ];
     }
 }

@@ -19,19 +19,25 @@ use App\Http\Controllers\Dashboard\KecamatanController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('dashboard.index');
-// });
+Route::get('/', function () {
+    return view('auth.login');
+});
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', DashboardController::class)->name('dashboard.index');
-    Route::get('/data', [DataController::class, 'index'])->name('dashboard.data.index');
-    Route::get('/data/{name}', [DataController::class, 'kecamatan'])->name('dashboard.data.kecamatan');
-    Route::resource('peserta', PesertaController::class, ['names' => 'dashboar.peserta']);
+
+    Route::resource('peserta', PesertaController::class, ['names' => 'dashboard.peserta']);
 
     Route::group(['prefix' => 'datamaster'], function () {
         Route::resource('desa', DesaController::class, ['names' => 'dashboard.datamaster.desa']);
         Route::resource('tps', TpsController::class, ['names' => 'dashboard.datamaster.tps']);
         Route::resource('kecamatan', KecamatanController::class, ['names' => 'dashboard.datamaster.kecamatan']);
     });
+
+    //data
+    Route::get('data', [DataController::class, 'index'])->name('dashboard.data.index');
+    Route::get('data/desa/{name}', [DataController::class, 'desa'])->name('dashboard.data.kecamatan.desa');
+    Route::get('data/tps/{name}', [DataController::class, 'tps'])->name('dashboard.data.kecamatan.desa.tps');
+    // get data from database
+    Route::post('get/desa', [DataController::class, 'getDesas'])->name('get.desa');
 });

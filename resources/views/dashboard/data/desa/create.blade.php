@@ -61,7 +61,7 @@
                 `<tr>
                     <td>
                         <select class="form-select" aria-label="Pilih Tps" id="tps_select2_${i}" name="tps[` + i + `]">
-                            <option selected disabled>Pilih Talent</option>
+                            <option selected disabled>Pilih Tps</option>
                             @foreach($tpss as $tps)
                             <option value="{{ $tps->id }}">{{ $tps->name }}</option>
                             @endforeach
