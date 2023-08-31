@@ -16,7 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->integer('nik')->max(16);
             $table->integer('hp');
+            $table->date('tgl_lahir');
+            $table->longText('alamat')->default('text');
             $table->string('warna');
+            $table->string('kecamatan_id');
+            $table->string('desa_id');
+            $table->string('tps_id');
+            $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
         });

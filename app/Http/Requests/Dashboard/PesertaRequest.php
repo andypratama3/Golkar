@@ -22,6 +22,31 @@ class PesertaRequest extends FormRequest
     {
         return $this->nik;
     }
+    public function getTglLahir()
+    {
+        return $this->tgl_lahir;
+    }
+    public function getHp()
+    {
+        return $this->hp;
+    }
+
+    public function getKecamatan()
+    {
+        return $this->kecamatan;
+    }
+    public function getDesa()
+    {
+        return $this->desa;
+    }
+    public function getTps()
+    {
+        return $this->tps;
+    }
+    public function getAlamat()
+    {
+        return $this->alamat;
+    }
     public function getWarna()
     {
         return $this->warna;

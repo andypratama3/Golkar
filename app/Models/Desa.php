@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Tps;
+use App\Models\Desa;
+use App\Models\Peserta;
 use App\Models\Kecamatan;
 use Illuminate\Support\Str;
 use App\Http\Traits\UsesUuid;
@@ -38,6 +40,12 @@ class Desa extends Model
     {
         return $this->belongsToMany(Kecamatan::class, 'kecamatan_desa');
     }
+
+    public function peserta(): BelongsToMany
+    {
+        return $this->belongsToMany(Peserta::class, 'peserta_data');
+    }
+
 
 
 }

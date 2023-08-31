@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Desa;
+use App\Models\Peserta;
 use Illuminate\Support\Str;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
@@ -33,5 +34,10 @@ class Kecamatan extends Model
     public function desa()
     {
         return $this->belongsToMany(Desa::class, 'kecamatan_desa');
+    }
+
+    public function peserta(): BelongsToMany
+    {
+        return $this->belongsToMany(Peserta::class, 'peserta_data');
     }
 }

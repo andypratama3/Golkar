@@ -9,7 +9,14 @@ class PesertaData extends Data{
 
     public function __construct(
         public readonly string $name,
-        public readonly array $tps,
+        public readonly string $nik,
+        public readonly string $tgl_lahir,
+        public readonly int $hp,
+        public readonly string $kecamatan,
+        public readonly string $desa,
+        public readonly string $tps,
+        public readonly string $alamat,
+        public readonly string $warna,
         public readonly ?string $slug,
 
     ) {
@@ -20,6 +27,12 @@ class PesertaData extends Data{
         return self::from([
             $request->getName(),
             $request->getNik(),
+            $request->getTglLahir(),
+            $request->getHp(),
+            $request->getKecamatan(),
+            $request->getDesa(),
+            $request->getTps(),
+            $request->getAlamat(),
             $request->getWarna(),
             $request->getSlug(),
         ]);
@@ -28,7 +41,11 @@ class PesertaData extends Data{
     public static function messages()
     {
         return [
-            'name.required' => 'Kolom Nama Desa tidak boleh kosong!',
+            'name.required' => 'Kolom Nama tidak boleh kosong!',
+            'nik.required' => 'Kolom Nik tidak boleh kosong!',
+            'tgl_lahir.required' => 'Kolom Tanggal Lahir tidak boleh kosong!',
+            'alamat.required' => 'Kolom alamat tidak boleh kosong!',
+            'warna.required' => 'Kolom warna tidak boleh kosong!',
         ];
     }
 }

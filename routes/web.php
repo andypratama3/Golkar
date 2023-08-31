@@ -39,5 +39,6 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('data/desa/{name}', [DataController::class, 'desa'])->name('dashboard.data.kecamatan.desa');
     Route::get('data/tps/{name}', [DataController::class, 'tps'])->name('dashboard.data.kecamatan.desa.tps');
     // get data from database
-    Route::post('get/desa', [DataController::class, 'getDesas'])->name('get.desa');
+    Route::post('get/desa', [PesertaController::class, 'getdesa'])->name('get.desa');
+    Route::post('get/tps', [PesertaController::class, 'gettps'])->name('get.tps');
 });

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Desa;
+use App\Models\Peserta;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
 use Illuminate\Database\Eloquent\Model;
@@ -32,4 +33,10 @@ class Tps extends Model
     {
         return $this->belongsToMany(Desa::class, 'tps_desa');
     }
+    public function peserta(): BelongsToMany
+    {
+        return $this->belongsToMany(Peserta::class, 'peserta_data');
+    }
+
+
 }

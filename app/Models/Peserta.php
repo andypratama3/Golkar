@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Tps;
+use App\Models\Desa;
+use App\Models\Kecamatan;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
 use Illuminate\Database\Eloquent\Model;
@@ -22,10 +25,26 @@ class Peserta extends Model
         'name',
         'nik',
         'hp',
+        'tgl_lahir',
         'warna',
     ];
 
     protected $dates = ['deleted_at'];
+
+
+
+    public function kecamatan(): BelongsToMany
+    {
+        return $this->belongsToMany(Kecamatan::class, 'peserta_data');
+    }
+    public function desa(): BelongsToMany
+    {
+        return $this->belongsToMany(Desa::class, 'peserta_data');
+    }
+    public function tps(): BelongsToMany
+    {
+        return $this->belongsToMany(Tps::class, 'peserta_data');
+    }
 
 
 }
