@@ -19,10 +19,8 @@
     <link href="{{ asset('assets_dashboard/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets_dashboard/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('assets_dashboard/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets_dashboard/vendor/quill/quill.snow.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets_dashboard/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('assets_dashboard/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets_dashboard/vendor/simple-datatables/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets_dashboard/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     @stack('css')
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets_dashboard/css/style.css') }}" rel="stylesheet">

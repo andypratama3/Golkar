@@ -58,7 +58,6 @@
                         <label style="margin-bottom: 10px;">Desa</label>
                         <select class="form-control select2" name="desa_id" id="desa">
                             <option selected>Pilih Desa</option>
-
                         </select>
                         </div>
                 </div>

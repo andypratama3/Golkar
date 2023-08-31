@@ -15,14 +15,18 @@
         </a>
         <ul id="components-nav" class="nav-content" data-bs-parent="#sidebar-nav">
           <li>
+            <a href="{{ route('dashboard.datamaster.tps.index') }}"  class="nav-link {{ Request::routeIs('datamaster.tps.*') ? 'collapsed' : '' }} ">
+                <i class="bi bi-circle"></i><span>Tps</span>
+              </a>
             <a href="{{ route('dashboard.datamaster.kecamatan.index') }}"  class="nav-link {{ Request::routeIs('datamaster.kecamatan.*') ? 'collapsed' : '' }} ">
                 <i class="bi bi-circle"></i><span>Kecamatan</span>
             </a>
             <a href="{{ route('dashboard.datamaster.desa.index') }}"  class="nav-link {{ Request::routeIs('datamaster.desa.*') ? 'collapsed' : '' }} ">
                 <i class="bi bi-circle"></i><span>Desa</span>
             </a>
+
             <a href="{{ route('dashboard.datamaster.tps.index') }}"  class="nav-link {{ Request::routeIs('datamaster.tps.*') ? 'collapsed' : '' }} ">
-              <i class="bi bi-circle"></i><span>Tps</span>
+              <i class="bi bi-circle"></i><span>Dpt</span>
             </a>
 
           </li>
@@ -36,9 +40,21 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link {{ Request::routeIs('dashboard.kordinator.kecamatan.*') ? '' : 'collapsed' }}" href="{{ route('dashboard.kordinator.kecamatan.index') }}">
+          <i class="bi bi-person"></i>
+          <span>Kordinator Kecamatan</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link {{ Request::routeIs('dashboard.peserta.*') ? '' : 'collapsed' }}" href="{{ route('dashboard.peserta.index') }}">
           <i class="bi bi-person"></i>
-          <span>Peserta</span>
+          <span>Kordinator Desa</span>
+        </a>
+    </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::routeIs('dashboard.peserta.*') ? '' : 'collapsed' }}" href="{{ route('dashboard.peserta.index') }}">
+          <i class="bi bi-person"></i>
+          <span>Relawan Tps</span>
         </a>
       </li>
       <!-- End Profile Page Nav -->

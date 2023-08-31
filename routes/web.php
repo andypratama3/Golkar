@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\DesaController;
 use App\Http\Controllers\Dashboard\PesertaController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\KecamatanController;
+use App\Http\Controllers\Dashboard\KordinatorKecamatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], function () {
     Route::get('/', DashboardController::class)->name('dashboard.index');
     Route::resource('peserta', PesertaController::class, ['names' => 'dashboard.peserta']);
+    Route::resource('kordinator/kecamatan', KordinatorKecamatanController::class, ['names' => 'dashboard.kordinator.kecamatan']);
 
     Route::group(['prefix' => 'datamaster'], function () {
         Route::resource('desa', DesaController::class, ['names' => 'dashboard.datamaster.desa']);

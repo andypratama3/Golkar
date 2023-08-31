@@ -12,22 +12,22 @@
   <!-- Vendor JS Files -->
   {{-- <script src="{{ asset('assets_dashboard/x/apexcharts/apexcharts.min.js') }}"></script> --}}
   <script src="{{ asset('assets_dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('assets_dashboard/vendor/chart.js/chart.min.js') }}"></script>
-  <script src="{{ asset('assets_dashboard/vendor/echarts/echarts.min.js') }}"></script>
-  <script src="{{ asset('assets_dashboard/vendor/quill/quill.min.js') }}"></script>
-  <script src="{{ asset('assets_dashboard/vendor/simple-datatables/simple-datatables.js') }}"></script>
-  <script src="{{ asset('assets_dashboard/vendor/tinymce/tinymce.min.js') }}"></script>
   <script src="{{ asset('assets_dashboard/vendor/php-email-form/validate.js') }}"></script>
   <script src="{{ asset('assets_dashboard/jquery/jquery.js') }}"></script>
 
+  <script src="{{ asset('assets_dashboard/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('assets_dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{ asset('assets_dashboard/js/main.js') }}"></script>
   <script src="{{ asset('assets_dashboard/vendor/SwetAlert/index.js') }}"></script>
   @stack('js')
-  <script>
 
+<script>
     $(document).ready(function () {
+        $('#dataTable').DataTable(); // ID From dataTable
+      $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+
         $(".delete").click(function (e) {
             slug = e.target.dataset.id;
             swal({

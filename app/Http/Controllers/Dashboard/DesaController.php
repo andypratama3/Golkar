@@ -55,7 +55,8 @@ class DesaController extends Controller
     public function destroy(DesaDelete $desaDelete, Desa $desa)
     {
         $desaDelete->execute($desa);
-        return redirect()->route('dashboard.datamaster.desa.index')->with('success','Berhasil Hapus Desa');
+        dd($desa);
+        // return redirect()->route('dashboard.datamaster.desa.index')->with('success','Berhasil Hapus Desa');
 
     }
 }
