@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\Dashboard\TpsController;
@@ -19,13 +20,14 @@ use App\Http\Controllers\Dashboard\KecamatanController;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], function () {
     Route::get('/', DashboardController::class)->name('dashboard.index');
-
     Route::resource('peserta', PesertaController::class, ['names' => 'dashboard.peserta']);
 
     Route::group(['prefix' => 'datamaster'], function () {
@@ -42,3 +44,5 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::post('get/desa', [PesertaController::class, 'getdesa'])->name('get.desa');
     Route::post('get/tps', [PesertaController::class, 'gettps'])->name('get.tps');
 });
+
+
