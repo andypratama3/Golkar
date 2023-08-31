@@ -19,9 +19,7 @@ return new class extends Migration
             $table->date('tgl_lahir');
             $table->longText('alamat')->default('text');
             $table->string('warna');
-            $table->string('kecamatan_id');
-            $table->string('desa_id');
-            $table->string('tps_id');
+            
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
