@@ -12,6 +12,6 @@ class PesertaExport implements FromCollection
     */
     public function collection()
     {
-        return Peserta::all();
+        return Peserta ::all();
     }
 }

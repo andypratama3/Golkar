@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                    <label for="name" class="form-label">Nik</label>
+                    <label for="name" class="form-label">NIK</label>
                     <input type="number" class="form-control {{ $errors->has('nik') ? 'is-invalid' : '' }}" id="nik"
                         name="nik" value="{{ old('nik') }}">
                     @if ($errors->has('nik'))
