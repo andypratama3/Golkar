@@ -28,21 +28,22 @@ class KordinatorKecamatanController extends Controller
         $kordinatorKAction->execute($kordinatorKData);
         return redirect()->route('dashboard.kordinator.kecamatan.index')->with('success','Berhasil Menambahkan Kordinator Kecamatan');
     }
-    public function edit(KordinatorK $kordinatorK)
+    public function edit($slug)
     {
+        $kordinatork = KordinatorK::where('slug', $slug)->firstOrFail();
         $kecamatans = Kecamatan::select(['name','slug'])->get();
-        return view('dashboard.kordinatork.edit', compact('kordinatorK','kecamatans'));
+        return view('dashboard.kordinatork.edit', compact('kordinatork','kecamatans'));
     }
     public function update(KordinatorKData $kordinatorKData, KordinatorKAction $kordinatorKAction)
     {
         $kordinatorKAction->execute($kordinatorKData);
         return redirect()->route('dashboard.kordinator.kecamatan.index')->with('success','Berhasil Update Kordinator Kecamatan');
     }
-    public function destroy(KordinatorKDelete $kordinatorKDelete, KordinatorK $kordinatorKecamatan)
+    public function destroy(KordinatorKDelete $kordinatorKDelete, $slug)
     {
-        $kordinatorKDelete->execute($kordinatorKecamatan);
-        dd($kordinatorKecamatan);
-        // return redirect()->route('dashboard.kordinator.kecamatan.index')->with('success','Berhasil Hapus Kordinator Kecamatan');
+        
+        $kordinatorKDelete->execute($slug);
+        return redirect()->route('dashboard.kordinator.kecamatan.index')->with('success','Berhasil Hapus Kordinator Kecamatan');
 
     }
 }

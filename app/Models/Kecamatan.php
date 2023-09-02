@@ -36,7 +36,7 @@ class Kecamatan extends Model
         return $this->belongsToMany(Desa::class, 'kecamatan_desa');
     }
 
-    public function peserta(): BelongsToMany
+    public function peserta()
     {
         return $this->belongsToMany(Peserta::class, 'peserta_data');
     }

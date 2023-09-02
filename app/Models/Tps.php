@@ -33,7 +33,7 @@ class Tps extends Model
     {
         return $this->belongsToMany(Desa::class, 'tps_desa');
     }
-    public function peserta(): BelongsToMany
+    public function peserta()
     {
         return $this->belongsToMany(Peserta::class, 'peserta_data');
     }

@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('peserta_data', function (Blueprint $table) {
+        Schema::create('peserta_tps', function (Blueprint $table) {
             // Foreign Key Constraints
-            $table->foreignUuid('id_peserta')->references('id')->on('pesertas');
-            $table->foreignUuid('kecamatan_id')->references('id')->on('kecamatans');
-            $table->foreignUuid('desa_id')->references('id')->on('desas');
+            $table->foreignUuid('peserta_id')->references('id')->on('pesertas');
             $table->foreignUuid('tps_id')->references('id')->on('tps');
 
             // Setting The Primary Keys
-            $table->primary(['id_peserta','kecamatan_id','tps_id', 'desa_id']);
+            $table->primary(['peserta_id','tps_id']);
         });
     }
 

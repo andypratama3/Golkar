@@ -25,6 +25,7 @@ class Peserta extends Model
         'name',
         'nik',
         'hp',
+        'alamat',
         'tgl_lahir',
         'warna',
     ];
@@ -32,19 +33,21 @@ class Peserta extends Model
     protected $dates = ['deleted_at'];
 
 
+    public function kecamatan_pesertas()
+    {
+        return $this->belongsToMany(Kecamatan::class, 'peserta_kecamatan');
+    }
 
-    public function kecamatan(): BelongsToMany
+    public function desa_pesertas()
     {
-        return $this->belongsToMany(Kecamatan::class, 'peserta_data');
+        return $this->belongsToMany(Desa::class, 'peserta_desa');
     }
-    public function desa(): BelongsToMany
+
+    public function tps_pesertas()
     {
-        return $this->belongsToMany(Desa::class, 'peserta_data');
+        return $this->belongsToMany(Tps::class, 'peserta_tps');
     }
-    public function tps(): BelongsToMany
-    {
-        return $this->belongsToMany(Tps::class, 'peserta_data');
-    }
+
 
 
 }

@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pesertas', function (Blueprint $table) {
+        Schema::create('dpts', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->integer('nik')->max(16);
-            $table->integer('hp');
-            $table->date('tgl_lahir');
-            $table->longText('alamat');
-            $table->string('warna');
+            $table->string('files');
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pesertas');
+        Schema::dropIfExists('dpts');
     }
 };

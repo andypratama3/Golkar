@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Dashboard;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PesertaRequest extends FormRequest
@@ -65,7 +66,8 @@ class PesertaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required'
+            'name' => 'required',
+            'nik' => 'required|unique:pesertas,nik',
         ];
     }
 }

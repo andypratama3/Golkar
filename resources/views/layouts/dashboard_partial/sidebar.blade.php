@@ -17,22 +17,22 @@
           <li>
             <a href="{{ route('dashboard.datamaster.tps.index') }}"  class="nav-link {{ Request::routeIs('datamaster.tps.*') ? 'collapsed' : '' }} ">
                 <i class="bi bi-circle"></i><span>Tps</span>
-              </a>
-            <a href="{{ route('dashboard.datamaster.kecamatan.index') }}"  class="nav-link {{ Request::routeIs('datamaster.kecamatan.*') ? 'collapsed' : '' }} ">
-                <i class="bi bi-circle"></i><span>Kecamatan</span>
             </a>
             <a href="{{ route('dashboard.datamaster.desa.index') }}"  class="nav-link {{ Request::routeIs('datamaster.desa.*') ? 'collapsed' : '' }} ">
                 <i class="bi bi-circle"></i><span>Desa</span>
             </a>
-
-            <a href="{{ route('dashboard.datamaster.tps.index') }}"  class="nav-link {{ Request::routeIs('datamaster.tps.*') ? 'collapsed' : '' }} ">
-              <i class="bi bi-circle"></i><span>Dpt</span>
+            <a href="{{ route('dashboard.datamaster.kecamatan.index') }}"  class="nav-link {{ Request::routeIs('datamaster.kecamatan.*') ? 'collapsed' : '' }} ">
+                <i class="bi bi-circle"></i><span>Kecamatan</span>
             </a>
-
           </li>
         </ul>
       </li>
       <!-- End Components Nav -->
+      <li class="nav-item">
+      <a href="{{ route('dashboard.dpt.index') }}"  class="nav-link {{ Request::routeIs('dashboard.dpt.*') ? '' : 'collapsed' }} ">
+        <i class="bi bi-file-earmark-text"></i><span>Dpt</span>
+      </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link {{ Request::routeIs('dashboard.data.*') ? '' : 'collapsed' }}" href="{{ route('dashboard.data.index') }}">
           <i class="bi bi-person"></i>
@@ -46,7 +46,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Request::routeIs('dashboard.peserta.*') ? '' : 'collapsed' }}" href="{{ route('dashboard.peserta.index') }}">
+        <a class="nav-link {{ Request::routeIs('dashboard.kordinator.desa.*') ? '' : 'collapsed' }}" href="{{ route('dashboard.kordinator.desa.index') }}">
           <i class="bi bi-person"></i>
           <span>Kordinator Desa</span>
         </a>

@@ -1,12 +1,11 @@
 <?php
-
 namespace App\Actions\Dashboard;
 
 use App\Models\Peserta;
 use App\DataTransferObjects\PesertaData;
 
-
-class PesertaAction {
+class PesertaAction
+{
     public function execute(PesertaData $pesertaData)
     {
         $peserta = Peserta::updateOrCreate(
@@ -18,21 +17,20 @@ class PesertaAction {
                 'hp' => $pesertaData->hp,
                 'alamat' => $pesertaData->alamat,
                 'warna' => $pesertaData->warna,
-
-            ],
+            ]
         );
 
-        if(empty($pesertaData->slug)){
-            $peserta->kecamatan()->attach($pesertaData->kecamatan);
-            $peserta->desa()->attach($pesertaData->desa);
-            $peserta->tps()->attach($pesertaData->tps);
-        }else{
-            $peserta->kecamatan()->sync($pesertaData->kecamatan);
-            $peserta->desa()->sync($pesertaData->desa);
-            $peserta->tps()->sync($pesertaData->tps);
+        if (empty($pesertaData->slug)) {
+            $peserta->kecamatan_pesertas()->attach($pesertaData->kecamatan);
+            $peserta->desa_pesertas()->attach($pesertaData->desa);
+            $peserta->tps_pesertas()->attach($pesertaData->tps);
+        } else {
+            $peserta->kecamatan_pesertas()->sync($pesertaData->kecamatan);
+            $peserta->desa_pesertas()->sync($pesertaData->desa);
+            $peserta->tps_pesertas()->sync($pesertaData->tps);
         }
-
 
         return $peserta;
     }
 }
+

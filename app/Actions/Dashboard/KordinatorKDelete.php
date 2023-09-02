@@ -7,8 +7,9 @@ use App\Models\KordinatorK;
 
 class KordinatorKDelete {
 
-    public function execute($kordinatorKecamatan)
+    public function execute($slug)
     {
-        $kordinatorKecamatan->delete();
+        $kordinatork = KordinatorK::where('slug', $slug)->firstOrFail();
+        $kordinatork->delete();
     }
 }
