@@ -40,4 +40,6 @@ class Kecamatan extends Model
     {
         return $this->belongsToMany(Peserta::class, 'peserta_data');
     }
+   
+
 }

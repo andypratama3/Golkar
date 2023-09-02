@@ -47,6 +47,11 @@ class Peserta extends Model
     {
         return $this->belongsToMany(Tps::class, 'peserta_tps');
     }
+    public function kecamatan_peserta()
+    {
+        return $this->belongsToMany(Kecamatan::class);
+    }
+
 
 
 

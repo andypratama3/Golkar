@@ -7,9 +7,10 @@ use App\Models\Desa;
 use App\Models\Peserta;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Excel;
+
 use App\Exports\PesertaExport;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Actions\Dashboard\PesertaAction;
 use App\DataTransferObjects\PesertaData;
 use Illuminate\Support\Facades\Redirect;
@@ -103,10 +104,17 @@ class PesertaController extends Controller
             }
         echo $option;
     }
+    public function export_page()
+    {
+        $pesertas = Peserta::all();
+        return view('dashboard.peserta.export', compact('pesertas'));
+    }
 
     public function export_excel()
     {
-        return Excel::download(new PesertaExport, 'Relawan-Tps.xlsx');
+        // $excel = Excel::create();
+        return Excel::download(new PesertaExport, 'pesertas.xlsx');
+
     }
 
 
