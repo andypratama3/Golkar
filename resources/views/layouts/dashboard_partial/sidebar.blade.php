@@ -57,6 +57,12 @@
           <span>Relawan Tps</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::routeIs('dashboard.user.*') ? '' : 'collapsed' }}" href="{{ route('dashboard.user.index') }}">
+          <i class="bi bi-person"></i>
+          <span>User</span>
+        </a>
+      </li>
       <!-- End Profile Page Nav -->
     </ul>
 

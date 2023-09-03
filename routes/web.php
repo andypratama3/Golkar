@@ -6,6 +6,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\Dashboard\DptController;
 use App\Http\Controllers\Dashboard\TpsController;
 use App\Http\Controllers\Dashboard\DesaController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\PesertaController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\KecamatanController;
@@ -35,6 +36,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
     Route::resource('kordinator/kecamatan', KordinatorKecamatanController::class, ['names' => 'dashboard.kordinator.kecamatan']);
     Route::resource('kordinator/desa', KordinatorDesaController::class, ['names' => 'dashboard.kordinator.desa']);
     Route::resource('dpt', DptController::class, ['names' => 'dashboard.dpt']);
+    Route::resource('user', UserController::class, ['names' => 'dashboard.user']);
 
     Route::group(['prefix' => 'datamaster'], function () {
         Route::resource('tps', TpsController::class, ['names' => 'dashboard.datamaster.tps']);
