@@ -32,9 +32,6 @@
                                 <td>{{ $user->role == '1' ? 'Admin' : 'User'}}</td>
                                 <td>
                                     <a href="{{ route('dashboard.user.show', $user->id) }}" class="btn btn-sm btn-warning">Ganti Role</a>
-                                    {{-- <a href="{{ route('dashboard.user.update', $user->id) }}" class="btn btn-primary">
-                                        Ganti Role
-                                        </a> --}}
                                     <a href="#" data-id="{{ $user->id }}" class="btn btn-danger btn-sm delete" title="Hapus">
                                         <form action="{{ route('dashboard.user.destroy', $user->id) }}"
                                             id="delete-{{ $user->id }}" method="POST" enctype="multipart/form-data">

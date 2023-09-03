@@ -13,14 +13,11 @@ class TpsController extends Controller
 {
     public function index()
     {
-        $limit = 15;
-        $tpss = Tps::select(['id','name','slug'])->orderBy('name')->paginate($limit);
-        $count = $tpss->count();
-        $no = $limit * ($tpss->currentPage() - 1);
-
+        $no = 0;
+        $tpss = Tps::select(['id','name','slug'])->orderBy('name')->get();
+        // $no = $limit * ($tpss->currentPage() - 1);
         return view('dashboard.data.tps.index', compact(
             'tpss',
-            'count',
             'no'
         ));
     }

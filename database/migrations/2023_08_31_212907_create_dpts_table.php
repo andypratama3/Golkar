@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('dpts', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->string('files');
+            $table->string('file');
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
