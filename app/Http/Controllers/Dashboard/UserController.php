@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Actions\Dashboard\DeleteUserAction;
 use App\Actions\Dashboard\UpdateUserAction;
 
 class UserController extends Controller
@@ -19,5 +20,10 @@ class UserController extends Controller
     {
         $updateUserAction->execute($id);
         return redirect()->route('dashboard.user.index')->with('success','Role Berhasil di Ganti');
+    }
+    public function destroy(DeleteUserAction $deleteuserAction,$id)
+    {
+        $deleteuserAction->execute($id);
+        redirect()->route('dashboard.user.index')->with('success','User Berhasil Di Hapus');
     }
 }
