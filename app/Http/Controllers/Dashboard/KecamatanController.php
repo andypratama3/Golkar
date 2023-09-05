@@ -14,11 +14,12 @@ class KecamatanController extends Controller
 {
     public function index()
     {
-        $limit = 15;
+        $no = 0;
         $kecamatans = Kecamatan::select(['name', 'slug'])->orderBy('name')->paginate($limit);
 
         return view('dashboard.data.kecamatan.index', compact(
             'kecamatans',
+            'no'
         ));
     }
     public function create()
