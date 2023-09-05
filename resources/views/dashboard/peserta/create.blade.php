@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label for="name" class="form-label" id="nik">NIK</label>
                         <input type="number" class="form-control {{ $errors->has('nik') ? 'is-invalid' : '' }}"
-                            id="inputnik" name="nik" value="{{ old('nik') }}">
+                            id="nik" name="nik" value="{{ old('nik') }}" maxlength="16">
                         @if ($errors->has('nik'))
                         <div class="invalid-feedback">{{ $errors->first('nik') }}</div>
                         @endif
@@ -154,10 +154,10 @@
                 }
             });
         });
-        $('#inputnik').on('change', function () {
+        $('#nik').on('change', function () {
             var nik = $(this).val(); // Get the value of the input field with id 'inputnik'
             if (nik.length > 16  && nik.length < 16) { // Check if the length of 'nik' is greater than 16
-                alert("Nik Tidak Boleh Lebih Dari 16 Karakter");
+                alert("Nik Tidak Boleh Kurang atau Lebih Dari 16 Karakter");
                 $(this).val(''); // Clear the input field
             }
         });
