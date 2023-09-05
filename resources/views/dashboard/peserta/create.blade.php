@@ -135,8 +135,7 @@
     $(document).ready(function () {
         $('#inputnik').on('input', function () {
             var nik = $(this).val();
-            if (nik.length > 16) {
-                $('#messageNik').html("Nik Tidak Boleh Kurang Atau Lebih Dari 16 Karakter");
+            if (nik.length != 16) {
                 // Optionally, you can truncate the input value to 16 characters
                 $(this).val(nik.substring(0, 16));
             }
@@ -145,9 +144,11 @@
 
         $('#inputnik').on('change', function () {
             var nik = $(this).val();
-            if (nik.length != 16) {
+            if (nik.length < 16) {
                 // alert("Nik Tidak Boleh Kurang Atau Lebih Dari 16 Karakter");
-                $('#messageNik').html("Nik Tidak Boleh Kurang Atau Lebih Dari 16 Karakter");
+                $('#messageNik').html("Nik Tidak Boleh Kurang Atau Dari 16 Karakter");
+            }else{
+
             }
         });
         $.ajaxSetup({
@@ -192,7 +193,7 @@
                 }
             });
         });
-        $('#inputnik').on('input', function () {
+        $('#inputnik').on('change', function () {
             let input_nik = $('#inputnik').val();
             $.ajax({
                 type: "POST",

@@ -13,7 +13,6 @@
                 </div>
 
                 <div class="table-responsive p-3">
-                    <a href="{{ route('dashboard.peserta.data.view') }}" class="btn btn-sm btn-success" style="float: right; margin-left: 20px;"><i class="bi bi-filetype-xls"></i> Export Excel</a>
                     <table class="table align-items-center table-flush" id="dataTable">
                         <thead class="thead-light">
                             <tr>
