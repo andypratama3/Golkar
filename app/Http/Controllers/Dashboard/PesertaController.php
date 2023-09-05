@@ -104,15 +104,9 @@ class PesertaController extends Controller
             }
         echo $option;
     }
-    public function export_page()
-    {
-        $pesertas = Peserta::all();
-        return view('dashboard.peserta.export', compact('pesertas'));
-    }
 
     public function export_excel()
     {
-        // $excel = Excel::create();
         return Excel::download(new PesertaExport, 'pesertas.xlsx');
 
     }

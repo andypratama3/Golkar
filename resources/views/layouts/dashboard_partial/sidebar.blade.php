@@ -15,9 +15,9 @@
         </a>
         <ul id="components-nav" class="nav-content" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{ route('dashboard.datamaster.tps.index') }}"  class="nav-link {{ Request::routeIs('datamaster.tps.*') ? 'collapsed' : '' }} ">
+            {{-- <a href="{{ route('dashboard.datamaster.tps.index') }}"  class="nav-link {{ Request::routeIs('datamaster.tps.*') ? 'collapsed' : '' }} ">
                 <i class="bi bi-circle"></i><span>Tps</span>
-            </a>
+            </a> --}}
             <a href="{{ route('dashboard.datamaster.desa.index') }}"  class="nav-link {{ Request::routeIs('datamaster.desa.*') ? 'collapsed' : '' }} ">
                 <i class="bi bi-circle"></i><span>Desa</span>
             </a>
