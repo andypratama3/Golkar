@@ -23,11 +23,12 @@
                     <div class="form-group">
                         <label for="name" class="form-label" id="nik">NIK</label>
                         <input type="number" class="form-control {{ $errors->has('nik') ? 'is-invalid' : '' }}"
-                            id="inputnik" name="nik" value="{{ old('nik') }}">
+                            id="inputnik" name="nik" value="{{ old('nik') }}" maxlength="16">
                         @if ($errors->has('nik'))
                         <div class="invalid-feedback">{{ $errors->first('nik') }}</div>
                         @endif
                         <div id="messageBisa" style="color: green; font-size: 13px;"></div>
+                        <div id="messageNik" style="color: green; font-size: 13px;"></div>
                         <div id="messageTidak" style="color: red; font-size: 13px;"></div>
                     </div>
                 </div>
@@ -132,10 +133,21 @@
 <script src="{{ asset('assets_dashboard/js/select2.min.js')}}"></script>
 <script>
     $(document).ready(function () {
+        $('#inputnik').on('input', function () {
+            var nik = $(this).val();
+            if (nik.length > 16) {
+                $('#messageNik').html("Nik Tidak Boleh Kurang Atau Lebih Dari 16 Karakter");
+                // Optionally, you can truncate the input value to 16 characters
+                $(this).val(nik.substring(0, 16));
+            }
+        });
+
+
         $('#inputnik').on('change', function () {
             var nik = $(this).val();
-            if (nik.length > 16 || nik.length < 16) {
-                alert("Nik Tidak Boleh Kurang Atau Lebih Dari 16 Karakter");
+            if (nik.length != 16) {
+                // alert("Nik Tidak Boleh Kurang Atau Lebih Dari 16 Karakter");
+                $('#messageNik').html("Nik Tidak Boleh Kurang Atau Lebih Dari 16 Karakter");
             }
         });
         $.ajaxSetup({
@@ -202,7 +214,6 @@
             });
         });
     });
-
 </script>
 
 @endpush
