@@ -9,7 +9,6 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title text-center">Tambah Data</h5>
-            <button class="btn btn-sm btn-success float-end" style="margin-top: 35px;" id="ceknik">Cek Nik</button>
             <form class="row g-3" action="{{ route('dashboard.peserta.store') }}" method="POST">
                 @csrf
                 <div class="col-6">
@@ -24,7 +23,7 @@
                     <div class="form-group">
                         <label for="name" class="form-label" id="nik">NIK</label>
                         <input type="number" class="form-control {{ $errors->has('nik') ? 'is-invalid' : '' }}"
-                            id="nik" name="nik" value="{{ old('nik') }}" maxlength="16">
+                            id="inputnik" name="nik" value="{{ old('nik') }}">
                         @if ($errors->has('nik'))
                         <div class="invalid-feedback">{{ $errors->first('nik') }}</div>
                         @endif
@@ -133,32 +132,10 @@
 <script src="{{ asset('assets_dashboard/js/select2.min.js')}}"></script>
 <script>
     $(document).ready(function () {
-        $('#ceknik').click(function (e) {
-            let input_nik = $('#nik').val();
-            $.ajax({
-                type: "POST",
-                url: "{{ route('get.nik') }}",
-                data: {
-                    input_nik: input_nik,
-                },
-                cache: false,
-                success: function (response) {
-                    if (response.hasOwnProperty('bisa')) {
-                        $('#messageBisa').html(response.bisa);
-                    } else {
-                        $('#messageTidak').html(response.tidak);
-                    }
-                },
-                error: function ($data) {
-                    console.log('error', $data);
-                }
-            });
-        });
-        $('#nik').on('change', function () {
-            var nik = $(this).val(); // Get the value of the input field with id 'inputnik'
-            if (nik.length > 16  && nik.length < 16) { // Check if the length of 'nik' is greater than 16
-                alert("Nik Tidak Boleh Kurang atau Lebih Dari 16 Karakter");
-                $(this).val(''); // Clear the input field
+        $('#inputnik').on('change', function () {
+            var nik = $(this).val();
+            if (nik.length > 16 || nik.length < 16) {
+                alert("Nik Tidak Boleh Kurang Atau Lebih Dari 16 Karakter");
             }
         });
         $.ajaxSetup({
@@ -203,7 +180,27 @@
                 }
             });
         });
-
+        $('#inputnik').on('change', function () {
+            let input_nik = $('#inputnik').val();
+            $.ajax({
+                type: "POST",
+                url: "{{ route('get.nik') }}",
+                data: {
+                    input_nik: input_nik,
+                },
+                cache: false,
+                success: function (response) {
+                    if (response.hasOwnProperty('bisa')) {
+                        $('#messageBisa').html(response.bisa);
+                    } else {
+                        $('#messageTidak').html(response.tidak);
+                    }
+                },
+                error: function ($data) {
+                    console.log('error', $data);
+                }
+            });
+        });
     });
 
 </script>
