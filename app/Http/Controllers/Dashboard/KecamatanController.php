@@ -15,7 +15,7 @@ class KecamatanController extends Controller
     public function index()
     {
         $no = 0;
-        $kecamatans = Kecamatan::select(['name', 'slug'])->orderBy('name')->paginate($limit);
+        $kecamatans = Kecamatan::select(['name', 'slug'])->orderBy('name')->get();
 
         return view('dashboard.data.kecamatan.index', compact(
             'kecamatans',
