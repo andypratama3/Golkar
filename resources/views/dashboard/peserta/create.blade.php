@@ -192,7 +192,7 @@
                 }
             });
         });
-        $('#inputnik').on('change', function () {
+        $('#inputnik').on('input', function () {
             let input_nik = $('#inputnik').val();
             $.ajax({
                 type: "POST",
