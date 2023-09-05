@@ -14,14 +14,10 @@ class DesaController extends Controller
 {
     public function index()
     {
-        $limit = 15;
-        $desas = Desa::select(['name','slug'])->orderBy('name')->paginate($limit);
-        $count = $desas->count();
-        $no = $limit * ($desas->currentPage() - 1);
-
+        $no = 0;
+        $desas = Desa::select(['name','slug'])->orderBy('name')->get();
         return view('dashboard.data.desa.index',compact(
             'desas',
-            'count',
             'no',
         ));
     }

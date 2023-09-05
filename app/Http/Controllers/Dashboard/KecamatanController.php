@@ -16,13 +16,9 @@ class KecamatanController extends Controller
     {
         $limit = 15;
         $kecamatans = Kecamatan::select(['name', 'slug'])->orderBy('name')->paginate($limit);
-        $count = $kecamatans->count();
-        $no = $limit * ($kecamatans->currentPage() - 1);
 
         return view('dashboard.data.kecamatan.index', compact(
             'kecamatans',
-            'count',
-            'no'
         ));
     }
     public function create()
