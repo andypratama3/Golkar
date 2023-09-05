@@ -32,6 +32,8 @@
                         <div id="messageTidak" style="color: red; font-size: 13px;"></div>
                     </div>
                 </div>
+
+
                 <div class="col-6">
                     <label for="name" class="form-label">Tanggal Lahir</label>
                     <input type="date" class="form-control  {{ $errors->has('tgl_lahir') ? 'is-invalid' : '' }}"
@@ -131,11 +133,31 @@
 <script src="{{ asset('assets_dashboard/js/select2.min.js')}}"></script>
 <script>
     $(document).ready(function () {
+        $('#ceknik').click(function (e) {
+            let input_nik = $('#nik').val();
+            $.ajax({
+                type: "POST",
+                url: "{{ route('get.nik') }}",
+                data: {
+                    input_nik: input_nik,
+                },
+                cache: false,
+                success: function (response) {
+                    if (response.hasOwnProperty('bisa')) {
+                        $('#messageBisa').html(response.bisa);
+                    } else {
+                        $('#messageTidak').html(response.tidak);
+                    }
+                },
+                error: function ($data) {
+                    console.log('error', $data);
+                }
+            });
+        });
         $('#inputnik').on('change', function () {
             var nik = $(this).val(); // Get the value of the input field with id 'inputnik'
-            if (nik.length > 16) { // Check if the length of 'nik' is greater than 16
+            if (nik.length > 16  && nik.length < 16) { // Check if the length of 'nik' is greater than 16
                 alert("Nik Tidak Boleh Lebih Dari 16 Karakter");
-
                 $(this).val(''); // Clear the input field
             }
         });
@@ -181,27 +203,7 @@
                 }
             });
         });
-        $('#ceknik').click(function (e) {
-            let input_nik = $('#nik').val();
-            $.ajax({
-                type: "POST",
-                url: "{{ route('get.nik') }}",
-                data: {
-                    input_nik: input_nik,
-                },
-                cache: false,
-                success: function (response) {
-                    if (response.hasOwnProperty('bisa')) {
-                        $('#messageBisa').html(response.bisa);
-                    } else {
-                        $('#messageTidak').html(response.tidak);
-                    }
-                },
-                error: function ($data) {
-                    console.log('error', $data);
-                }
-            });
-        });
+
     });
 
 </script>

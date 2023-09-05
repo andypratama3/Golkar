@@ -84,7 +84,7 @@
                 `<tr>
                     <td>
                         <select class="form-select" aria-label="Pilih Desa" id="desa_select2${i}" name="desa[` + i + `]">
-                            <option selected disabled>Pilih Talent</option>
+                            <option selected disabled>Pilih Desa</option>
                             @foreach($desas as $desa)
                             <option value="{{ $desa->id }}">{{ $desa->name }}</option>
                             @endforeach
