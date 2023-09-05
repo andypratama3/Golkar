@@ -1,22 +1,21 @@
+
 @extends('layouts.dashboard')
 @section('title', 'Kecamatan')
 @section('content')
-
-
 <section class="section">
     <div class="row">
+        <!-- Datatables -->
         <div class="col-lg-12">
-
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Data Kecamatan
-                        <a href="{{ route('dashboard.datamaster.kecamatan.create') }}" class="btn btn-sm btn-primary"
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h3 class="m-0 font-weight-bold text-dark text-center">Data Kecamatan</h3>
+                    <a href="{{ route('dashboard.datamaster.kecamatan.create') }}" class="btn btn-sm btn-primary"
                             style="float: right;">Tambah Data</a>
-                    </h5>
+                </div>
 
-                    <!-- Default Table -->
-                    <table class="table table-responsive-lg table-striped text-center">
-                        <thead>
+                <div class="table-responsive p-3">
+                    <table class="table align-items-center table-flush text-center" id="dataTable">
+                        <thead class="thead-light">
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Nama Kecamatan</th>
@@ -42,10 +41,17 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <!-- End Default Table Example -->
                 </div>
             </div>
         </div>
     </div>
 </section>
+@push('js')
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable(); // ID From dataTable
+        $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+    });
+</script>
+@endpush
 @endsection

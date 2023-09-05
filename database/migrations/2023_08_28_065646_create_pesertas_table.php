@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pesertas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->integer('nik')->max(16);
+            $table->string('nik')->max(16);
             $table->integer('hp');
             $table->date('tgl_lahir');
             $table->longText('alamat');

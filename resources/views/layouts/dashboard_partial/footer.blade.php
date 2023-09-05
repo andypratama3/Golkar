@@ -25,8 +25,6 @@
 
 <script>
     $(document).ready(function () {
-        $('#dataTable').DataTable(); // ID From dataTable
-      $('#dataTableHover').DataTable(); // ID From dataTable with Hover
 
         $(".delete").click(function (e) {
             slug = e.target.dataset.id;

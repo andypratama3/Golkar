@@ -1,19 +1,18 @@
-@extends('layouts.dashboard')
-@section('title', 'Data')
-@section('content')
 
+@extends('layouts.dashboard')
+@section('title', 'Desa')
+@section('content')
 <section class="section">
     <div class="row">
+        <!-- Datatables -->
         <div class="col-lg-12">
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h3 class="m-0 font-weight-bold text-dark text-center">Desa</h3>
+                </div>
 
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title text-center">
-                        {{-- <a href="" class="btn btn-danger btn-sm" style="margin-right: 300px;">kembali</a>Data Desa --}}
-                        Data Desa
-                    </h5>
-                    <!-- Default Table -->
-                    <table class="table table-responsive-lg table-striped text-center">
+                <div class="table-responsive p-3">
+                    <table class="table align-items-center table-flush text-center" id="dataTable">
                         <thead>
                             <tr>
                                 <th scope="col">Desa</th>
@@ -31,11 +30,17 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <!-- End Default Table Example -->
                 </div>
             </div>
         </div>
     </div>
 </section>
-
+@push('js')
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable(); // ID From dataTable
+        $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+    });
+</script>
+@endpush
 @endsection

@@ -57,7 +57,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
 
     //export peserta
     // Route::get('peserta/page/excel', [PesertaController::class, 'export_page'])->name('dashboard.peserta.data.view');
-    Route::get('peserta/export/excel', [PesertaController::class, 'export_excel'])->name('dashboard.peserta.data.export');
+    Route::get('peserta/export/excel', [PesertaController::class, 'export_excel'])->name('dashboard.peserta.data.export.excel');
+    Route::get('peserta/export/pdf', [PesertaController::class, 'export_excel'])->name('dashboard.peserta.data.export.pdf');
 
 });
 

@@ -2,6 +2,7 @@
 @section('title', 'Tambah Peserta')
 @push('css')
 <link href="{{ asset('assets_dashboard/css/select/select2.min.css') }}" rel="stylesheet" />
+
 @endpush
 @section('content')
 <div class="col-lg-12">
@@ -21,15 +22,15 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                    <label for="name" class="form-label">NIK</label>
-                    <input type="number" class="form-control {{ $errors->has('nik') ? 'is-invalid' : '' }}" id="nik"
-                        name="nik" value="{{ old('nik') }}">
-                    @if ($errors->has('nik'))
-                    <div class="invalid-feedback">{{ $errors->first('nik') }}</div>
-                    @endif
-                    <div id="messageBisa" style="color: green; font-size: 13px;"></div>
-                    <div id="messageTidak" style="color: red; font-size: 13px;"></div>
-                </div>
+                        <label for="name" class="form-label" id="nik">NIK</label>
+                        <input type="number" class="form-control {{ $errors->has('nik') ? 'is-invalid' : '' }}"
+                            id="inputnik" name="nik" value="{{ old('nik') }}">
+                        @if ($errors->has('nik'))
+                        <div class="invalid-feedback">{{ $errors->first('nik') }}</div>
+                        @endif
+                        <div id="messageBisa" style="color: green; font-size: 13px;"></div>
+                        <div id="messageTidak" style="color: red; font-size: 13px;"></div>
+                    </div>
                 </div>
                 <div class="col-6">
                     <label for="name" class="form-label">Tanggal Lahir</label>
@@ -54,14 +55,14 @@
                             name="kecamatan" id="kecamatan">
                             <option value="">Pilih Kecamatan</option>
                             @foreach ($kecamatans as $kecamatan)
-                                <option value="{{ $kecamatan->id }}"
-                                    {{ old('kecamatan') == $kecamatan->id ? 'selected' : '' }}>
-                                    {{ $kecamatan->name }}
-                                </option>
+                            <option value="{{ $kecamatan->id }}"
+                                {{ old('kecamatan') == $kecamatan->id ? 'selected' : '' }}>
+                                {{ $kecamatan->name }}
+                            </option>
                             @endforeach
                         </select>
                         @if ($errors->has('kecamatan'))
-                            <div class="invalid-feedback">{{ $errors->first('kecamatan') }}</div>
+                        <div class="invalid-feedback">{{ $errors->first('kecamatan') }}</div>
                         @endif
                     </div>
 
@@ -127,10 +128,17 @@
 <!-- Use -->
 <script src="{{ asset('assets_dashboard/js/jquery-3.6.0.min.js') }}"></script>
 <!-- Instead of -->
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
 <script src="{{ asset('assets_dashboard/js/select2.min.js')}}"></script>
 <script>
     $(document).ready(function () {
+        $('#inputnik').on('change', function () {
+            var nik = $(this).val(); // Get the value of the input field with id 'inputnik'
+            if (nik.length > 16) { // Check if the length of 'nik' is greater than 16
+                alert("Nik Tidak Boleh Lebih Dari 16 Karakter");
+
+                $(this).val(''); // Clear the input field
+            }
+        });
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -185,7 +193,7 @@
                 success: function (response) {
                     if (response.hasOwnProperty('bisa')) {
                         $('#messageBisa').html(response.bisa);
-                    }else{
+                    } else {
                         $('#messageTidak').html(response.tidak);
                     }
                 },
@@ -195,6 +203,8 @@
             });
         });
     });
+
 </script>
+
 @endpush
 @endsection

@@ -13,7 +13,8 @@
                 </div>
 
                 <div class="table-responsive p-3">
-                    <a href="{{ route('dashboard.peserta.data.export') }}" class="btn btn-sm btn-success" style="float: right; margin-left: 20px;"><i class="bi bi-filetype-xls"></i> Export Excel</a>
+                    <a href="{{ route('dashboard.peserta.data.export.excel') }}" class="btn btn-sm btn-success" style="float: right; margin-left: 20px;"><i class="bi bi-filetype-xls"></i> Export Excel</a>
+                    <a href="{{ route('dashboard.peserta.data.export.pdf') }}" class="btn btn-sm btn-warning" style="float: right; margin-left: 20px;"><i class="bi bi-filetype-pdf"></i> Export Pdf</a>
                     <table class="table align-items-center table-flush" id="dataTable">
                         <thead class="thead-light">
                             <tr>
@@ -57,4 +58,12 @@
         </div>
     </div>
 </section>
+@push('js')
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable(); // ID From dataTable
+        $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+    });
+</script>
+@endpush
 @endsection

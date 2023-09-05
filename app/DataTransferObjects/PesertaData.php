@@ -45,6 +45,7 @@ class PesertaData extends Data{
         return [
             'name.required' => 'Kolom Nama tidak boleh kosong!',
             'nik.required' => 'Kolom Nik tidak boleh kosong!',
+            'nik.max' => 'Kolom Nik tidak boleh lebih dari 16 karakter!',
             'hp.required' => 'Kolom Nomor Hp tidak boleh kosong!',
             'tgl_lahir.required' => 'Kolom Tanggal Lahir tidak boleh kosong!',
             'alamat.required' => 'Kolom alamat tidak boleh kosong!',
@@ -52,7 +53,6 @@ class PesertaData extends Data{
             'kecamatan.required' => 'Kolom Kecamatan tidak boleh kosong!',
             'desa.required' => 'Kolom Desa tidak boleh kosong!',
             'tps.required' => 'Kolom Tps tidak boleh kosong!',
-            'nik.unique' => 'Nomor Nik sudah digunakan. Harap gunakan Nik yang berbeda.',
 
 
         ];

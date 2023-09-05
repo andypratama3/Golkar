@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Tambah Peserta')
+@section('title', 'Tambah')
 @push('css')
 <link href="{{ asset('assets_dashboard/css/select/select2.min.css') }}" rel="stylesheet" />
 @endpush
