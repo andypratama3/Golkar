@@ -36,7 +36,15 @@
                                 <td>{{ $peserta->hp }}</td>
                                 <td>{{ $peserta->tgl_lahir }}</td>
                                 <td>{{ $peserta->alamat }}</td>
-                                <td>{{ $peserta->warna }}</td>
+                                <td>
+                                    @if ($peserta->warna === 'kuning')
+                                    <span class="badge bg-warning">{{ $peserta->warna }}</span>
+                                    @elseif ($peserta->warna === 'merah')
+                                    <span class="badge bg-danger">{{ $peserta->warna }}</span>
+                                    @elseif ($peserta->warna === 'abu-abu')
+                                    <span class="badge bg-secondary ">{{ $peserta->warna }}</span>
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ route('dashboard.peserta.show', $peserta->slug) }}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
                                     <a href="{{ route('dashboard.peserta.edit', $peserta->slug) }}" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
