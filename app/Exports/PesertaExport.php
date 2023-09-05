@@ -19,6 +19,6 @@ class PesertaExport implements FromView, WithHeadings
     }
     public function headings(): array
     {
-        return ["name", "Nik", "hp", "tgl_lahir", "alamat", "kecamatan", "desa", "tps", "warna"];
+        return ["name", "nik", "hp", "tgl_lahir", "alamat", "kecamatan", "desa", "tps", "warna"];
     }
 }

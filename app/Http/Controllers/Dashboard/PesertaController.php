@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Tps;
 use App\Models\Desa;
 use App\Models\Peserta;
+use PDF;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
-
 use App\Exports\PesertaExport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
@@ -104,12 +104,26 @@ class PesertaController extends Controller
             }
         echo $option;
     }
-
+    //export excel
     public function export_excel()
     {
         return Excel::download(new PesertaExport, 'pesertas.xlsx');
 
     }
+
+    //generate pdf
+    public function generate_pdf()
+{
+    $pesertas = Peserta::all();
+    $data = [
+        'pesertas' => $pesertas
+    ];
+
+    $pdf = PDF::loadView('dashboard.peserta.generatePdf', $data);
+
+    return $pdf->download('peserta.pdf');
+
+}
 
 
 
