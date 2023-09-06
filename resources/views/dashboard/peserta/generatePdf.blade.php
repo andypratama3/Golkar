@@ -7,19 +7,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Export</title>
     <style>
+    <style>
     @media print {
-        tr:nth-child(even) td {
-        -webkit-print-color-adjust: exact;
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 13px;
         }
-        }
-    </style>
 
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Define the background color for even rows */
+        }
+    }
+</style>
 </head>
 <body>
-    <h2 class="text-center">Data Relawan Tps 2023</h2>
-    <table class="table text-center table-bordered"  id="" style="font-size: 13px;">
-        <thead class="thead-light">
-            <tr class="text-center">
+    {{-- <img src="{{ asset('assets_dashboard/img/top.jpg') }}" alt="" style="margin: 5px;"> --}}
+    <h2>Data Relawan Tps 2023</h2>
+    <table >
+        <thead>
+            <tr>
                 <th>No</th>
                 <th>Nama</th>
                 <th>Nik</th>

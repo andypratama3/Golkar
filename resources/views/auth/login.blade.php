@@ -185,9 +185,10 @@ section{
     }
 }
 @media (max-width: 450px) {
-
-    .login{
-        background-size: 90%;
+    body{
+        margin: 4rem;
+    }
+    .login {
     }
     .login .login-input input{
         font-size: 0.5rem;
@@ -196,18 +197,19 @@ section{
     }
     .login-input{
         width: auto;
-        border: 2px solid blue;
         padding: 0;
         margin: 0;
         font-size: 1rem;
     }
     .login .login-content img{
-        left: 0;
-        height: 80%;
+        width: 100%;
+        padding-top: 140px;
+        height: 100%;
     }
-    .login-input .button{
-        margin-left :20px;
+    .login-input .label-form{
+        font-size: 1.rem;
     }
+
 }
 @media (max-width: 365px) {
 
