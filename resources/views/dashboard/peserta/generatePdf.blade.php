@@ -6,12 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Export</title>
+    <style>
+    @media print {
+        tr:nth-child(even) td {
+        -webkit-print-color-adjust: exact;
+        }
+        }
+    </style>
 
 </head>
 <body>
-    <table class="" id="">
+    <h2 class="text-center">Data Relawan Tps 2023</h2>
+    <table class="table text-center table-bordered"  id="" style="font-size: 13px;">
         <thead class="thead-light">
-            <tr>
+            <tr class="text-center">
                 <th>No</th>
                 <th>Nama</th>
                 <th>Nik</th>
@@ -29,7 +37,7 @@
             $no = 0;
             @endphp
             @foreach ($pesertas as $peserta)
-            <tr>
+            <tr class="text-center">
                 <td>{{ ++$no }}</td>
                 <td>{{ $peserta->name }}</td>
                 <td>{{ $peserta->nik }}</td>
@@ -50,6 +58,12 @@
             @endforeach
         </tbody>
     </table>
+
+    <footer class="footer">
+        <div class="footer-card">
+            <p>relawanmhf.com</p>
+        </div>
+    </footer>
 </body>
 </html>
 

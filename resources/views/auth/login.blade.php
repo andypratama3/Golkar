@@ -34,188 +34,212 @@
 
 </head>
 <style>
+section{
+    min-height: 100vh;
+
+    /* padding: 1rem 9% 2rem; */
+}
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+}
+.header .logo-header{
+    margin-bottom: 10px;
+    padding-top: 10px;
+    width: 200px;
+
+}
+.header .login-input{
+    padding: 15px;
+    justify-content: space-between;
+
+}
+.login {
+    background: url('assets_dashboard/img/mhf.jpg');
+    object-fit: cover;
+    background-size: cover;
+
+}
+.login .login-content img{
+    padding-top: 114px;
+}
+
+.login-input input{
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    margin-bottom: 20px;
+}
+.login-input .label-form{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.login-input .button{
+    margin-left: 115px;
+    /* float: right; */
+}
+.login-img img{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+
+.header.sticky{
+    border-bottom: .1rem solid rgba(0, 0, 0, .2);
+}
+.logo{
+    font-size: 1.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+    cursor: default;
+}
+@media (max-width: 1200px) {
+
+    .login .login-content img{
+        padding-top: 120px;
+
+        min-width: auto;
+        min-height: auto;
+    }
+}
+@media (max-width: 991px) {
+
+    .login{
+        min-width: auto;
+        min-height: auto;
+    }
+    .login-content img{
+        padding-top: 100px;
+    }
+}
+@media (max-width: 768px)
+{
     body{
-        overflow: hidden;
+        background: #ffd70b;
+        margin: 0 4rem 0;
     }
-    .background {
-        position: relative;
+    .header{
         width: 100%;
+        /* border: 2px solid red; */
+    }
+    .header input{
+        width: 25%;
+        font-size: 20px;
+    }
+    .header .logo-header{
+        margin-top: 20px;
+        width: 100px;
+        height: 50px;
+    }
+    .header .login-input{
+        width: 100%;
+    }
+    .login{
+        /* height: 100px; */
+        top: 0;
+        bottom: 0;
+        background-size: 90%;
+        background-repeat: no-repeat;
+    }
+    .login .login-content{
+        right: 200px;
         height: 100vh;
-        /* This sets the height to 100% of the viewport height */
+    }
+    .login .login-content img{
 
     }
 
-    .background .img-top {
-        position: absolute;
-        top: 0;
-        left: 0;
+
+}
+@media (max-width: 617px) {
+
+    .header .login-input{
         width: 100%;
-        height: auto;
-        object-fit: cover;
-        /* This ensures the image covers the entire div */
+        left: 20px;
     }
 
-    .background .form-group {
-        width: 100%;
-    }
-
-    .background .grid-form{
-        width: 60%;
-        height: auto;
-        transform: translateX(250px);
-        display: grid;
-        margin: 0 auto;
-        justify-content: left;
-        align-items: center;
-        grid-template-areas:
-        "name password"
-        "email confirm-password"
-        "username register";
-    }
-
-    .background input{
-        width: 300px;
-    }
-    @media (max-width: 768px) {
-        .background .img-top{
-            position: absolute;
-        top: 0;
-        left: 0;
+    .header input{
         width: 50%;
-        object-fit: cover;
-
-        }
-        /* Adjust the layout for screens with a maximum width of 768px (e.g., tablets) */
-        .background .grid-form {
-            transform: translateX(10px);
-
-            grid-template-areas:
-                "name"
-                "password"
-                "email"
-                "confirm-password"
-                "username register"; /* Combine the username and register fields */
-        }
+        font-size: 20px;
     }
-
-    @media (max-width: 576px) {
-        /* Adjust the layout for screens with a maximum width of 576px (e.g., mobile devices) */
-        .background .grid-form {
-            width: 100%; /* Adjust the width for even smaller screens */
-        }
+    .login{
+        /* height: 100px; */
+        bottom: 0;
+        background-size: 50%;
+        background-repeat: no-repeat;
     }
+}
+@media (max-width: 450px) {
 
+    .login{
+        background-size: 90%;
+    }
+    .login .login-input input{
+        font-size: 0.5rem;
+        width: 100%;
+        margin: 0;
+    }
+    .login-input{
+        width: auto;
+        border: 2px solid blue;
+        padding: 0;
+        margin: 0;
+        font-size: 1rem;
+    }
+    .login .login-content img{
+        left: 0;
+        height: 80%;
+    }
+    .login-input .button{
+        margin-left :20px;
+    }
+}
+@media (max-width: 365px) {
+
+}
 </style>
 
+
 <body>
-    <div class="background">
-        <img src="{{ asset('assets_dashboard/img/bg.jpg') }}" alt="" class="img-top">
-        <form action="{{ route('login') }}" method="POST">
-            @csrf
-            <div class="row grid-form">
-                <div class="username">
-                    <div class="form-group">
-                        <label class="form-label" for="username">Username</label>
-                        <input class="form-control form-control-sm" type="text" name="username">
-                        @error('username')
-                            <p style="color: black">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-                <div class="password">
-                    <div class="form-group">
-                        <label class="form-label" for="password">Password</label>
-                        <input class="form-control form-control-sm" type="password" name="password">
-                        @error('password')
-                            <p style="color: black">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-                <br><br>
-                <div class="register">
-                    <div class="button">
-                        <button class="btn btn-dark btn-sm btn-register" type="submit">Masuk</button>
-                        <a href="{{ route('register') }}" class="btn btn-dark btn-sm btn-login">Daftar</a>
-                        <a href="{{ route('password.request') }}" class="btn btn-dark btn-sm btn-forget-pw">Lupa Password?</a>
-                    </div>
-                </div>
+    <header class="header">
+        <img src="{{ asset('assets_dashboard/img/logo.jpg') }}" alt="" class="logo-header">
+        <div class="login-input">
+            <form action="{{ route('login') }}" method="POST">
+                @csrf
+            <label for="" class="label-form">Username : </label>
+            <input type="text" name="username" placeholder="username" value="{{ old('username') }}">
+            <label for="" class="label-form">Password : </label>
+            <input type="password" name="password" placeholder="password" value="{{ old('password') }}">
+            <div class="button">
+                <button class="btn btn-dark btn-sm btn-register" type="submit">Masuk</button>
+                {{-- <a href="{{ route('register') }}" class="btn btn-dark btn-sm btn-login">Daftar</a> --}}
+                {{-- <a href="{{ route('password.request') }}" class="btn btn-dark btn-sm btn-forget-pw">Lupa Password?</a> --}}
+                @error('username')
+                    <p class="" style="color: black" >{{ $message }}</p>
+                @enderror
             </div>
         </form>
-    </div>
+        </div>
+    </header>
+    <section class="login">
+        <div class="login-content">
+            <img src="{{ asset('assets_dashboard/img/people.png') }}" alt="" >
+        </div>
+    </section>
 </body>
-
 </html>
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-    <style>
-        /* Apply the background image */
-        body {
-            background-image: url('{{ asset('assets_dashboard/img/bg.jpg') }}'); /* Replace with your image URL or path */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Style the login box */
-        .login-box {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-
-        /* Style form elements */
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-    <div class="login-box">
-        <h1>Login</h1>
-        <form action="login.php" method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-    </div>
-</body>
-</html> --}}

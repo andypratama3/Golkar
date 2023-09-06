@@ -63,8 +63,8 @@ class PesertaController extends Controller
 
     public function edit($slug)
     {
-        $kecamatans = Kecamatan::select(['id','name','slug'])->get();
-        $peserta = Peserta::where('slug', $slug)->firstOrFail();
+        $kecamatans = Kecamatan::select(['id','name','slug'])->orderBy('name')->get();
+        $peserta = Peserta::where('slug', $slug)->orderBy('name')->firstOrFail();
         return view('dashboard.peserta.edit', compact('kecamatans','peserta'));
     }
     public function update(PesertaData $pesertaData, PesertaAction $pesertaAction,$slug)

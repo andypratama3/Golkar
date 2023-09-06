@@ -11,18 +11,17 @@ class DataController extends Controller
 {
     public function index()
     {
-        $kecamatans = Kecamatan::select('id','name','slug')->get();
+        $kecamatans = Kecamatan::select('id','name','slug')->orderBy('name')->get();
         return view('dashboard.data.kecamatan', compact('kecamatans'));
     }
     public function desa($name)
     {
-        // $desas = Desa::where('name', $name)->select('id','name','slug')->get();
-        $kecamatans = Kecamatan::where('name', $name)->select('id','name','slug')->get();
+        $kecamatans = Kecamatan::where('name', $name)->select('id','name','slug')->orderBy('name')->get();
         return view('dashboard.data.desa', compact('kecamatans'));
     }
     public function tps($name)
     {
-        $desas = Desa::where('name', $name)->select('id','name','slug')->get();
+        $desas = Desa::where('name', $name)->select('id','name','slug')->orderBy('name')->get();
         return view('dashboard.data.tps', compact('desas'));
     }
 

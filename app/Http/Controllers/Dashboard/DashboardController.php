@@ -5,31 +5,19 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Peserta;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
     public function __invoke()
     {
-        // $pendukungs = Peserta::all();
+        $pesertas = Peserta::select(['name'])->get();
 
-        // $kuning = 'Kuning';
-        // $total = $pendukungs->where('warna')->count();
-        // foreach ($pendukungs as $pendukung) {
-        //     foreach ($pendukung->kecamatans_peserta as $kecamatan) {
-        //         foreach ($pendukung->desa_pesertas as $desa) {
-        //             foreach ($pendukung->tps_pesertas as $item) {
 
-        //             }
-        //         }
-        //     }
-        // }
-        $kecamatans = Kecamatan::select(['name'])->get();
-        foreach ($kecamatans as $kecamatan){
+        $kecamatan = Kecamatan::select(['name'])->get();
 
-        }
-        return view('dashboard.index',compact('kecamatan'));
+        // $peserta = Peserta::Countwith('peserta_kecamatans')->where('kecamatan_id', $kecamatan-)
+        return view('dashboard.index', compact('pesertas'));
     }
-
-
 }
