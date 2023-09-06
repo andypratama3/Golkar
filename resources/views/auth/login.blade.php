@@ -207,12 +207,14 @@ section{
         height: 100%;
     }
     .login-input .label-form{
-        font-size: 1.rem;
+        font-size: 1rem;
     }
 
 }
 @media (max-width: 365px) {
-
+    .login .login-input .label-form{
+        font-size: 15px;
+    }
 }
 </style>
 
