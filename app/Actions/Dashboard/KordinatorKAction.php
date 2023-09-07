@@ -16,7 +16,6 @@ class KordinatorKAction {
                 'lokasi_kecamatan' => $KordinatorKData->lokasi_kecamatan,
             ],
         );
-
         return $kordinatorK;
     }
 }
