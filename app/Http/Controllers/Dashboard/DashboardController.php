@@ -5,19 +5,14 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Peserta;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
+use App\Charts\CountSelectColor;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    public function __invoke()
+    public function __invoke(CountSelectColor $chart)
     {
-        $pesertas = Peserta::select(['name'])->get();
-
-
-        $kecamatan = Kecamatan::select(['name'])->get();
-
-        // $peserta = Peserta::Countwith('peserta_kecamatans')->where('kecamatan_id', $kecamatan-)
-        return view('dashboard.index', compact('pesertas'));
+        return view('dashboard.index', ['chart' => $chart->build()]);
     }
 }
