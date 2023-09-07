@@ -27,6 +27,7 @@
 
         $(".delete").click(function (e) {
             slug = e.target.dataset.id;
+            e.preventDefault(); 
             swal({
                     title: 'Anda yakin?',
                     text: 'Data yang sudah dihapus tidak dapat dikembalikan!',

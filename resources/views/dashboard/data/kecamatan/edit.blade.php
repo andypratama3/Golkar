@@ -8,8 +8,9 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title text-center">Edit Data</h5>
-            {{-- @include('layouts.dashboard_partial.flashmessage') --}}
-            <form class="row g-3" action="{{ route('dashboard.datamaster.kecamatan.store', $kecamatan->slug) }}" method="POST">
+
+            <form class="row g-3" action="{{ route('dashboard.datamaster.kecamatan.store', $kecamatan->slug) }}"
+                method="POST">
                 @csrf
                 <input type="hidden" name="slug" value="{{ $kecamatan->slug }}">
                 <div class="col-12">
@@ -20,56 +21,56 @@
                     <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                     @endif
                 </div>
-            </div>
-            <div class="col-sm-12">
-                <table class="table table-bordered" id="dynamicAddRemove">
-                    <tr>
-                        <th>Desa</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select class="form-select select-desa" aria-label="Pilih Desa" name="desa[]">
-                                <option selected disabled>Pilih Desa</option>
-                                @foreach($desas as $desa)
-                                <option value="{{ $desa->id }}">{{ $desa->name }}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <button type="button" id="dynamic-ar" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i></button>
-                        </td>
-                    </tr>
-                    @forelse ($kecamatan->desa as $key => $desa)
-                    <tr>
-                        <td>
-                            <select class="form-select" aria-label="Pilih Desa" id="desa_select2{{ ++$key }}" name="desa[{{ $key }}]">
-                                <option value="{{ $desa->id }}" selected>{{ $desa->name }}</option>
-                                @foreach($desas as $desa_list)
-                                <option value="{{ $desa_list->id }}">{{ $desa_list->name }}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-danger remove-input-field"><i class="bi bi-trash"></i></button></td>
-                        </td>
-                    </tr>
-                    @empty
+                <div class="col-sm-12">
+                    <table class="table table-bordered" id="dynamicAddRemove">
+                        <tr>
+                            <th>Desa</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select class="form-select select-desa" aria-label="Pilih Desa" name="desa[]">
+                                    <option selected disabled>Pilih Desa</option>
+                                    @foreach($desas as $desa)
+                                    <option value="{{ $desa->id }}">{{ $desa->name }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <button type="button" id="dynamic-ar" class="btn btn-sm btn-primary"><i
+                                        class="bi bi-plus"></i></button>
+                            </td>
+                        </tr>
+                        @forelse ($kecamatan->desa as $key => $desa)
+                        <tr>
+                            <td>
+                                <select class="form-select" aria-label="Pilih Desa" id="desa_select2{{ ++$key }}"
+                                    name="desa[{{ $key }}]">
+                                    <option value="{{ $desa->id }}" selected>{{ $desa->name }}</option>
+                                    @foreach($desas as $desa_list)
+                                    <option value="{{ $desa_list->id }}">{{ $desa_list->name }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger remove-input-field"><i
+                                        class="bi bi-trash"></i></button></td>
+                            </td>
+                        </tr>
+                        @empty
                         <td>Tidak Ada Tps </td>
-                    @endforelse
+                        @endforelse
 
-                </table>
-            </div>
+                    </table>
+                </div>
         </div>
-
-
-        </div>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">Ubah Data</button>
-            <a href="{{ route('dashboard.datamaster.kecamatan.index') }}" class="btn btn-danger">Kembali</a>
-        </div>
-        </form>
     </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Ubah Data</button>
+        <a href="{{ route('dashboard.datamaster.kecamatan.index') }}" class="btn btn-danger">Kembali</a>
+    </div>
+    </form>
+</div>
 </div>
 
 
