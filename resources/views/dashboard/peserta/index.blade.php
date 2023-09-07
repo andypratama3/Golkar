@@ -12,8 +12,8 @@
                 </div>
 
                 <div class="table-responsive p-3">
-                    <a href="{{ route('dashboard.peserta.data.export.excel') }}" class="btn btn-sm btn-success" style="float: right; margin-left: 20px;"><i class="bi bi-filetype-xls"></i> Export Excel</a>
-                    <a href="{{ route('dashboard.peserta.data.export.pdf') }}" class="btn btn-sm btn-warning" style="float: right; margin-left: 20px;"><i class="bi bi-filetype-pdf"></i> Export Pdf</a>
+                    <a href="{{ route('dashboard.peserta.data.export.excel') }}" class="btn btn-sm btn-success text-center" style="margin-top: 0px; margin-bottom: 5px;"><i class="bi bi-filetype-xls"></i> Export Excel</a>
+                    <a href="{{ route('dashboard.peserta.data.export.pdf') }}" class="btn btn-sm btn-warning text-center" style="margin-top: 0px; margin-bottom: 5px;"><i class="bi bi-filetype-pdf"></i> Export Pdf</a>
                     <table class="table align-items-center table-flush" id="dataTable">
                         <thead class="thead-light">
                             <tr>

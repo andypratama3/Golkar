@@ -167,6 +167,9 @@ h6 {
     border-left: 1px solid #eaedf1;
   }
 }
+@media(max-width: 365px){
+
+}
 
 @-webkit-keyframes dropdown-animate {
   0% {
