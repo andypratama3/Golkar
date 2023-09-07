@@ -41,7 +41,7 @@ class CountSelectColor
         $chart->addData('Kuning', $colors->pluck('kuning_total')->toArray());
         $chart->addData('Abu-Abu', $colors->pluck('abu_total')->toArray());
         $chart->addData('Merah', $colors->pluck('merah_total')->toArray());
-        $chart->setXAxis($kecamatanNames);
+        $chart->setXAxis($colors->pluck('kecamatan_name')->toArray());
         return $chart;
 
     }
