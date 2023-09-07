@@ -12,7 +12,7 @@
   @include('layouts.dashboard_partial.sidebar')
   <!-- End Sidebar-->
   <main id="main" class="main">
-      {{-- @include('layouts.dashboard_partial.flashmessage') --}}
+    @include('layouts.dashboard_partial.flashmessage')
     @yield('content')
   </main>
   <!-- End #main -->

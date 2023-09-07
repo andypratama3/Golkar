@@ -30,6 +30,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], function () {
     Route::get('/', DashboardController::class)->name('dashboard.index');
     Route::resource('peserta', PesertaController::class, ['names' => 'dashboard.peserta']);

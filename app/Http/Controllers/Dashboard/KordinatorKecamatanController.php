@@ -41,7 +41,6 @@ class KordinatorKecamatanController extends Controller
     }
     public function destroy(KordinatorKDelete $kordinatorKDelete, $slug)
     {
-        
         $kordinatorKDelete->execute($slug);
         return redirect()->route('dashboard.kordinator.kecamatan.index')->with('success','Berhasil Hapus Kordinator Kecamatan');
 

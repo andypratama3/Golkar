@@ -28,14 +28,15 @@
                                 <td>{{ $kordinator->name }}</td>
                                 <td>{{ $kordinator->lokasi_desa }}</td>
                                 <td>
-                                    <a href="{{ route('dashboard.kordinator.kecamatan.edit', $kordinator->slug) }}" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
+                                    <a href="{{ route('dashboard.kordinator.desa.edit', $kordinator->slug) }}" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
                                     <a href="#" data-id="{{ $kordinator->slug }}" class="btn btn-danger btn-sm delete" title="Hapus">
-                                        <form action="{{ route('dashboard.kordinator.kecamatan.destroy', $kordinator->slug) }}"
+                                        <form action="{{ route('dashboard.kordinator.desa.destroy', $kordinator->slug) }}"
                                             id="delete-{{ $kordinator->slug }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('delete')
                                         </form>
                                     <i class="bi bi-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

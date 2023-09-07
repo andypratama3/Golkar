@@ -42,6 +42,8 @@ class CountSelectColor
         $chart->addData('Abu-Abu', $colors->pluck('abu_total')->toArray());
         $chart->addData('Merah', $colors->pluck('merah_total')->toArray());
         $chart->setXAxis($colors->pluck('kecamatan_name')->toArray());
+        $chart->setGrid('#3F51B5', 0.1);
+        
         return $chart;
 
     }
