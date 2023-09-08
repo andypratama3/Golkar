@@ -7,12 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Export</title>
     <style>
-    <style>
-    @media print {
         table {
             border-collapse: collapse;
             width: 100%;
-            font-size: 11px;
+            font-size: 12px;
         }
 
         th, td {
@@ -23,7 +21,6 @@
         tr:nth-child(even) {
             background-color: #f2f2f2; /* Define the background color for even rows */
         }
-    }
 </style>
 </head>
 <body>
@@ -37,6 +34,7 @@
                 <th>Nik</th>
                 <th>Hp</th>
                 <th>Tanggal Lahir</th>
+                <th>Umur</th>
                 <th>Alamat</th>
                 <th>Kecamatan</th>
                 <th>Desa</th>
@@ -55,6 +53,7 @@
                 <td>{{ $peserta->nik }}</td>
                 <td>{{ $peserta->hp }}</td>
                 <td>{{ $peserta->tgl_lahir }}</td>
+                <td>{{ $peserta->umur }} Tahun</td>
                 <td>{{ $peserta->alamat }}</td>
                 @foreach ($peserta->kecamatan_pesertas as $kecamatan)
                 <td>{{ $kecamatan->name }}</td>

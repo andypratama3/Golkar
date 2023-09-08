@@ -125,6 +125,10 @@ class PesertaController extends Controller
     public function generate_pdf()
 {
     $pesertas = Peserta::all();
+    $pesertas->transform(function ($peserta) {
+        $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
+        return $peserta;
+    });
     $data = [
         'pesertas' => $pesertas
     ];

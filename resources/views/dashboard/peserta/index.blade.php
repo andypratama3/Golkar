@@ -27,6 +27,7 @@
                                 <th>Nik</th>
                                 <th>Hp</th>
                                 <th>Tanggal Lahir</th>
+                                <th>Umur</th>
                                 <th>Alamat</th>
                                 <th>Warna</th>
                                 <th>Aksi</th>
@@ -39,7 +40,8 @@
                                 <td>{{ $peserta->name }}</td>
                                 <td>{{ $peserta->nik }}</td>
                                 <td>{{ $peserta->hp }}</td>
-                                <td>{{ $peserta->tgl_lahir }}, Umur {{ $peserta->umur }} Tahun</td>
+                                <td>{{ $peserta->tgl_lahir }}</td>
+                                <td>{{ $peserta->umur }} Tahun</td>
                                 <td>{{ $peserta->alamat }}</td>
                                 <td>
                                     @if ($peserta->warna === 'kuning')
