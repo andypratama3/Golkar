@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use PDF;
+use DateTime;
 use App\Models\Tps;
 use App\Models\Desa;
 use App\Models\Peserta;
-use PDF;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use App\Exports\PesertaExport;
@@ -24,7 +25,16 @@ class PesertaController extends Controller
     {
         $no = 0;
         $pesertas = Peserta::select(['name','nik','hp','tgl_lahir','alamat','warna','slug'])->orderBy('name')->get();
+        $pesertas->transform(function ($peserta) {
+            $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
+            return $peserta;
+        });
         return view('dashboard.peserta.index', compact('no', 'pesertas'));
+    }
+
+    public function getAgeAttribute()
+    {
+        return now()->diffInYears($this->tanggal_lahir);
     }
     ///nik tidak boleh sama
     public function create(Kecamatan $kecamatan)

@@ -67,7 +67,9 @@ section{
 
 }
 .login .login-content img{
-    padding-top: 114px;
+    padding-top: 80px;
+    width: 35%;
+
 }
 
 .login-input input{
@@ -110,85 +112,111 @@ section{
 }
 @media (max-width: 1200px) {
 
-    .login .login-content img{
-        padding-top: 120px;
+    .header .logo-header{
+        width: 30%;
+    }
+    .header .login-input{
+        font-size: 2rem;
+        /* margin-left: 450px; */
+    }
+    .header .login-input input{
+        height: 50%;
+        width: 200px;
 
-        min-width: auto;
-        min-height: auto;
+    }
+    .login .login-content img{
+        padding-top: 160px;
+        width: 55%;
     }
 }
 @media (max-width: 991px) {
 
+    .header .logo-header {
+        width: 30%;
+    }
     .login{
-        min-width: auto;
-        min-height: auto;
+        padding-top: 195px;
     }
     .login-content img{
-        padding-top: 100px;
+        width: 40%;
     }
+    .login-input input{
+        size: 2rem;
+
+    }
+
 }
 @media (max-width: 768px)
 {
     body{
         background: #ffd70b;
-        margin: 0 4rem 0;
+        /* margin: 0 4rem 0; */
     }
     .header{
         width: 100%;
         /* border: 2px solid red; */
     }
-    .header input{
-        width: 25%;
+    .header .login-input{
+        width: 100%;
+    }
+    .login-input .label-form{
+        font-size: 1rem;
+    }
+    .header .login-input input{
         font-size: 20px;
+        /* margin-right: 100px; */
     }
     .header .logo-header{
         margin-top: 20px;
         width: 100px;
-        height: 50px;
+        /* height: 50px; */
     }
-    .header .login-input{
-        width: 100%;
-    }
+
     .login{
-        /* height: 100px; */
-        top: 0;
-        bottom: 0;
         background-size: 90%;
         background-repeat: no-repeat;
     }
-    .login .login-content{
-        right: 200px;
-        height: 100vh;
-    }
     .login .login-content img{
-
+        right: 200px;
     }
 
 
 }
 @media (max-width: 617px) {
-
+    .header .logo-header{
+        width: 50%
+    }
     .header .login-input{
         width: 100%;
         left: 20px;
     }
 
-    .header input{
+    .header .login-input input{
         width: 50%;
-        font-size: 20px;
+        /* font-size: 20px; */
     }
     .login{
-        /* height: 100px; */
         bottom: 0;
         background-size: 50%;
         background-repeat: no-repeat;
     }
+    .login{
+        margin: 0;
+    }
+    .login .login-content img{
+        width: 100%;
+        top: 0;
+    }
 }
 @media (max-width: 450px) {
     body{
-        margin: 4rem;
+        /* margin: 4rem; */
+    }
+    .header .logo-header{
+        width: 45%
     }
     .login {
+        margin: 0;
     }
     .login .login-input input{
         font-size: 0.5rem;
@@ -203,7 +231,7 @@ section{
     }
     .login .login-content img{
         width: 100%;
-        padding-top: 140px;
+        padding-top: 180px;
         height: 100%;
     }
     .login-input .label-form{
@@ -212,8 +240,18 @@ section{
 
 }
 @media (max-width: 365px) {
+    .header .logo-header{
+        width: 28%;
+        height: 90px;
+    }
     .login .login-input .label-form{
-        font-size: 15px;
+        font-size: 10px;
+    }
+    .logo{
+        margin-top: 100px;
+    }
+    .login .login-content img{
+        padding-top: 300px;
     }
 }
 </style>

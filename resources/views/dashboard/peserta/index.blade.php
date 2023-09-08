@@ -8,12 +8,17 @@
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h3 class="m-0 font-weight-bold text-dark text-center">Peserta</h3>
-                    <a href="{{ route('dashboard.peserta.create') }}" class="btn btn-sm btn-primary" style="float: right;">Tambah Data</a>
+                    <a href="{{ route('dashboard.peserta.create') }}" class="btn btn-sm btn-primary"
+                        style="float: right;">Tambah Data</a>
                 </div>
 
                 <div class="table-responsive p-3">
-                    <a href="{{ route('dashboard.peserta.data.export.excel') }}" class="btn btn-sm btn-success text-center" style="margin-top: 0px; margin-bottom: 5px;"><i class="bi bi-filetype-xls"></i> Export Excel</a>
-                    <a href="{{ route('dashboard.peserta.data.export.pdf') }}" class="btn btn-sm btn-warning text-center" style="margin-top: 0px; margin-bottom: 5px;"><i class="bi bi-filetype-pdf"></i> Export Pdf</a>
+                    <a href="{{ route('dashboard.peserta.data.export.excel') }}"
+                        class="btn btn-sm btn-success text-center" style="margin-top: 0px; margin-bottom: 5px;"><i
+                            class="bi bi-filetype-xls"></i> Export Excel</a>
+                    <a href="{{ route('dashboard.peserta.data.export.pdf') }}"
+                        class="btn btn-sm btn-warning text-center" style="margin-top: 0px; margin-bottom: 5px;"><i
+                            class="bi bi-filetype-pdf"></i> Export Pdf</a>
                     <table class="table align-items-center table-flush" id="dataTable">
                         <thead class="thead-light">
                             <tr>
@@ -34,7 +39,7 @@
                                 <td>{{ $peserta->name }}</td>
                                 <td>{{ $peserta->nik }}</td>
                                 <td>{{ $peserta->hp }}</td>
-                                <td>{{ $peserta->tgl_lahir }}</td>
+                                <td>{{ $peserta->tgl_lahir }}, Umur {{ $peserta->umur }} Tahun</td>
                                 <td>{{ $peserta->alamat }}</td>
                                 <td>
                                     @if ($peserta->warna === 'kuning')
@@ -46,15 +51,19 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('dashboard.peserta.show', $peserta->slug) }}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
-                                    <a href="{{ route('dashboard.peserta.edit', $peserta->slug) }}" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
-                                    <a href="#" data-id="{{ $peserta->slug }}" class="btn btn-danger btn-sm delete" title="Hapus">
+                                    <a href="{{ route('dashboard.peserta.show', $peserta->slug) }}"
+                                        class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
+                                    <a href="{{ route('dashboard.peserta.edit', $peserta->slug) }}"
+                                        class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
+                                    <a href="#" data-id="{{ $peserta->slug }}" class="btn btn-danger btn-sm delete"
+                                        title="Hapus">
                                         <form action="{{ route('dashboard.peserta.destroy', $peserta->slug) }}"
-                                            id="delete-{{ $peserta->slug }}" method="POST" enctype="multipart/form-data">
+                                            id="delete-{{ $peserta->slug }}" method="POST"
+                                            enctype="multipart/form-data">
                                             @csrf
                                             @method('delete')
                                         </form>
-                                    <i class="bi bi-trash"></i>
+                                        <i class="bi bi-trash"></i>
                                 </td>
                             </tr>
                             @endforeach
