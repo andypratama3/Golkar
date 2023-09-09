@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Export</title>
-    
+
 </head>
 <body>
     <table class="" id="">
@@ -17,6 +17,7 @@
                 <th>Nik</th>
                 <th>Hp</th>
                 <th>Tanggal Lahir</th>
+                <th>Umur</th>
                 <th>Alamat</th>
                 <th>Kecamatan</th>
                 <th>Desa</th>
@@ -35,6 +36,7 @@
                 <td>{{ $peserta->nik }}</td>
                 <td>{{ $peserta->hp }}</td>
                 <td>{{ $peserta->tgl_lahir }}</td>
+                <td>{{ $peserta->umur }} Thn</td>
                 <td>{{ $peserta->alamat }}</td>
                 @foreach ($peserta->kecamatan_pesertas as $kecamatan)
                 <td>{{ $kecamatan->name }}</td>

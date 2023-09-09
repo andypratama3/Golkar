@@ -13,8 +13,13 @@ class PesertaExport implements FromView, WithHeadings
 {
     public function view(): view
     {
+        $pesertas = Peserta::all();
+        $pesertas->transform(function ($peserta) {
+            $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
+            return $peserta;
+        });
         return view('dashboard.peserta.export', [
-            'pesertas' => Peserta::all()
+            'pesertas' => $pesertas,
         ]);
     }
     public function headings(): array

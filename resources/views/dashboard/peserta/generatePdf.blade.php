@@ -53,7 +53,7 @@
                 <td>{{ $peserta->nik }}</td>
                 <td>{{ $peserta->hp }}</td>
                 <td>{{ $peserta->tgl_lahir }}</td>
-                <td>{{ $peserta->umur }} Tahun</td>
+                <td>{{ $peserta->umur }} Thn</td>
                 <td>{{ $peserta->alamat }}</td>
                 @foreach ($peserta->kecamatan_pesertas as $kecamatan)
                 <td>{{ $kecamatan->name }}</td>
