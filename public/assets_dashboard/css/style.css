@@ -166,8 +166,20 @@ h6 {
     border-top: 1px solid #eaedf1;
     border-left: 1px solid #eaedf1;
   }
+  .header-nav h2{
+    font-size: 15px;
+}
 }
 @media(max-width: 365px){
+    .header-nav {
+        margin: 0;
+    }
+    .header-nav h2{
+        font-size: small;
+    }
+    .logo img{
+
+    }
 
 }
 
@@ -379,13 +391,14 @@ h6 {
 
 @media (min-width: 1200px) {
   .logo {
-    width: 280px;
+    width: 240px;
   }
 }
 
 .logo img {
-  max-height: 26px;
-  margin-right: 6px;
+    margin-left: 30px;
+  max-height: 50px;
+  /* margin-right: 6px; */
 }
 
 .logo span {
@@ -496,8 +509,13 @@ h6 {
   color: #012970;
 }
 
+.header-nav h2{
+    padding-top: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 .header-nav .nav-profile img {
   max-height: 36px;
+  margin-left: 250px;
 }
 
 .header-nav .nav-profile span {
@@ -1238,6 +1256,12 @@ h6 {
   .error-404 img {
     max-width: 50%;
   }
+  .header-nav h2{
+    font-size: 25px;
+    }
+    .logo img{
+        width: 70%;
+    }
 }
 
 /*--------------------------------------------------------------

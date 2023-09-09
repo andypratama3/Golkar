@@ -3,15 +3,14 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ route('dashboard.index') }}" class="logo d-flex align-items-center">
         <img src="{{ asset('assets_dashboard/img/logo.jpg') }}" alt="">
-        <span class="d-none d-lg-block text-center">DATA BASE RELAWAN MHF</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
 
     <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
-
+        <ul class="d-flex align-items-center">
+          <h2><strong> DATABASE RELAWAN MHF</strong></h2>
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
