@@ -244,8 +244,14 @@ section{
         width: 28%;
         height: 90px;
     }
+
     .login .login-input .label-form{
         font-size: 10px;
+    }
+    .login-input .button {
+        display: inline;
+        font-size: 15px;
+
     }
     .logo{
         margin-top: 100px;
