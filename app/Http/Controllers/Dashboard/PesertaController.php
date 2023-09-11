@@ -105,7 +105,7 @@ class PesertaController extends Controller
     public function gettps(Request $request)
     {
         $id_desa = $request->id_desa;
-        $desas = Desa::where('id', $id_desa)->get();
+        $desas = Desa::where('id', $id_desa)->orderby('name')->get();
         $option = "<option>Pilih Tps</option>";
         foreach ($desas as $key => $desa) {
             foreach ($desa->tps as $tps) {
