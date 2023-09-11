@@ -204,20 +204,9 @@
                 success: function (response) {
                     $('#tps').html(response);
                     //sorting data
-                    var selectElement = document.getElementById("tps");
-                    var options = Array.from(selectElement.options);
-
-                    options.sort(function (a, b) {
-                        return a.text.localeCompare(b.text);
-                    });
-
-                    // Clear the existing options
-                    selectElement.innerHTML = "";
-
-                    // Add the sorted options back to the select element
-                    options.forEach(function (option) {
-                        selectElement.appendChild(option);
-                    });
+                    $("#tps option").sort(function (a, b) {
+                    return parseInt(a.value) - parseInt(b.value);
+                    }).appendTo("#tps");
                 },
                 error: function ($data) {
                     console.log('error', $data);
