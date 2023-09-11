@@ -32,7 +32,7 @@
                                 <td>{{ $peserta->hp }}</td>
                                 <td>
                                     @foreach ($peserta->desa_pesertas as $desa)
-                                    <td>:  {{ $desa->name }}</td>
+                                    {{ $desa->name }}
                                     @endforeach
                                 <td>
                                     @if ($peserta->warna === 'kuning')
