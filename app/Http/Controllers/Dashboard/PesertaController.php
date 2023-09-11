@@ -69,8 +69,10 @@ class PesertaController extends Controller
                 return redirect()->route('dashboard.input.simpatisan.index')->with('success','Berhasil Menambahkan Peserta');
             }else if($pesertaData->status == 'kordinator_kecamatan'){
                 return redirect()->route('dashboard.input.kordinator.kecamatan.index')->with('success','Berhasil Menambahkan Peserta & Kordinator Kecamatan');
-            }else if($pesertaData->status == 'kordinator_kecamatan'){
+            }else if($pesertaData->status == 'kordinator_desa'){
                 return redirect()->route('dashboard.input.kordinator.desa.index')->with('success','Berhasil Menambahkan Peserta & Kordinator Desa');
+            }else{
+                return response('Gagal Menambahkan Data', 403);
             }
         }
 
