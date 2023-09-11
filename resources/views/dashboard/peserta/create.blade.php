@@ -121,7 +121,8 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="">Status</label>
-                        <select name="status" id="" class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}">
+                        <select name="status" id=""
+                            class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}">
                             <option disabled>Pilih Status</option>
                             <option value="relawan">Relawan</option>
                             <option value="simpatisan">Simpatisan</option>
@@ -133,7 +134,7 @@
                         @endif
                     </div>
                 </div>
-            </div>
+        </div>
         <div class="text-center mb-2">
             <button type="submit" class="btn btn-primary">Tambah</button>
             <button type="reset" class="btn btn-secondary">Reset</button>
@@ -162,7 +163,7 @@
             if (nik.length < 16) {
                 // alert("Nik Tidak Boleh Kurang Atau Lebih Dari 16 Karakter");
                 $('#messageNik').html("Nik Tidak Boleh Kurang Atau Dari 16 Karakter");
-            }else{
+            } else {
 
             }
         });
@@ -202,6 +203,21 @@
                 cache: false,
                 success: function (response) {
                     $('#tps').html(response);
+                    //sorting data
+                    var selectElement = document.getElementById("tps");
+                    var options = Array.from(selectElement.options);
+
+                    options.sort(function (a, b) {
+                        return a.text.localeCompare(b.text);
+                    });
+
+                    // Clear the existing options
+                    selectElement.innerHTML = "";
+
+                    // Add the sorted options back to the select element
+                    options.forEach(function (option) {
+                        selectElement.appendChild(option);
+                    });
                 },
                 error: function ($data) {
                     console.log('error', $data);
