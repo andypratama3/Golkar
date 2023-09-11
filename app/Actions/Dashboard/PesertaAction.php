@@ -17,6 +17,7 @@ class PesertaAction
                 'hp' => $pesertaData->hp,
                 'alamat' => $pesertaData->alamat,
                 'warna' => $pesertaData->warna,
+                'status' => $pesertaData->status,
             ]
         );
 

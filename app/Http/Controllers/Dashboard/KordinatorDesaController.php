@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Desa;
+use App\Models\Peserta;
 use App\Models\KordinatorD;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,9 +15,14 @@ class KordinatorDesaController extends Controller
 {
     public function index()
     {
+        $status = 'kordinator_desa';
         $no = 0;
-        $kordinators = KordinatorD::select(['name','lokasi_desa','slug'])->get();
-        return view('dashboard.kordinatord.index', compact('no','kordinators'));
+        $pesertas = Peserta::where('status',$status)->orderBy('name')->get();
+        $pesertas->transform(function ($peserta) {
+            $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
+            return $peserta;
+        });
+        return view('dashboard.kordinatord.index', compact('no','pesertas'));
     }
     public function create()
     {

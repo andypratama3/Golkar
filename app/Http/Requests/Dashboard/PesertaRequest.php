@@ -52,6 +52,10 @@ class PesertaRequest extends FormRequest
     {
         return $this->warna;
     }
+    public function getStatus()
+    {
+        return $this->status;
+    }
     public function getSlug()
     {
         return $this->slug;

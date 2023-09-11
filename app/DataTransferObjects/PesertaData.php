@@ -17,6 +17,7 @@ class PesertaData extends Data{
         public readonly string $tps,
         public readonly string $alamat,
         public readonly string $warna,
+        public readonly string $status,
         public readonly ?string $slug,
         public readonly ?int $id // Properti id ditambahkan
 
@@ -36,6 +37,7 @@ class PesertaData extends Data{
             $request->getTps(),
             $request->getAlamat(),
             $request->getWarna(),
+            $request->getStatus(),
             $request->getSlug(),
         ]);
     }
@@ -53,8 +55,7 @@ class PesertaData extends Data{
             'kecamatan.required' => 'Kolom Kecamatan tidak boleh kosong!',
             'desa.required' => 'Kolom Desa tidak boleh kosong!',
             'tps.required' => 'Kolom Tps tidak boleh kosong!',
-
-
+            'status.required' => 'Kolom Status tidak boleh kosong!',
         ];
     }
 }

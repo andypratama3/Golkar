@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title text-center">Tambah Data</h5>
-            <form class="row g-3" action="{{ route('dashboard.peserta.store') }}" method="POST">
+            <form class="row g-3" action="{{ route('dashboard.input.peserta.store') }}" method="POST">
                 @csrf
                 <div class="col-6">
                     <label for="name" class="form-label">Nama</label>
@@ -85,7 +85,7 @@
                     <div class="form-group">
                         <label style="margin-bottom: 10px;">Tps</label>
                         <select class="form-control select2 {{ $errors->has('tps') ? 'is-invalid' : '' }}" name="tps"
-                            id="tps">
+                            id="tps" data-order-by="text">
                             {{ old('tps') }}
                         </select>
                         @if ($errors->has('tps'))
@@ -118,7 +118,22 @@
                         @endif
                     </div>
                 </div>
-        </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="">Status</label>
+                        <select name="status" id="" class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}">
+                            <option disabled>Pilih Status</option>
+                            <option value="relawan">Relawan</option>
+                            <option value="simpatisan">Simpatisan</option>
+                            <option value="kordinator_kecamatan">Kordinator Kecamatan</option>
+                            <option value="kordinator_desa">Kordinator Desa</option>
+                        </select>
+                        @if ($errors->has('status'))
+                        <div class="invalid-feedback">{{ $errors->first('status') }}</div>
+                        @endif
+                    </div>
+                </div>
+            </div>
         <div class="text-center mb-2">
             <button type="submit" class="btn btn-primary">Tambah</button>
             <button type="reset" class="btn btn-secondary">Reset</button>

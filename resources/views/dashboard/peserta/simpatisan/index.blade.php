@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Kordinator Kecamatan')
+@section('title', 'Peserta Simpatisan')
 @section('content')
 <section class="section">
     <div class="row">
@@ -7,10 +7,18 @@
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h3 class="m-0 font-weight-bold text-dark text-center">Kordinator Kecamatan</h3>
+                    <h3 class="m-0 font-weight-bold text-dark text-center">Peserta Simpatisan</h3>
+                    {{-- <a href="{{ route('dashboard.input.peserta.create') }}" class="btn btn-sm btn-primary"
+                        style="float: right;">Tambah Data</a> --}}
                 </div>
 
                 <div class="table-responsive p-3">
+                    <a href="{{ route('dashboard.peserta.data.export.excel') }}"
+                        class="btn btn-sm btn-success text-center" style="margin-top: 0px; margin-bottom: 5px;"><i
+                            class="bi bi-filetype-xls"></i> Export Excel</a>
+                    <a href="{{ route('dashboard.peserta.data.export.pdf') }}"
+                        class="btn btn-sm btn-warning text-center" style="margin-top: 0px; margin-bottom: 5px;"><i
+                            class="bi bi-filetype-pdf"></i> Export Pdf</a>
                     <table class="table align-items-center table-flush" id="dataTable">
                         <thead class="thead-light">
                             <tr>
@@ -18,7 +26,9 @@
                                 <th>Nama</th>
                                 <th>Nik</th>
                                 <th>Hp</th>
-                                <th>Kecamatan</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Umur</th>
+                                <th>Alamat</th>
                                 <th>Warna</th>
                                 <th>Aksi</th>
                             </tr>
@@ -30,11 +40,9 @@
                                 <td>{{ $peserta->name }}</td>
                                 <td>{{ $peserta->nik }}</td>
                                 <td>{{ $peserta->hp }}</td>
-                                <td>
-                                    @foreach ($peserta->kecamatan_pesertas as $kecamatan)
-                                        {{ $kecamatan->name }}
-                                    @endforeach
-                                </td>
+                                <td>{{ $peserta->tgl_lahir }}</td>
+                                <td>{{ $peserta->umur }} Thn</td>
+                                <td>{{ $peserta->alamat }}</td>
                                 <td>
                                     @if ($peserta->warna === 'kuning')
                                     <span class="badge bg-warning">{{ $peserta->warna }}</span>

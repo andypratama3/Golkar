@@ -8,7 +8,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title text-center">Edit Data</h5>
-            <form class="row g-3" action="{{ route('dashboard.peserta.update',$peserta->slug) }}" method="POST">
+            <form class="row g-3" action="{{ route('dashboard.input.peserta.update',$peserta->slug) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="slug" value="{{ $peserta->slug }}">
@@ -108,9 +108,24 @@
                         </select>
                     </div>
                 </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="">Status</label>
+                        <select name="status" id="" class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}">
+                            <option value="{{ $peserta->status }}">{{ $peserta->status }}</option>
+                            <option value="relawan">Relawan</option>
+                            <option value="simpatisan">Simpatisan</option>
+                            <option value="kordinator_kecamatan">Kordinator Kecamatan</option>
+                            <option value="kordinator_desa">Kordinator Desa</option>
+                        </select>
+                        @if ($errors->has('status'))
+                        <div class="invalid-feedback">{{ $errors->first('status') }}</div>
+                        @endif
+                    </div>
+                </div>
         </div>
         <div class="text-center mb-2">
-            <a href="{{ route('dashboard.peserta.index') }}" class="btn btn-warning">kembali</a>
+            <a href="{{ route('dashboard.input.peserta.index') }}" class="btn btn-warning">kembali</a>
             <button type="submit" class="btn btn-primary">Update</button>
         </div>
         </form>

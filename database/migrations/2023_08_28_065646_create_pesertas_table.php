@@ -19,7 +19,9 @@ return new class extends Migration
             $table->date('tgl_lahir');
             $table->longText('alamat');
             $table->string('warna');
+            $table->string('status');
             $table->string('slug');
+
             $table->softDeletes();
             $table->timestamps();
         });

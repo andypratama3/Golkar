@@ -28,6 +28,7 @@ class Peserta extends Model
         'alamat',
         'tgl_lahir',
         'warna',
+        'status',
     ];
 
     protected $dates = ['deleted_at'];

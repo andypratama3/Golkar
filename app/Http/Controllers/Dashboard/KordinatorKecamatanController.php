@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Models\Peserta;
 use App\Models\Kecamatan;
 use App\Models\KordinatorK;
 use Illuminate\Http\Request;
@@ -14,9 +15,15 @@ class KordinatorKecamatanController extends Controller
 {
     public function index()
     {
+        $status = 'kordinator_kecamatan';
         $no = 0;
-        $kordinators = KordinatorK::select(['name','slug','lokasi_kecamatan'])->get();
-        return view('dashboard.kordinatork.index', compact('kordinators','no'));
+        $pesertas = Peserta::where('status',$status)->orderBy('name')->get();
+        $pesertas->transform(function ($peserta) {
+            $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
+            return $peserta;
+        });
+
+        return view('dashboard.kordinatork.index', compact('pesertas','no'));
     }
     public function create()
     {

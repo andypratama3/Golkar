@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\PesertaController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\KecamatanController;
+use App\Http\Controllers\Dashboard\SimpatisanController;
 use App\Http\Controllers\Dashboard\KordinatorDesaController;
 use App\Http\Controllers\Dashboard\KordinatorKecamatanController;
 
@@ -33,17 +34,22 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], function () {
     Route::get('/', DashboardController::class)->name('dashboard.index');
-    Route::resource('peserta', PesertaController::class, ['names' => 'dashboard.peserta']);
-    Route::resource('kordinator/kecamatan', KordinatorKecamatanController::class, ['names' => 'dashboard.kordinator.kecamatan']);
-    Route::resource('kordinator/desa', KordinatorDesaController::class, ['names' => 'dashboard.kordinator.desa']);
-    Route::resource('dpt', DptController::class, ['names' => 'dashboard.dpt']);
-    Route::resource('user', UserController::class, ['names' => 'dashboard.user']);
 
     Route::group(['prefix' => 'datamaster'], function () {
         Route::resource('tps', TpsController::class, ['names' => 'dashboard.datamaster.tps']);
         Route::resource('desa', DesaController::class, ['names' => 'dashboard.datamaster.desa']);
         Route::resource('kecamatan', KecamatanController::class, ['names' => 'dashboard.datamaster.kecamatan']);
     });
+
+    Route::group(['prefix' => 'input'], function () {
+        Route::resource('kordinator/kecamatan', KordinatorKecamatanController::class, ['names' => 'dashboard.input.kordinator.kecamatan']);
+        Route::resource('kordinator/desa', KordinatorDesaController::class, ['names' => 'dashboard.input.kordinator.desa']);
+        Route::resource('peserta', PesertaController::class, ['names' => 'dashboard.input.peserta']);
+        Route::resource('simpatisan', SimpatisanController::class, ['names' => 'dashboard.input.simpatisan']);
+
+    });
+    Route::resource('dpt', DptController::class, ['names' => 'dashboard.dpt']);
+    Route::resource('user', UserController::class, ['names' => 'dashboard.user']);
 
     //data
     Route::get('data', [DataController::class, 'index'])->name('dashboard.data.index');
@@ -62,5 +68,3 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
     Route::get('peserta/export/pdf', [PesertaController::class, 'generate_pdf'])->name('dashboard.peserta.data.export.pdf');
 
 });
-
-

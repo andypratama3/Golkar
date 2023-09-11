@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a href="{{ route('dashboard.peserta.index') }}" type="reset" class="btn btn-danger">Kembali</a>
+        <a href="{{ route('dashboard.input.peserta.index') }}" type="reset" class="btn btn-danger">Kembali</a>
     </div>
     </form>
 </div>

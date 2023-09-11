@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'peserta')
+@section('title', 'Peserta Relawan')
 @section('content')
 <section class="section">
     <div class="row">
@@ -7,9 +7,9 @@
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h3 class="m-0 font-weight-bold text-dark text-center">Peserta</h3>
-                    <a href="{{ route('dashboard.peserta.create') }}" class="btn btn-sm btn-primary"
-                        style="float: right;">Tambah Data</a>
+                    <h3 class="m-0 font-weight-bold text-dark text-center">Peserta Relawan</h3>
+                    {{-- <a href="{{ route('dashboard.input.peserta.create') }}" class="btn btn-sm btn-primary"
+                        style="float: right;">Tambah Data</a> --}}
                 </div>
 
                 <div class="table-responsive p-3">
@@ -53,13 +53,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('dashboard.peserta.show', $peserta->slug) }}"
+                                    <a href="{{ route('dashboard.input.peserta.show', $peserta->slug) }}"
                                         class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
-                                    <a href="{{ route('dashboard.peserta.edit', $peserta->slug) }}"
+                                    <a href="{{ route('dashboard.input.peserta.edit', $peserta->slug) }}"
                                         class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
                                     <a href="#" data-id="{{ $peserta->slug }}" class="btn btn-danger btn-sm delete"
                                         title="Hapus">
-                                        <form action="{{ route('dashboard.peserta.destroy', $peserta->slug) }}"
+                                        <form action="{{ route('dashboard.input.peserta.destroy', $peserta->slug) }}"
                                             id="delete-{{ $peserta->slug }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf

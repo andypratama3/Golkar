@@ -23,13 +23,14 @@ class PesertaController extends Controller
 {
     public function index()
     {
+        $status = 'relawan';
         $no = 0;
-        $pesertas = Peserta::select(['name','nik','hp','tgl_lahir','alamat','warna','slug'])->orderBy('name')->get();
+        $pesertas = Peserta::where('status',$status)->select(['name','nik','hp','tgl_lahir','alamat','warna','slug'])->orderBy('name')->get();
         $pesertas->transform(function ($peserta) {
             $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
             return $peserta;
         });
-        return view('dashboard.peserta.index', compact('no', 'pesertas'));
+        return view('dashboard.peserta.relawan.index', compact('no', 'pesertas'));
     }
 
     public function getAgeAttribute()
@@ -59,11 +60,20 @@ class PesertaController extends Controller
         $existingPesertaWithSameNik = Peserta::where('nik', $pesertaData->nik)->first();
         if ($existingPesertaWithSameNik && $existingPesertaWithSameNik->id != $pesertaData->id) {
             // NIK sudah digunakan oleh peserta lain
-            return Redirect::route('dashboard.peserta.index', $pesertaData->slug)->with('error', 'Nik Telah Digunakan');
+            return Redirect::route('dashboard.input.peserta.create', $pesertaData->slug)->with('error', 'Nik Telah Digunakan');
         }else{
             $PesertaAction->execute($pesertaData);
+            if($pesertaData->status == 'relawan'){
+                return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Menambahkan Peserta');
+            }else if($pesertaData->status == 'simpatisan'){
+                return redirect()->route('dashboard.input.simpatisan.index')->with('success','Berhasil Menambahkan Peserta');
+            }else if($pesertaData->status == 'kordinator_kecamatan'){
+                return redirect()->route('dashboard.input.kordinator.kecamatan.index')->with('success','Berhasil Menambahkan Peserta & Kordinator Kecamatan');
+            }else if($pesertaData->status == 'kordinator_kecamatan'){
+                return redirect()->route('dashboard.input.kordinator.desa.index')->with('success','Berhasil Menambahkan Peserta & Kordinator Desa');
+            }
         }
-        return redirect()->route('dashboard.peserta.index')->with('success','Berhasil Menambahkan Peserta');
+
     }
     public function show($slug)
     {
@@ -80,12 +90,12 @@ class PesertaController extends Controller
     public function update(PesertaData $pesertaData, PesertaAction $pesertaAction,$slug)
     {
         $pesertaAction->execute($pesertaData,$slug);
-        return redirect()->route('dashboard.peserta.index')->with('success','Berhasil Update Peserta');
+        return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Update Peserta');
     }
     public function destroy(DeletePesertaAction $deletePesertaAction, $slug)
     {
         $deletePesertaAction->execute($slug);
-        return redirect()->route('dashboard.peserta.index')->with('success','Berhasil Menghapups Peserta');
+        return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Menghapups Peserta');
     }
 
     //get data drop down
@@ -105,7 +115,7 @@ class PesertaController extends Controller
     public function gettps(Request $request)
     {
         $id_desa = $request->id_desa;
-        $desas = Desa::where('id', $id_desa)->orderby('name')->get();
+        $desas = Desa::where('id', $id_desa)->orderBy('name')->get();
         $option = "<option>Pilih Tps</option>";
         foreach ($desas as $key => $desa) {
             foreach ($desa->tps as $tps) {

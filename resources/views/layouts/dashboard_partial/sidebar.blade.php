@@ -11,11 +11,11 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::routeIs('dashboard.datamaster.desa.*' ? '' : 'collapsed') }}"
+            <a class="nav-link {{ Request::routeIs('dashboard.datamaster.*') ? '' : 'collapsed' }}"
                 data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="components-nav" class="nav-content" data-bs-parent="#sidebar-nav">
+            <ul id="components-nav" class="nav-content {{ Request::routeIs('dashboard.datamaster.*') ? '' : 'collapse' }}" data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{ route('dashboard.datamaster.desa.index') }}"
                         class="nav-link {{ Request::routeIs('dashboard.datamaster.desa.*') ? '' : 'collapsed' }} ">
@@ -37,33 +37,55 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Request::routeIs('dashboard.data.*') ? '' : 'collapsed' }}"
-                href="{{ route('dashboard.data.index') }}">
-                <i class="bi bi-person"></i>
-                <span>Data</span>
+            <a href="{{ route('dashboard.data.index') }}"
+                class="nav-link {{ Request::routeIs('dashboard.data.*') ? '' : 'collapsed' }} ">
+                <i class="bi bi-file-earmark-text"></i><span>Data</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Request::routeIs('dashboard.kordinator.kecamatan.*') ? '' : 'collapsed' }}"
-                href="{{ route('dashboard.kordinator.kecamatan.index') }}">
-                <i class="bi bi-person"></i>
-                <span>Kordinator Kecamatan</span>
+            <a class="nav-link {{ Request::routeIs('dashboard.input.*') ? '' : 'collapsed' }}"
+                data-bs-target="#input-data" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-gear"></i><span>Input Data</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
+            <ul id="input-data" class="nav-content {{ Request::routeIs('dashboard.input.*') ? '' : 'collapse' }}" data-bs-parent="#sidebar-nav">
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::routeIs('dashboard.input.peserta.create') ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.input.peserta.create') }}">
+                        <i class="bi bi-person"></i>
+                        <span>Tambah Data Peserta</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::routeIs('dashboard.input.kordinator.kecamatan.*') ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.input.kordinator.kecamatan.index') }}">
+                        <i class="bi bi-person"></i>
+                        <span>Kordinator Kecamatan</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::routeIs('dashboard.input.kordinator.desa.*') ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.input.kordinator.desa.index') }}">
+                        <i class="bi bi-person"></i>
+                        <span>Kordinator Desa</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::routeIs('dashboard.input.peserta.index') ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.input.peserta.index') }}">
+                        <i class="bi bi-person"></i>
+                        <span>Relawan TPS</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::routeIs('dashboard.input.simpatisan.*') ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.input.simpatisan.index') }}">
+                        <i class="bi bi-person"></i>
+                        <span>Simpatisan MHF</span>
+                    </a>
+                </li>
+            </ul>
         </li>
-        <li class="nav-item">
-            <a class="nav-link {{ Request::routeIs('dashboard.kordinator.desa.*') ? '' : 'collapsed' }}"
-                href="{{ route('dashboard.kordinator.desa.index') }}">
-                <i class="bi bi-person"></i>
-                <span>Kordinator Desa</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {{ Request::routeIs('dashboard.peserta.*') ? '' : 'collapsed' }}"
-                href="{{ route('dashboard.peserta.index') }}">
-                <i class="bi bi-person"></i>
-                <span>Relawan Tps</span>
-            </a>
-        </li>
+
         <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('dashboard.user.*') ? '' : 'collapsed' }}"
                 href="{{ route('dashboard.user.index') }}">
@@ -71,7 +93,4 @@
                 <span>User</span>
             </a>
         </li>
-        <!-- End Profile Page Nav -->
-    </ul>
-
 </aside>
