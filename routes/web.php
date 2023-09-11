@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Dashboard\DptController;
 use App\Http\Controllers\Dashboard\TpsController;
 use App\Http\Controllers\Dashboard\DesaController;
@@ -34,6 +35,8 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], function () {
     Route::get('/', DashboardController::class)->name('dashboard.index');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('dashboard.profile.index');
+    Route::post('/dashboard/profile/update-password/{id}', [ProfileController::class, 'updatePassword'])->name('dashboard.profile.update-password');
 
     Route::group(['prefix' => 'datamaster'], function () {
         Route::resource('tps', TpsController::class, ['names' => 'dashboard.datamaster.tps']);

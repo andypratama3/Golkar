@@ -24,17 +24,17 @@
               <h6>{{ Auth()->user()->name }}</h6>
               <span>{{(Auth::User()->role ==1) ? 'Admin' : 'User'}}</span>
             </li>
-            {{-- <li>
+            <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard.profile.index') }}">
                 <i class="bi bi-person"></i>
-                <span>My Profile</span>
+                <span>Profile</span>
               </a>
             </li>
-            <li>
+            {{-- <li>
               <hr class="dropdown-divider">
             </li>
 
