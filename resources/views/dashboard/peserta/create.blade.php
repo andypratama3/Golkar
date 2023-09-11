@@ -204,9 +204,31 @@
                 success: function (response) {
                     $('#tps').html(response);
                     //sorting data
-                    $("#tps option").sort(function (a, b) {
-                    return parseInt(a.value) - parseInt(b.value);
-                    }).appendTo("#tps");
+                    // Sort the options alphabetically by their text (names)
+                    var selectElement = document.getElementById("tps");
+                    var options = Array.from(selectElement.options);
+
+                    options.sort(function (a, b) {
+                        // Extract the numeric portion of the option text
+                        var aNumber = parseInt(a.text.match(/\d+/));
+                        var bNumber = parseInt(b.text.match(/\d+/));
+
+                        if (aNumber === 1) {
+                            return -1; // Ensure "TPS 1" appears first
+                        } else if (bNumber === 1) {
+                            return 1; // Ensure "TPS 1" appears first
+                        } else {
+                            return a.text.localeCompare(b.text);
+                        }
+                    });
+
+                    // Clear the existing options
+                    selectElement.innerHTML = "";
+
+                    // Append the sorted options back to the select element
+                    options.forEach(function (option) {
+                        selectElement.appendChild(option);
+                    });
                 },
                 error: function ($data) {
                     console.log('error', $data);
