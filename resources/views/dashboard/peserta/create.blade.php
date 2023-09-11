@@ -205,21 +205,15 @@
                     $('#tps').html(response);
                     //sorting data
                     // Sort the options alphabetically by their text (names)
+                    // Sort the options based on the numeric portion of the text
                     var selectElement = document.getElementById("tps");
                     var options = Array.from(selectElement.options);
 
                     options.sort(function (a, b) {
-                        // Extract the numeric portion of the option text
                         var aNumber = parseInt(a.text.match(/\d+/));
                         var bNumber = parseInt(b.text.match(/\d+/));
 
-                        if (aNumber === 1) {
-                            return -1; // Ensure "TPS 1" appears first
-                        } else if (bNumber === 1) {
-                            return 1; // Ensure "TPS 1" appears first
-                        } else {
-                            return a.text.localeCompare(b.text);
-                        }
+                        return aNumber - bNumber;
                     });
 
                     // Clear the existing options
