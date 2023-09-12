@@ -50,6 +50,10 @@
                             <td>Warna          </td>
                             <td>:  {{ $peserta->warna }}</td>
                         </tr>
+                        <tr>
+                            <td>Status          </td>
+                            <td>:  {{ $peserta->status }}</td>
+                        </tr>
 
                     </table>
                 </div>

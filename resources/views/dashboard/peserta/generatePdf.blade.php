@@ -40,6 +40,7 @@
                 <th>Desa</th>
                 <th>Tps</th>
                 <th>Warna</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -65,6 +66,7 @@
                 <td>{{ $tps->name }}</td>
                 @endforeach
                 <td>{{ $peserta->warna }}</td>
+                <td>{{ $peserta->status }}</td>
             </tr>
             @endforeach
         </tbody>
