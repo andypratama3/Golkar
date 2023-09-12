@@ -96,7 +96,20 @@ class PesertaController extends Controller
     }
     public function destroy(DeletePesertaAction $deletePesertaAction, $slug)
     {
+        $peserta = Peserta::where('slug', $slug)->firstOrFail();
         $deletePesertaAction->execute($slug);
+        if($peserta->status == 'relawan'){
+            return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Menghapus Peserta');
+        }else if($peserta->status == 'simpatisan'){
+            return redirect()->route('dashboard.input.simpatisan.index')->with('success','Berhasil Menghapus Peserta');
+        }else if($peserta->status == 'kordinator_kecamatan'){
+            return redirect()->route('dashboard.input.kordinator.kecamatan.index')->with('success','Berhasil Menghapus Peserta & Kordinator Kecamatan');
+        }else if($peserta->status == 'kordinator_desa'){
+            return redirect()->route('dashboard.input.kordinator.desa.index')->with('success','Berhasil Menghapus Peserta & Kordinator Desa');
+        }else{
+            return response('Gagal Menghapus Data', 403);
+        }
+
         return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Menghapups Peserta');
     }
 

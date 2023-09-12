@@ -32,8 +32,6 @@
                         <div id="messageTidak" style="color: red; font-size: 13px;"></div>
                     </div>
                 </div>
-
-
                 <div class="col-6">
                     <label for="name" class="form-label">Tanggal Lahir</label>
                     <input type="date" class="form-control  {{ $errors->has('tgl_lahir') ? 'is-invalid' : '' }}"
@@ -67,7 +65,6 @@
                         <div class="invalid-feedback">{{ $errors->first('kecamatan') }}</div>
                         @endif
                     </div>
-
                 </div>
                 <div class="col-6">
                     <div class="form-group">

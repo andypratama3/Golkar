@@ -24,8 +24,7 @@
 
 <script>
     $(document).ready(function () {
-
-        $(".delete").click(function (e) {
+        $(".delete").on('click', function (e){
             slug = e.target.dataset.id;
             e.preventDefault();
             swal({
