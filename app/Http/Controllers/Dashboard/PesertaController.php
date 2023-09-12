@@ -64,9 +64,9 @@ class PesertaController extends Controller
         }else{
             $PesertaAction->execute($pesertaData);
             if($pesertaData->status == 'relawan'){
-                return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Menambahkan Peserta');
+                return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Menambahkan Peserta Relawan');
             }else if($pesertaData->status == 'simpatisan'){
-                return redirect()->route('dashboard.input.simpatisan.index')->with('success','Berhasil Menambahkan Peserta');
+                return redirect()->route('dashboard.input.simpatisan.index')->with('success','Berhasil Menambahkan Peserta Simpatisan');
             }else if($pesertaData->status == 'kordinator_kecamatan'){
                 return redirect()->route('dashboard.input.kordinator.kecamatan.index')->with('success','Berhasil Menambahkan Peserta & Kordinator Kecamatan');
             }else if($pesertaData->status == 'kordinator_desa'){
@@ -99,9 +99,9 @@ class PesertaController extends Controller
         $peserta = Peserta::where('slug', $slug)->firstOrFail();
         $deletePesertaAction->execute($slug);
         if($peserta->status == 'relawan'){
-            return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Menghapus Peserta');
+            return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Menghapus Peserta Relawan');
         }else if($peserta->status == 'simpatisan'){
-            return redirect()->route('dashboard.input.simpatisan.index')->with('success','Berhasil Menghapus Peserta');
+            return redirect()->route('dashboard.input.simpatisan.index')->with('success','Berhasil Menghapus Peserta Simpatisan');
         }else if($peserta->status == 'kordinator_kecamatan'){
             return redirect()->route('dashboard.input.kordinator.kecamatan.index')->with('success','Berhasil Menghapus Peserta & Kordinator Kecamatan');
         }else if($peserta->status == 'kordinator_desa'){

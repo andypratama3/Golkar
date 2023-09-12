@@ -37,8 +37,8 @@
                 .then((willDelete) => {
                     if (willDelete) {
                         $(`#delete-${slug}`).submit();
-                    } else {
-                        // Do Nothing
+                    }else {
+                        //do nothing
                     }
                 });
         });

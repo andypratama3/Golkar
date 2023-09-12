@@ -21,6 +21,7 @@
     <link href="{{ asset('assets_dashboard/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets_dashboard/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets_dashboard/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css">
     @stack('css')
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets_dashboard/css/style.css') }}" rel="stylesheet">
