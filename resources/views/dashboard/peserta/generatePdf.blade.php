@@ -10,7 +10,7 @@
         table {
             border-collapse: collapse;
             width: 100%;
-            font-size: 12px;
+            font-size: 9px;
         }
 
         th, td {
@@ -53,7 +53,7 @@
                 <td>{{ $peserta->name }}</td>
                 <td>{{ $peserta->nik }}</td>
                 <td>{{ $peserta->hp }}</td>
-                <td>{{ $peserta->tgl_lahir }}</td>
+                <td>{{ date('d-M-Y', strtotime($peserta->tgl_lahir)) }}</td>
                 <td>{{ $peserta->umur }} Thn</td>
                 <td>{{ $peserta->alamat }}</td>
                 @foreach ($peserta->kecamatan_pesertas as $kecamatan)
