@@ -43,6 +43,7 @@ h6 {
   #main {
     padding: 20px;
   }
+
 }
 
 /*--------------------------------------------------------------
@@ -683,6 +684,12 @@ h6 {
   .toggle-sidebar .sidebar {
     left: -300px;
   }
+
+}
+@media (min-width: 1920px){
+    .header-nav h2{
+        margin-right: 200px;
+    }
 }
 
 .sidebar-nav {
