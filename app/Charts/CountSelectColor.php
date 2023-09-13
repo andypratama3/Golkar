@@ -37,10 +37,15 @@ class CountSelectColor
         ->groupBy('kecamatans.name')
         ->get();
 
+        $kuning = $colors->sum('kuning_total');
+        $abu_abu = $colors->sum('abu_total');
+        $merah = $colors->sum('merah_total');
+
         $chart = $this->chart->barChart();
-        $chart->addData('Kuning', $colors->pluck('kuning_total')->toArray());
-        $chart->addData('Abu-Abu', $colors->pluck('abu_total')->toArray());
-        $chart->addData('Merah', $colors->pluck('merah_total')->toArray());
+        $chart->addData("Kuning : $kuning", $colors->pluck('kuning_total')->toArray());
+        $chart->addData("Abu Abu : $abu_abu", $colors->pluck('abu_total')->toArray());
+        $chart->addData("Merah : $merah", $colors->pluck('merah_total')->toArray());
+
         $chart->setXAxis($colors->pluck('kecamatan_name')->toArray());
         $chart->setGrid('#3F51B5', 0.1);
         // $chart->setSparkline();
