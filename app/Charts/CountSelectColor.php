@@ -42,6 +42,7 @@ class CountSelectColor
         $merah = $colors->sum('merah_total');
 
         $chart = $this->chart->barChart();
+        
         $chart->addData("Kuning : $kuning", $colors->pluck('kuning_total')->toArray());
         $chart->addData("Abu Abu : $abu_abu", $colors->pluck('abu_total')->toArray());
         $chart->addData("Merah : $merah", $colors->pluck('merah_total')->toArray());
