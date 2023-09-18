@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Dashboard\DptController;
 use App\Http\Controllers\Dashboard\TpsController;
 use App\Http\Controllers\Dashboard\DesaController;
+use App\Http\Controllers\Dashboard\MapsController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\PesertaController;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -38,6 +39,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
     Route::get('/profile', [ProfileController::class, 'index'])->name('dashboard.profile.index');
     Route::post('/dashboard/profile/update-password/{id}', [ProfileController::class, 'updatePassword'])->name('dashboard.profile.update-password');
 
+    Route::resource('maps', MapsController::class, ['names' => 'dashboard.maps']);
+
+
     Route::group(['prefix' => 'datamaster'], function () {
         Route::resource('tps', TpsController::class, ['names' => 'dashboard.datamaster.tps']);
         Route::resource('desa', DesaController::class, ['names' => 'dashboard.datamaster.desa']);
@@ -63,6 +67,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
     Route::post('get/tps', [PesertaController::class, 'gettps'])->name('get.tps');
     //get Nik
     Route::post('get/nik', [PesertaController::class, 'getnik'])->name('get.nik');
+    Route::post('get/peserta/relawan', [PesertaController::class, 'getPesertaRelawan'])->name('get.peserta.relawan');
+    Route::post('get/peserta/simpatisan', [SimpatisanController::class, 'getPesertaSimpatisan'])->name('get.peserta.simpatisan');
 
 
     //export peserta

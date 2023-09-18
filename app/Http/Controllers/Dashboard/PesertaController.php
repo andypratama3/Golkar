@@ -30,7 +30,8 @@ class PesertaController extends Controller
             $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
             return $peserta;
         });
-        return view('dashboard.peserta.relawan.index', compact('no', 'pesertas'));
+        $kecamatans = Kecamatan::select(['id','name','slug'])->get();
+        return view('dashboard.peserta.relawan.index', compact('no', 'pesertas', 'kecamatans'));
     }
 
     public function getAgeAttribute()
@@ -148,22 +149,33 @@ class PesertaController extends Controller
 
     //generate pdf
     public function generate_pdf()
-{
-    $pesertas = Peserta::all();
-    $pesertas->transform(function ($peserta) {
-        $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
-        return $peserta;
-    });
-    $data = [
-        'pesertas' => $pesertas
-    ];
+    {
+        $pesertas = Peserta::all();
+        $pesertas->transform(function ($peserta) {
+            $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
+            return $peserta;
+        });
+        $data = [
+            'pesertas' => $pesertas
+        ];
 
-    $pdf = PDF::loadView('dashboard.peserta.generatePdf', $data);
+        $pdf = PDF::loadView('dashboard.peserta.generatePdf', $data);
 
-    return $pdf->download('peserta.pdf');
-
-}
-
-
+        return $pdf->download('peserta.pdf');
+    }
+    public function getPesertaRelawan(Request $request)
+    {
+        $status = 'relawan';
+        $id_kecamatan = $request->input('id_kecamatan');
+        $pesertas = Peserta::where('status',$status)->whereHas('kecamatan_pesertas', function ($query) use ($id_kecamatan) {
+            $query->where('kecamatan_id', $id_kecamatan);
+        })->get();
+        $pesertas->transform(function ($peserta) {
+            $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
+            return $peserta;
+        });
+        $kecamatans = Kecamatan::select(['id','name'])->get();
+        return response()->json(['pesertas' => $pesertas]);
+    }
 
 }
