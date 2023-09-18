@@ -176,6 +176,7 @@
             if(id_kecamatan === 'kosong'){
                 $('.dataTbody').load(location.href + " .dataTbody");
             }else{
+
                 $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -223,6 +224,7 @@
                         </td>
                     `;
                     dataTbody.appendChild(row);
+                    counter++;
                     });
 
                     },
