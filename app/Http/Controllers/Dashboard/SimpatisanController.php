@@ -34,6 +34,7 @@ class SimpatisanController extends Controller
             $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
             return $peserta;
         });
+
         $kecamatans = Kecamatan::select(['id','name'])->get();
         return response()->json(['pesertas' => $pesertas]);
     }

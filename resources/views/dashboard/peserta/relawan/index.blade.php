@@ -189,33 +189,42 @@
 
                     let counter = 1;
                     // Loop through the data and render each row
-                    data.forEach(function(peserta) {
-                    // data.data.forEach(function (peserta) {
-                        var row = document.createElement("tr");
-                        row.innerHTML = `
-                        <td>${counter}</td>
-                        <td>${peserta.name}</td>
-                        <td>${peserta.nik}</td>
-                        <td>${peserta.hp}</td>
-                        <td>${peserta.tgl_lahir}</td>
-                        <td>${peserta.umur} Thn</td>
-                        <td>${peserta.alamat}</td>
-                        <td>
-                            <span class="badge bg-${peserta.warna_class}">${peserta.warna}</span>
-                        </td>
-                        <td>
-                        <a href="${peserta.show}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
-                        <a href="${peserta.edit}" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
-                        <a href="#" data-id="${peserta.slug}" class="btn btn-danger btn-sm delete" title="Hapus">
-                            <form action="${peserta.destroy}}" id="delete-${peserta.slug}" method="POST" enctype="multipart/form-data">
+                    data.forEach(function (peserta) {
+                            // data.data.forEach(function (peserta) {
+                            var row = document.createElement("tr");
+                            row.innerHTML = `
+                            <td>${counter}</td>
+                            <td>${peserta.name}</td>
+                            <td>${peserta.nik}</td>
+                            <td>${peserta.hp}</td>
+                            <td>${peserta.tgl_lahir}</td>
+                            <td>${peserta.umur} Thn</td>
+                            <td>${peserta.alamat}</td>
+                            <td>
+                                ${
+                                peserta.warna === 'kuning'
+                                    ? '<span class="badge bg-warning">' + peserta.warna + '</span>'
+                                    : peserta.warna === 'merah'
+                                    ? '<span class="badge bg-danger">' + peserta.warna + '</span>'
+                                    : peserta.warna === 'abu-abu'
+                                    ? '<span class="badge bg-secondary">' + peserta.warna + '</span>'
+                                    : '' // Handle other cases or leave empty for no badge
+                            }
+                            </td>
+                            <td>
+                                <a href="{${peserta.show}}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
+                                <a href="${peserta.edit}" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
+                                <a href="#" data-id="${peserta.slug}" class="btn btn-danger btn-sm delete" title="Hapus">
+                                    <i class="bi bi-trash"></i>
+                                <form action="${peserta.destroy}}" id="delete-${peserta.slug}" method="POST" enctype="multipart/form-data">
                                 <!-- Include CSRF token and method here if needed -->
-                            </form>
-                            <i class="bi bi-trash"></i>
-                        </a>
-                    </td>
-                `;
-                    dataTbody.appendChild(row);
-                });
+                                </form>
+                                </a>
+                            </td>
+                        `;
+                            dataTbody.appendChild(row);
+                            counter++;
+                        });
 
                 },
                 error: function ($data) {
