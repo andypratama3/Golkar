@@ -38,7 +38,7 @@
                     <a href="{{ route('dashboard.peserta.data.export.pdf') }}"
                         class="btn btn-sm btn-warning text-center" style="margin-top: 0px; margin-bottom: 5px;"><i
                             class="bi bi-filetype-pdf"></i> Export Pdf</a>
-                    <table class="table align-items-center table-flush" id="dataTable">
+                    <table class="table align-items-center table-flush" id="dataTable" style="font-size: 15px;">
                         <thead class="thead-light">
                             <tr>
                                 <th>No</th>
