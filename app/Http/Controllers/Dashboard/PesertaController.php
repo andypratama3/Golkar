@@ -93,7 +93,17 @@ class PesertaController extends Controller
     public function update(PesertaData $pesertaData, PesertaAction $pesertaAction,$slug)
     {
         $pesertaAction->execute($pesertaData,$slug);
-        return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Update Peserta');
+            if($pesertaData->status == 'relawan'){
+                return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Update Peserta Relawan');
+            }else if($pesertaData->status == 'simpatisan'){
+                return redirect()->route('dashboard.input.simpatisan.index')->with('success','Berhasil Update Peserta Simpatisan');
+            }else if($pesertaData->status == 'kordinator_kecamatan'){
+                return redirect()->route('dashboard.input.kordinator.kecamatan.index')->with('success','Berhasil Update Peserta & Kordinator Kecamatan');
+            }else if($pesertaData->status == 'kordinator_desa'){
+                return redirect()->route('dashboard.input.kordinator.desa.index')->with('success','Berhasil Update Peserta & Kordinator Desa');
+            }else{
+                return response('Gagal Update Data', 403);
+            }
     }
     public function destroy(DeletePesertaAction $deletePesertaAction, $slug)
     {
