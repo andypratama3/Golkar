@@ -72,7 +72,7 @@
                                     <span class="badge bg-secondary ">{{ $peserta->warna }}</span>
                                     @endif
                                 </td>
-                                <td>{{ $peserta->perekrut }}</td>
+                                <td>{{ $peserta->perekrut === null ? 'tidak ada Perekrut' : $peserta->perekrut }}</td>
                                 <td>
                                     <a href="{{ route('dashboard.input.peserta.show', $peserta->slug) }}"
                                         class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
@@ -223,6 +223,7 @@
                                     : '' // Handle other cases or leave empty for no badge
                             }
                             </td>
+                            <td>${peserta.perekrut === null ? 'tidak ada Perekrut' : peserta.perekrut}</td>
                             <td>
                                 <a href="{${peserta.show}}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
                                 <a href="${peserta.edit}" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
