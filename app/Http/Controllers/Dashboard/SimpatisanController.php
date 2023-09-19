@@ -13,7 +13,7 @@ class SimpatisanController extends Controller
     {
         $status = 'simpatisan';
         $no = 0;
-        $pesertas = Peserta::where('status', $status)->select(['name','nik','hp','tgl_lahir','alamat','warna','slug'])->orderBy('name')->get();
+        $pesertas = Peserta::where('status', $status)->select(['name','nik','hp','tgl_lahir','alamat','warna','perekrut','slug'])->orderBy('name')->get();
         $pesertas->transform(function ($peserta) {
             $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
             return $peserta;

@@ -123,6 +123,15 @@
                         @endif
                     </div>
                 </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="">Perekrut</label>
+                        <input type="text" class="form-control" name="perekrut" id="perekrut" placeholder="perekrut" value="{{ $peserta->perekrut }}">
+                        @if ($errors->has('perekrut'))
+                            <div class="invalid-feedback">{{ $errors->first('perekrut') }}</div>
+                        @endif
+                    </div>
+                </div>
         </div>
         <div class="text-center mb-2">
             <a href="{{ route('dashboard.input.peserta.index') }}" class="btn btn-warning">kembali</a>

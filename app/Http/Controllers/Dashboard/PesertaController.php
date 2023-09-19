@@ -25,7 +25,7 @@ class PesertaController extends Controller
     {
         $status = 'relawan';
         $no = 0;
-        $pesertas = Peserta::where('status',$status)->select(['name','nik','hp','tgl_lahir','alamat','warna','slug'])->orderBy('name')->get();
+        $pesertas = Peserta::where('status',$status)->select(['name','nik','hp','tgl_lahir','perekrut','alamat','warna','slug'])->orderBy('name')->get();
         $pesertas->transform(function ($peserta) {
             $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
             return $peserta;

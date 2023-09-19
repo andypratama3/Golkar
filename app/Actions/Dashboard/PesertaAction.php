@@ -18,6 +18,7 @@ class PesertaAction
                 'alamat' => $pesertaData->alamat,
                 'warna' => $pesertaData->warna,
                 'status' => $pesertaData->status,
+                'perekrut' => $pesertaData->perekrut,
             ]
         );
 
