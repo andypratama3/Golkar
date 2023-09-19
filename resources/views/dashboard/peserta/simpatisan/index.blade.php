@@ -49,6 +49,7 @@
                                 <th>Umur</th>
                                 <th>Alamat</th>
                                 <th>Warna</th>
+                                <th>Perekrut</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -71,6 +72,7 @@
                                     <span class="badge bg-secondary ">{{ $peserta->warna }}</span>
                                     @endif
                                 </td>
+                                <td>{{ $peserta->perekrut }}</td>
                                 <td>
                                     <a href="{{ route('dashboard.input.peserta.show', $peserta->slug) }}"
                                         class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>

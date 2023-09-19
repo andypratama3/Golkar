@@ -51,6 +51,11 @@
                             <td>:  {{ $peserta->warna }}</td>
                         </tr>
                         <tr>
+                            <td>Perekrut          </td>
+                            <td>:  {{ $peserta->perekrut }}</td>
+                        </tr>
+
+                        <tr>
                             <td>Status          </td>
                             <td>:  {{ $peserta->status }}</td>
                         </tr>
