@@ -7,7 +7,7 @@
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h3 class="m-0 font-weight-bold text-dark text-center">Kordinator Desa</h3>
+                    <h3 class="m-0 font-weight-bold text-dark text-center">Kordinator Desa Kecamatan {{ $name }}</h3>
                 </div>
 
                 <div class="table-responsive p-3">
@@ -15,20 +15,15 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>No</th>
-                                <th>Kecamatan</th>
+                                <th>Nama</th>
+                                <th>NIK</th>
+                                <th>Hp</th>
+                                <th>Desa</th>
+                                <th>Warna</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kecamatans as $kecamatan)
-                            <tr>
-                                <td>{{ ++$no }}</td>
-                                <td>{{ $kecamatan->name }}</td>
-                                <td><a href="{{ route('dashboard.input.kordinator.desa', $kecamatan->name) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a></td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        {{-- <tbody>
                             @foreach ($pesertas as $peserta)
                             <tr>
                                 <td>{{ ++$no }}</td>
@@ -65,7 +60,7 @@
                                 </td>
                             </tr>
                             @endforeach
-                        </tbody> --}}
+                        </tbody>
                     </table>
                 </div>
             </div>

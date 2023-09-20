@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <label for="">Pilih Kecamatan</label>
                         <select name="kecamatan" id="kecamatan" class="form-control select2">
-                            <option selected value="">Pilih Kecamatan</option>
+                            <option selected>Pilih Kecamatan</option>
                             @foreach ($kecamatans as $kecamatan)
                             <option value="{{ $kecamatan->id }}">{{ $kecamatan->name }}</option>
                             @endforeach
@@ -169,83 +169,73 @@
             });
         });
         $('#kecamatan').on('change', function () {
-
             let id_kecamatan = $('#kecamatan').val();
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            if (id_kecamatan === 'kosong') {
-                $('.dataTbody').load(location.href + " .dataTbody");
-            } else {
+            $.ajax({
+                type: "POST",
+                url: "{{ route('get.peserta.simpatisan') }}",
+                data: {
+                    id_kecamatan: id_kecamatan
+                },
+                // success: function (response) {
+                success: function (response) {
 
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('get.peserta.simpatisan') }}",
-                    data: {
-                        id_kecamatan: id_kecamatan
-                    },
-                    // success: function (response) {
-                    success: function (response) {
-                        let data = response.pesertas;
-                        // Access the tbody element
-                        var dataTbody = document.getElementById("dataTbody");
-                        // // Clear existing data in the tbody
-                        dataTbody.innerHTML = "";
+                    let data = response.pesertas;
+                    // Access the tbody element
+                    var dataTbody = document.getElementById("dataTbody");
+                    // // Clear existing data in the tbody
+                    dataTbody.innerHTML = "";
 
-                        let counter = 1;
-                        // Loop through the data and render each row
-                        data.forEach(function (peserta) {
-                            // data.data.forEach(function (peserta) {
-                            var row = document.createElement("tr");
-                            row.innerHTML = `
-                            <td>${counter}</td>
-                            <td>${peserta.name}</td>
-                            <td>${peserta.nik}</td>
-                            <td>${peserta.hp}</td>
-                            <td>${peserta.tgl_lahir}</td>
-                            <td>${peserta.umur} Thn</td>
-                            <td>${peserta.alamat}</td>
-                            <td>
-                                ${
-                                peserta.warna === 'kuning'
-                                    ? '<span class="badge bg-warning">' + peserta.warna + '</span>'
-                                    : peserta.warna === 'merah'
-                                    ? '<span class="badge bg-danger">' + peserta.warna + '</span>'
-                                    : peserta.warna === 'abu-abu'
-                                    ? '<span class="badge bg-secondary">' + peserta.warna + '</span>'
-                                    : '' // Handle other cases or leave empty for no badge
-                            }
-                            </td>
-                            <td>${peserta.perekrut === null ? 'tidak ada Perekrut' : peserta.perekrut}</td>
-                            <td>
-                                <a href="{${peserta.show}}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
-                                <a href="${peserta.edit}" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
-                                <a href="#" data-id="${peserta.slug}" class="btn btn-danger btn-sm delete" title="Hapus">
-                                    <i class="bi bi-trash"></i>
-                                <form action="${peserta.destroy}}" id="delete-${peserta.slug}" method="POST" enctype="multipart/form-data">
-                                <!-- Include CSRF token and method here if needed -->
-                                </form>
-                                </a>
-                            </td>
-                        `;
-                            dataTbody.appendChild(row);
-                            counter++;
-                        });
+                    let counter = 1;
+                    // Loop through the data and render each row
+                    data.forEach(function (peserta) {
+                        // data.data.forEach(function (peserta) {
+                        var row = document.createElement("tr");
+                        row.innerHTML = `
+                        <td>${counter}</td>
+                        <td>${peserta.name}</td>
+                        <td>${peserta.nik}</td>
+                        <td>${peserta.hp}</td>
+                        <td>${peserta.tgl_lahir}</td>
+                        <td>${peserta.umur} Thn</td>
+                        <td>${peserta.alamat}</td>
+                        <td>
+                            ${
+                            peserta.warna === 'kuning'
+                                ? '<span class="badge bg-warning">' + peserta.warna + '</span>'
+                                : peserta.warna === 'merah'
+                                ? '<span class="badge bg-danger">' + peserta.warna + '</span>'
+                                : peserta.warna === 'abu-abu'
+                                ? '<span class="badge bg-secondary">' + peserta.warna + '</span>'
+                                : '' // Handle other cases or leave empty for no badge
+                        }
+                        </td>
+                        <td>${peserta.perekrut === null ? 'tidak ada Perekrut' : peserta.perekrut}</td>
+                        <td>
+                            <a href="{${peserta.show}}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
+                            <a href="${peserta.edit}" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
+                            <a href="#" data-id="${peserta.slug}" class="btn btn-danger btn-sm delete" title="Hapus">
+                                <i class="bi bi-trash"></i>
+                            <form action="${peserta.destroy}}" id="delete-${peserta.slug}" method="POST" enctype="multipart/form-data">
+                            <!-- Include CSRF token and method here if needed -->
+                            </form>
+                            </a>
+                        </td>
+                    `;
+                        dataTbody.appendChild(row);
+                        counter++;
+                    });
 
-                    },
-                    error: function ($data) {
-                        console.log('error', $data);
-                    }
-                });
-            }
-
+                },
+                error: function ($data) {
+                    console.log('error', $data);
+                }
+            });
         });
     });
 </script>

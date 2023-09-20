@@ -134,7 +134,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="">Perekrut</label>
-                        <input type="text" class="form-control" name="perekrut" id="perekrut" placeholder="perekrut">
+                        <input type="text" class="form-control" name="perekrut" id="perekrut" placeholder="Boleh Di kosongkan">
                         @if ($errors->has('perekrut'))
                             <div class="invalid-feedback">{{ $errors->first('perekrut') }}</div>
                         @endif

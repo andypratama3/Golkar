@@ -36,9 +36,11 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], function () {
     Route::get('/', DashboardController::class)->name('dashboard.index');
+    //profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('dashboard.profile.index');
     Route::post('/dashboard/profile/update-password/{id}', [ProfileController::class, 'updatePassword'])->name('dashboard.profile.update-password');
 
+    //maps new fitur
     Route::resource('maps', MapsController::class, ['names' => 'dashboard.maps']);
 
 
@@ -50,7 +52,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
 
     Route::group(['prefix' => 'input'], function () {
         Route::resource('kordinator/kecamatan', KordinatorKecamatanController::class, ['names' => 'dashboard.input.kordinator.kecamatan']);
-        Route::resource('kordinator/desa', KordinatorDesaController::class, ['names' => 'dashboard.input.kordinator.desa']);
+        Route::resource('kordinator', KordinatorDesaController::class, ['names' => 'dashboard.input.kordinator.desa']);
+        Route::get('kordinator/desa/{kecamatan}/', [KordinatorDesaController::class, 'kordinator_desa'])->name('dashboard.input.kordinator.desa');
         Route::resource('peserta', PesertaController::class, ['names' => 'dashboard.input.peserta']);
         Route::resource('simpatisan', SimpatisanController::class, ['names' => 'dashboard.input.simpatisan']);
 
@@ -67,6 +70,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
     Route::post('get/tps', [PesertaController::class, 'gettps'])->name('get.tps');
     //get Nik
     Route::post('get/nik', [PesertaController::class, 'getnik'])->name('get.nik');
+    //get data at the databse
     Route::post('get/peserta/relawan', [PesertaController::class, 'getPesertaRelawan'])->name('get.peserta.relawan');
     Route::post('get/peserta/simpatisan', [SimpatisanController::class, 'getPesertaSimpatisan'])->name('get.peserta.simpatisan');
 

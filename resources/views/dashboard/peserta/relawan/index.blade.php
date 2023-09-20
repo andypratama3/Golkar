@@ -181,7 +181,6 @@
                 data: {
                     id_kecamatan: id_kecamatan
                 },
-                // success: function (response) {
                 success: function (response) {
                     let data = response.pesertas;
                     // Access the tbody element
