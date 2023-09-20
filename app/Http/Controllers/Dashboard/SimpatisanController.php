@@ -21,8 +21,8 @@ class SimpatisanController extends Controller
         //loop kecamatan to selected
         $kecamatans = Kecamatan::select(['id','name'])->get();
         return view('dashboard.peserta.simpatisan.index', compact('no', 'pesertas', 'kecamatans'));
-
     }
+
     public function getPesertaSimpatisan(Request $request)
     {
         $status = 'simpatisan';
@@ -34,7 +34,6 @@ class SimpatisanController extends Controller
             $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
             return $peserta;
         });
-
         $kecamatans = Kecamatan::select(['id','name'])->get();
         return response()->json(['pesertas' => $pesertas]);
     }

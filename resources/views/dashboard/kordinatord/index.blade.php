@@ -28,44 +28,6 @@
                             </tr>
                             @endforeach
                         </tbody>
-                        {{-- <tbody>
-                            @foreach ($pesertas as $peserta)
-                            <tr>
-                                <td>{{ ++$no }}</td>
-                                <td>{{ $peserta->name }}</td>
-                                <td>{{ $peserta->nik }}</td>
-                                <td>{{ $peserta->hp }}</td>
-                                <td>
-                                    @foreach ($peserta->desa_pesertas as $desa)
-                                    {{ $desa->name }}
-                                    @endforeach
-                                <td>
-                                    @if ($peserta->warna === 'kuning')
-                                    <span class="badge bg-warning">{{ $peserta->warna }}</span>
-                                    @elseif ($peserta->warna === 'merah')
-                                    <span class="badge bg-danger">{{ $peserta->warna }}</span>
-                                    @elseif ($peserta->warna === 'abu-abu')
-                                    <span class="badge bg-secondary ">{{ $peserta->warna }}</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ route('dashboard.input.peserta.show', $peserta->slug) }}"
-                                        class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
-                                    <a href="{{ route('dashboard.input.peserta.edit', $peserta->slug) }}"
-                                        class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
-                                    <a href="#" data-id="{{ $peserta->slug }}" class="btn btn-danger btn-sm delete"
-                                        title="Hapus">
-                                        <form action="{{ route('dashboard.input.peserta.destroy', $peserta->slug) }}"
-                                            id="delete-{{ $peserta->slug }}" method="POST"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            @method('delete')
-                                        </form>
-                                        <i class="bi bi-trash"></i>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody> --}}
                     </table>
                 </div>
             </div>

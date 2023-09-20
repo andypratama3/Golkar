@@ -154,7 +154,6 @@ class PesertaController extends Controller
     public function export_excel()
     {
         return Excel::download(new PesertaExport, 'pesertas.xlsx');
-
     }
 
     //generate pdf

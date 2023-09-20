@@ -14,6 +14,7 @@ class KecamatanController extends Controller
 {
     public function index()
     {
+
         $no = 0;
         $kecamatans = Kecamatan::select(['name', 'slug'])->orderBy('name')->get();
 
