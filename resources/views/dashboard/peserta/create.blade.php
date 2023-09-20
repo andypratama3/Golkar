@@ -42,11 +42,8 @@
                 </div>
                 <div class="col-6">
                     <label for="name" class="form-label">Nomor hp</label>
-                    <input type="number" class="form-control {{ $errors->has('hp') ? 'is-invalid' : '' }}" id="name"
+                    <input type="number" class="form-control" id="name"
                         name="hp" value="{{ old('hp') }}">
-                    @if ($errors->has('hp'))
-                    <div class="invalid-feedback">{{ $errors->first('hp') }}</div>
-                    @endif
                 </div>
                 <div class="col-6">
                     <div class="form-group">
