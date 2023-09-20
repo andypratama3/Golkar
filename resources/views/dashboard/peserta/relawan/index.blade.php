@@ -10,7 +10,7 @@
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h3 class="m-0 font-weight-bold text-dark text-center">Peserta Simpatisan
+                    <h3 class="m-0 font-weight-bold text-dark text-center">Peserta Relawan
                     </h3>
                 </div>
                 <div class="card">
