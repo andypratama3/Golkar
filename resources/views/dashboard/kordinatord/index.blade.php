@@ -24,7 +24,7 @@
                             <tr>
                                 <td>{{ ++$no }}</td>
                                 <td>{{ $kecamatan->name }}</td>
-                                <td><a href="{{ route('dashboard.input.kordinator.desa', $kecamatan->name) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a></td>
+                                <td><a href="{{ route('dashboard.input.kordinator.desa.name', $kecamatan->name) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a></td>
                             </tr>
                             @endforeach
                         </tbody>

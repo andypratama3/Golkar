@@ -53,7 +53,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
     Route::group(['prefix' => 'input'], function () {
         Route::resource('kordinator/kecamatan', KordinatorKecamatanController::class, ['names' => 'dashboard.input.kordinator.kecamatan']);
         Route::resource('kordinator', KordinatorDesaController::class, ['names' => 'dashboard.input.kordinator.desa']);
-        Route::get('kordinator/desa/{kecamatan}/', [KordinatorDesaController::class, 'kordinator_desa'])->name('dashboard.input.kordinator.desa');
+        Route::get('kordinator/desa/{kecamatan}/', [KordinatorDesaController::class, 'kordinator_desa'])->name('dashboard.input.kordinator.desa.name');
         Route::resource('peserta', PesertaController::class, ['names' => 'dashboard.input.peserta']);
         Route::resource('simpatisan', SimpatisanController::class, ['names' => 'dashboard.input.simpatisan']);
 
