@@ -54,10 +54,11 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="">Total Suara</label>
-                        <input type="text" class="form-control {{ $errors->has('total') ? 'is-invalid' : '' }}" name="total">
+                        <input type="text" class="form-control {{ $errors->has('total') ? 'is-invalid' : '' }}"
+                            name="total">
                     </div>
                 </div>
-            </div>
+        </div>
         <div class="text-center mb-2">
             <button type="submit" class="btn btn-primary">Tambah</button>
             <button type="reset" class="btn btn-secondary">Reset</button>
@@ -73,69 +74,115 @@
 <script src="{{ asset('assets_dashboard/js/select2.min.js')}}"></script>
 <script>
     $(document).ready(function () {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('.select2').select2();
+    $('#kecamatan').on('change', function () {
+        let id_kecamatan = $('#kecamatan').val();
+        $.ajax({
+            type: "POST",
+            url: "{{ route('get.desa') }}",
+            data: {
+                id_kecamatan: id_kecamatan
+            },
+            cache: false,
+            success: function (response) {
+                $('#desa').html(response);
+                $('#desa').attr('value', response);
+
+            },
+            error: function ($data) {
+                console.log('error', $data);
             }
         });
-        $('.select2').select2();
-        $('#kecamatan').on('change', function () {
-            let id_kecamatan = $('#kecamatan').val();
-            $.ajax({
-                type: "POST",
-                url: "{{ route('get.desa') }}",
-                data: {
-                    id_kecamatan: id_kecamatan
-                },
-                cache: false,
-                success: function (response) {
-                    $('#desa').html(response);
-                    $('#desa').attr('value', response);
+    });
+    $('#desa').on('change', function () {
+        let id_desa = $('#desa').val();
+        $.ajax({
+            type: "POST",
+            url: "{{ route('realcount.get.tps') }}",
+            data: {
+                id_desa: id_desa
+            },
+            cache: false,
+            success: function (response) {
+                $('#tps').html(response);
+                //sorting data
+                // Sort the options alphabetically by their text (names)
+                // Sort the options based on the numeric portion of the text
+                var selectElement = document.getElementById("tps");
+                var options = Array.from(selectElement.options);
 
-                },
-                error: function ($data) {
-                    console.log('error', $data);
-                }
-            });
+                options.sort(function (a, b) {
+                    var aNumber = parseInt(a.text.match(/\d+/));
+                    var bNumber = parseInt(b.text.match(/\d+/));
+
+                    return aNumber - bNumber;
+                });
+
+                // Clear the existing options
+                selectElement.innerHTML = "";
+
+                // Append the sorted options back to the select element
+                options.forEach(function (option) {
+                    selectElement.appendChild(option);
+                });
+            },
+            error: function ($data) {
+                console.log('error', $data);
+            }
         });
-        $('#desa').on('change', function () {
-            let id_desa = $('#desa').val();
-            $.ajax({
-                type: "POST",
-                url: "{{ route('realcount.get.tps') }}",
-                data: {
-                    id_desa: id_desa
-                },
-                cache: false,
-                success: function (response) {
-                    $('#tps').html(response);
-                    //sorting data
-                    // Sort the options alphabetically by their text (names)
-                    // Sort the options based on the numeric portion of the text
-                    var selectElement = document.getElementById("tps");
-                    var options = Array.from(selectElement.options);
+    });
 
-                    options.sort(function (a, b) {
-                        var aNumber = parseInt(a.text.match(/\d+/));
-                        var bNumber = parseInt(b.text.match(/\d+/));
+    $('#desa').on('change', function () {
+        let id_desa = $('#desa').val();
+        $.ajax({
+            type: "POST",
+            url: "{{ route('realcount.get.tps') }}",
+            data: {
+                id_desa: id_desa
+            },
+            cache: false,
+            success: function (response) {
+                // Filter data TPS yang sudah ada pada desa_id dan tps_id yang ada
+                let filteredData = filterTpsData(response);
 
-                        return aNumber - bNumber;
-                    });
+                // Mengosongkan dan mengisi ulang pilihan TPS dengan data yang sudah difilter
+                $('#tps').html(filteredData);
+                $('.select2').trigger('change'); // Update tampilan Select2
 
-                    // Clear the existing options
-                    selectElement.innerHTML = "";
-
-                    // Append the sorted options back to the select element
-                    options.forEach(function (option) {
-                        selectElement.appendChild(option);
-                    });
-                },
-                error: function ($data) {
-                    console.log('error', $data);
-                }
-            });
+                // ...
+            },
+            error: function ($data) {
+                console.log('error', $data);
+            }
         });
+    });
 
+    // Fungsi untuk memfilter data TPS berdasarkan kondisi
+    function filterTpsData(data) {
+        let filteredData = [];
+        data.forEach(function (option) {
+            // Tambahkan kondisi di sini untuk memeriksa apakah pasangan desa_id dan tps_id sudah ada
+            // Jika belum ada, tambahkan option ke filteredData
+            if (!isTpsExists(option.desa_id, option.tps_id)) {
+                filteredData.push(option);
+            }
+        });
+        return filteredData;
+    }
+
+    // Fungsi untuk memeriksa apakah pasangan desa_id dan tps_id sudah ada
+    function isTpsExists(desa_id, tps_id) {
+        // Tambahkan logika untuk memeriksa apakah pasangan desa_id dan tps_id sudah ada di tabel
+        // Anda dapat menggunakan AJAX atau metode lain sesuai dengan struktur data Anda
+        // Jika sudah ada, kembalikan true; jika belum, kembalikan false
+        // Contoh: return true; // Jika pasangan sudah ada
+        // Contoh: return false; // Jika pasangan belum ada
+    }
     });
 </script>
 

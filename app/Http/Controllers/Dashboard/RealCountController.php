@@ -30,52 +30,20 @@ class RealCountController extends Controller
         $realcountAction->execute($realCountData);
         return redirect()->route('dashboard.realcount.index')->with('success', 'Berhasil Menambahkan Realcount');
     }
+    public function tabel()
+    {
+        $realcounts = Realcount::all();
+        return view('dashboard.realcount.tabel', compact('realcounts'));
+    }
 
     public function getDesaCount(Request $request)
     {
-        $id_desa = $request->id_desa;
-        // $desa = Desa::find($id_desa);
-
-        // $realCount_datas = Realcount::all();
-        // $option = "<option>Pilih Tps</option>";
-
-        $desa = Desa::where('id', $id_desa)->firstOrFail();
-
-        $realCount_data = Realcount::all();
-        foreach ($realCount_data as $realcount) {
-            foreach ($realcount->tps_realcount as $tps) {
-                $tps->where('id')->get();
-
-                if($realcount !=  $id_desa && $tps){
-                    return response('Data Tidak Ada', 404);
-                }else{
-                    $tpss = Tps::all();
-                    $option .= "<option value='$tpss->id'>$tpss->name</option>";
-                }
-            }
-        }
-
-
-    // if ($desa) {
-    //     // Retrieve existing TPS IDs for the selected Desa using the relationship
-    //     $existingTpsIds = $desa->tps->pluck('id')->toArray();
-
-    //     // Filter TPS options to exclude those that exist in real_count_tps
-    //     foreach ($realCount_datas as $realCount_data) {
-    //         foreach ($realCount_data->tps_realcount as $tps) {
-    //             $option .= "<option value='$tps->id'>$tps->name</option>";
-    //         }
-    //     }
-    // } else {
-    //     // If the selected Desa is not found, show all TPS options
-    //     $tpsOptions = Tps::all();
-
-    //     foreach ($tpsOptions as $tps) {
-    //         $option .= "<option value='$tps->id'>$tps->name</option>";
-    //     }
-    // }
-    //     echo $option;
+        $desa_id = $request->input('desa_id');
+        $tps_id = $request->input('tps_id');
+        $realcount = Realcount::whereHas('desa_realcount', function ($query) use ($desa_id) {
+            $query->where('desa_id', $desa_id);
+        })->get();
+        return response()->json(['realcount' => $realcount]);
     }
-
 
 }
