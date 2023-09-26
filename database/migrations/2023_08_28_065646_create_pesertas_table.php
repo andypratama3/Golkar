@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('warna');
             $table->string('perekrut')->nullable();
             $table->string('status');
+            // $table->string('latitude');
+            // $table->string('longitude');
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();

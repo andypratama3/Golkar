@@ -19,6 +19,8 @@ class PesertaAction
                 'warna' => $pesertaData->warna,
                 'status' => $pesertaData->status,
                 'perekrut' => $pesertaData->perekrut,
+                // 'latitude' => $pesertaData->latitude,
+                // 'longitude' => $pesertaData->longitude,
             ]
         );
 

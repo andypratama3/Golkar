@@ -23,7 +23,7 @@ class SimpatisanController extends Controller
         return view('dashboard.peserta.simpatisan.index', compact('no', 'pesertas', 'kecamatans'));
     }
 
-    public function getPesertaSimpatisan(Request $request)
+    public function getPesertasimpatisan(Request $request)
     {
         $status = 'simpatisan';
         $id_kecamatan = $request->input('id_kecamatan');
@@ -35,6 +35,33 @@ class SimpatisanController extends Controller
             return $peserta;
         });
         $kecamatans = Kecamatan::select(['id','name'])->get();
+        return response()->json(['pesertas' => $pesertas]);
+    }
+
+    public function getPesertasimpatisanDesa(Request $request)
+    {
+        $status = 'simpatisan';
+        $id_desa = $request->input('id_desa');
+        $pesertas = Peserta::where('status',$status)->whereHas('desa_pesertas', function ($query) use ($id_desa) {
+            $query->where('desa_id', $id_desa);
+        })->get();
+        $pesertas->transform(function ($peserta) {
+            $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
+            return $peserta;
+        });
+        return response()->json(['pesertas' => $pesertas]);
+    }
+    public function getPesertasimpatisanTps(Request $request)
+    {
+        $status = 'simpatisan';
+        $tps_id = $request->input('tps_id');
+        $pesertas = Peserta::where('status',$status)->whereHas('tps_pesertas', function ($query) use ($tps_id) {
+            $query->where('tps_id', $tps_id);
+        })->get();
+        $pesertas->transform(function ($peserta) {
+            $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
+            return $peserta;
+        });
         return response()->json(['pesertas' => $pesertas]);
     }
 

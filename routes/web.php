@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\PesertaController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\KecamatanController;
+use App\Http\Controllers\Dashboard\RealCountController;
 use App\Http\Controllers\Dashboard\SimpatisanController;
 use App\Http\Controllers\Dashboard\KordinatorDesaController;
 use App\Http\Controllers\Dashboard\KordinatorKecamatanController;
@@ -41,7 +42,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
     Route::post('/dashboard/profile/update-password/{id}', [ProfileController::class, 'updatePassword'])->name('dashboard.profile.update-password');
 
     //maps new fitur
-    Route::resource('maps', MapsController::class, ['names' => 'dashboard.maps']);
+    // Route::resource('maps', MapsController::class, ['names' => 'dashboard.maps']);
+
+    //realcount
+    Route::resource('realcount', RealCountController::class, ['names' => 'dashboard.realcount']);
+    Route::post('realcount/get/tps',[RealCountController::class, 'getDesaCount'])->name('realcount.get.tps');
 
 
     Route::group(['prefix' => 'datamaster'], function () {
@@ -55,6 +60,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
         Route::resource('kordinator', KordinatorDesaController::class, ['names' => 'dashboard.input.kordinator.desa']);
         Route::get('kordinator/desa/{kecamatan}/', [KordinatorDesaController::class, 'kordinator_desa'])->name('dashboard.input.kordinator.desa.name');
         Route::resource('peserta', PesertaController::class, ['names' => 'dashboard.input.peserta']);
+        //getDataTable
+        Route::post('peserta/records',[ PesertaController::class, 'dataPeserta'])->name('dashboard.input.peserta.dataPeserta');
         Route::resource('simpatisan', SimpatisanController::class, ['names' => 'dashboard.input.simpatisan']);
 
     });
@@ -68,11 +75,17 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
     // get data from database
     Route::post('get/desa', [PesertaController::class, 'getdesa'])->name('get.desa');
     Route::post('get/tps', [PesertaController::class, 'gettps'])->name('get.tps');
+    Route::post('get/coordinate/kecamatan', [PesertaController::class, 'getKecamatanCoordinates'])->name('get.coordinate.kecamatan');
+
     //get Nik
     Route::post('get/nik', [PesertaController::class, 'getnik'])->name('get.nik');
     //get data at the databse
     Route::post('get/peserta/relawan', [PesertaController::class, 'getPesertaRelawan'])->name('get.peserta.relawan');
+    Route::post('get/peserta/relawan/desa', [PesertaController::class, 'getPesertaRelawanDesa'])->name('get.peserta.relawan.desa');
+    Route::post('get/peserta/relawan/desa/tps', [PesertaController::class, 'getPesertaRelawanTps'])->name('get.peserta.relawan.tps');
     Route::post('get/peserta/simpatisan', [SimpatisanController::class, 'getPesertaSimpatisan'])->name('get.peserta.simpatisan');
+    Route::post('get/peserta/simpatisan/desa', [SimpatisanController::class, 'getPesertasimpatisanDesa'])->name('get.peserta.simpatisan.desa');
+    Route::post('get/peserta/simpatisan/desa/tps', [SimpatisanController::class, 'getPesertasimpatisanTps'])->name('get.peserta.simpatisan.desa.tps');
 
 
     //export peserta

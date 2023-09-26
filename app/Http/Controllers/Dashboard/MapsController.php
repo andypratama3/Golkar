@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Peserta;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MapsController extends Controller
 {
     public function index()
     {
-        return view('dashboard.maps.index');
+        $pesertas = Peserta::all();
+        return view('dashboard.maps.index',compact('pesertas'));
     }
+
 }

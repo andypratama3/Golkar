@@ -43,6 +43,29 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ Request::routeIs('dashboard.realcount.*') ? '' : 'collapsed' }}"
+                data-bs-target="#real-count" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-gear"></i><span>Real Count</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="real-count" class="nav-content {{ Request::routeIs('dashboard.realcount.*') ? '' : 'collapse' }}" data-bs-parent="#sidebar-nav">
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::routeIs('dashboard.realcount.*') ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.realcount.index') }}">
+                        <i class="bi bi-person"></i>
+                        <span>Chart RealCount</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::routeIs('dashboard.realcount.create') ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.realcount.create') }}">
+                        <i class="bi bi-person"></i>
+                        <span>Tambah Data</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('dashboard.input.*') ? '' : 'collapsed' }}"
                 data-bs-target="#input-data" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-gear"></i><span>Input Data</span><i class="bi bi-chevron-down ms-auto"></i>

@@ -56,6 +56,14 @@ class PesertaRequest extends FormRequest
     {
         return $this->perekrut;
     }
+    // public function getLatitude()
+    // {
+    //     return $this->latitude;
+    // }
+    // public function getLongitude()
+    // {
+    //     return $this->longitude;
+    // }
     public function getStatus()
     {
         return $this->status;

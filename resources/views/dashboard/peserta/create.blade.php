@@ -2,7 +2,18 @@
 @section('title', 'Tambah Peserta')
 @push('css')
 <link href="{{ asset('assets_dashboard/css/select/select2.min.css') }}" rel="stylesheet" />
-
+<style>
+    .map-search-box {
+    position: absolute;
+    top: 620px;
+    left: 30px;
+    z-index: 1;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+</style>
 @endpush
 @section('content')
 <div class="col-lg-12">
@@ -42,7 +53,7 @@
                 </div>
                 <div class="col-6">
                     <label for="name" class="form-label">Nomor hp</label>
-                    <input type="number" class="form-control" id="name"
+                    <input type="number" class="form-control" id="hp" maxlength="13"
                         name="hp" value="{{ old('hp') }}">
                 </div>
                 <div class="col-6">
@@ -137,11 +148,27 @@
                         @endif
                     </div>
                 </div>
+                {{-- <div class="col-12">
+                    <div class="form-group text-center">
+                        <label for=""><strong>Maps </strong></label>
+                        <div id="map" style="height: 400px;"></div>
+                    </div>
+                </div> --}}
+                {{-- <div class="form-group col-6 mt-3">
+                    <label for="latitude">Latitude:</label>
+                    <input type="text" id="latitude" name="latitude" class="form-control">
+            </div>
+            <div class="form-group col-6 mt-3">
+                <label for="longitude">Longitude:</label>
+                    <input type="text" id="longitude" name="longitude" class="form-control">
+            </div> --}}
+
         </div>
         <div class="text-center mb-2">
             <button type="submit" class="btn btn-primary">Tambah</button>
             <button type="reset" class="btn btn-secondary">Reset</button>
         </div>
+
         </form>
     </div>
 </div>
@@ -150,8 +177,25 @@
 <script src="{{ asset('assets_dashboard/js/jquery-3.6.0.min.js') }}"></script>
 <!-- Instead of -->
 <script src="{{ asset('assets_dashboard/js/select2.min.js')}}"></script>
+
+<script src="{{ asset('assets_dashboard/js/maps.js') }}"></script>
+{{-- @include('layouts.dashboard_partial.maps'); --}}
 <script>
+    initMap();
+
     $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#hp').on('input', function () {
+            var hp = $(this).val();
+            if (hp.length != 14) {
+                $(this).val(nik.substring(0, 14));
+            }
+        });
+
         $('#inputnik').on('input', function () {
             var nik = $(this).val();
             if (nik.length != 16) {
@@ -159,8 +203,27 @@
                 $(this).val(nik.substring(0, 16));
             }
         });
-
-
+        // $('#kecamatan').on('change', function () {
+        //     const id_kecamatan = $('#kecamatan').val();;
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "{{ route('get.coordinate.kecamatan') }}",
+        //         data: {
+        //             id_kecamatan: id_kecamatan
+        //         },
+        //         cache: false,
+        //         success: function (response) {
+        //             $('#searchInput').html(response.kecamatan.namee);
+        //             const nama_kecamatan = response.kecamatan.name;
+        //             const input = document.getElementById('searchInput').value;
+        //             input.value = nama_kecamatan; // Set the input value with the Kecamatan name
+        //             const autocomplete = new google.maps.places.Autocomplete(input);
+        //         },
+        //         error: function ($data) {
+        //             console.log('error', $data);
+        //         }
+        //     });
+        // });
         $('#inputnik').on('change', function () {
             var nik = $(this).val();
             if (nik.length < 16) {
@@ -170,11 +233,7 @@
 
             }
         });
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+
         $('.select2').select2();
         $('#kecamatan').on('change', function () {
             let id_kecamatan = $('#kecamatan').val();
