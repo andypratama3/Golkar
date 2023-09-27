@@ -13,7 +13,7 @@ class RealCountData extends Data{
         public readonly string $kecamatan,
         public readonly string $desa,
         public readonly string $tps,
-        public readonly ?string $slug,
+        public readonly ?string $id,
 
 
     ) {
@@ -26,7 +26,7 @@ class RealCountData extends Data{
             $request->getKecamatan(),
             $request->getDesa(),
             $request->getTps(),
-            $request->getSlug(),
+            $request->getId(),
         ]);
     }
 

@@ -18,9 +18,9 @@ class RealCountRequest extends FormRequest
     {
         return $this->total;
     }
-    public function getSlug()
+    public function getId()
     {
-        return $this->slug;
+        return $this->id;
     }
 
     /**

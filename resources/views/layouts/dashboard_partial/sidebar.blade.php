@@ -62,6 +62,13 @@
                         <span>Tambah Data</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::routeIs('dashboard.realcount.tabel') ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.realcount.tabel') }}">
+                        <i class="bi bi-person"></i>
+                        <span>RealCount Tabel</span>
+                    </a>
+                </li>
 
             </ul>
         </li>

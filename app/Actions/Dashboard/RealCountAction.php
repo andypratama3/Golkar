@@ -9,12 +9,12 @@ class RealCountAction{
     public function execute(RealCountData $RealCountData)
     {
         $realcount = Realcount::updateOrCreate(
-            ['slug' =>  $RealCountData->slug],
+            ['id' =>  $RealCountData->id],
             [
                 'total' => $RealCountData->total,
             ]
         );
-        if(empty($RealCountData->slug)){
+        if(empty($RealCountData->id)){
             $realcount->kecamatan_realcount()->attach($RealCountData->kecamatan);
             $realcount->desa_realcount()->attach($RealCountData->desa);
             $realcount->tps_realcount()->attach($RealCountData->tps);

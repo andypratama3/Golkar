@@ -31,10 +31,41 @@ class RealCountController extends Controller
         $realcountAction->execute($realCountData);
         return redirect()->route('dashboard.realcount.index')->with('success', 'Berhasil Menambahkan Realcount');
     }
-    public function tabel()
+    public function edit($id)
     {
+        $kecamatans = Kecamatan::select(['id','name','slug'])->get();
+        $realcount = Realcount::where('id', $id)->firstOrfail();
+        return view('dashboard.realcount.edit',compact('realcount','kecamatans'));
+    }
+    public function update(RealCountAction $realcountAction, RealCountData $realCountData, $id)
+    {
+        $realcountAction->execute($realCountData, $id);
+        return redirect()->route('dashboard.realcount.index')->with('success', 'Berhasil Update Realcount');
+    }
+    public function destroy($id)
+    {
+        $realcount = Realcount::where('id', $id)->firstOrfail();
+        $realcount->delete();
+        return redirect()->route('dashboard.realcount.index')->with('success', 'Berhasil Hapus Realcount');
+
+    }
+    public function tableRealcount()
+    {
+        $no = 0;
+        $kecamatans = Kecamatan::select(['id','name','slug'])->get();
+        return view('dashboard.realcount.tabel', compact('kecamatans','no'));
+
+    }
+    public function kecamatanRealcount($name)
+    {
+        $kecamatans = Kecamatan::where('name', $name)->select('id','name','slug')->orderBy('name')->get();
+        return view('dashboard.realcount.desa', compact('kecamatans'));
+    }
+    public function desaRealcount($name)
+    {
+        $no = 0;
         $realcounts = Realcount::all();
-        return view('dashboard.realcount.tabel', compact('realcounts'));
+        return view('dashboard.realcount.tps', compact('realcounts', 'no'));
     }
     public function getTpsDesaCount(Request $request)
     {
