@@ -35,15 +35,12 @@ class RealCountController extends Controller
         $realcounts = Realcount::all();
         return view('dashboard.realcount.tabel', compact('realcounts'));
     }
-
-    public function getDesaCount(Request $request)
+    public function getTpsDesaCount(Request $request )
     {
-        $desa_id = $request->input('desa_id');
-        $tps_id = $request->input('tps_id');
-        $realcount = Realcount::whereHas('desa_realcount', function ($query) use ($desa_id) {
-            $query->where('desa_id', $desa_id);
-        })->get();
-        return response()->json(['realcount' => $realcount]);
-    }
+        $realcounts = Realcount::whereHas('desa_realcount');
 
+        foreach ($realcounts as $desa) {
+                
+        }
+    }
 }

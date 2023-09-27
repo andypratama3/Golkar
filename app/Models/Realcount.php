@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Tps;
+use App\Models\Desa;
 use App\Models\Kecamatan;
 use App\Http\Traits\UsesUuid;
 use App\Http\Traits\NameHasSlug;
