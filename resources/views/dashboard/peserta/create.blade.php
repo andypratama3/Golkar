@@ -265,6 +265,7 @@
                 cache: false,
                 success: function (response) {
                     $('#tps').html(response);
+                    // Setelah mengisi desa, reset elemen select TPS
                     //sorting data
                     // Sort the options alphabetically by their text (names)
                     // Sort the options based on the numeric portion of the text

@@ -313,6 +313,7 @@
 
         });
         $('#tps').on('change', function () {
+            let desa_id = $('#desa').val();
             let tps_id = $('#tps').val();
             $.ajaxSetup({
                 headers: {
@@ -323,6 +324,7 @@
                 type: "POST",
                 url: "{{ route('get.peserta.simpatisan.desa.tps') }}",
                 data: {
+                    desa_id: desa_id,
                     tps_id: tps_id,
                 },
                 success: function (response) {

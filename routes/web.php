@@ -46,7 +46,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','isAdmin']], func
 
     //realcount
     Route::resource('realcount', RealCountController::class, ['names' => 'dashboard.realcount']);
-    Route::get('realcount/get/tps',[RealCountController::class, 'getTpsDesaCount'])->name('realcount.get.tps');
+    Route::post('realcount/get/tps',[RealCountController::class, 'getTpsDesaCount'])->name('realcount.get.tps');
 
 
     Route::group(['prefix' => 'datamaster'], function () {
