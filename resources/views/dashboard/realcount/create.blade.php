@@ -42,7 +42,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label style="margin-bottom: 10px;">Tps</label>
-                        <select class="form-control {{ $errors->has('tps') ? 'is-invalid' : '' }}" name="tps" id="tps"
+                        <select class="form-control select2 {{ $errors->has('tps') ? 'is-invalid' : '' }}" name="tps" id="tps"
                             data-order-by="text">
                             {{ old('tps') }}
                         </select>
