@@ -314,7 +314,7 @@
 
         });
         $('#tps').on('change', function () {
-            let id_desa = $('#desa').val();
+            let desa_id = $('#desa').val();
             let tps_id = $('#tps').val();
             $.ajaxSetup({
                 headers: {
@@ -325,7 +325,7 @@
                 type: "POST",
                 url: "{{ route('get.peserta.relawan.tps') }}",
                 data: {
-                    desa_id: desa_id
+                    desa_id: desa_id,
                     tps_id: tps_id,
                 },
                 success: function (response) {
