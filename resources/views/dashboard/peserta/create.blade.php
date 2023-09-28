@@ -177,12 +177,7 @@
 <script src="{{ asset('assets_dashboard/js/jquery-3.6.0.min.js') }}"></script>
 <!-- Instead of -->
 <script src="{{ asset('assets_dashboard/js/select2.min.js')}}"></script>
-
-<script src="{{ asset('assets_dashboard/js/maps.js') }}"></script>
-{{-- @include('layouts.dashboard_partial.maps'); --}}
 <script>
-    initMap();
-
     $(document).ready(function () {
         $.ajaxSetup({
             headers: {
