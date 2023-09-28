@@ -49,6 +49,9 @@
                         @if ($errors->has('tps'))
                         <div class="invalid-feedback">{{ $errors->first('tps') }}</div>
                         @endif
+
+                        <p><li>Tps Yang Telah Masuk Tidak Akan Tampil</li></p>
+                        <p><li>Data Yang Telah Masuk Tidak Akan bisa di Hapus dan bisa di edit saja karna data masuk ke dalam perhitungan chart</li></p>
                     </div>
                 </div>
                 <div class="col-6">
