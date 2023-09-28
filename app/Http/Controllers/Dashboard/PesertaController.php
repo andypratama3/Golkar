@@ -206,12 +206,11 @@ class PesertaController extends Controller
         $desa_id = $request->input('desa_id');
         $tps_id = $request->input('tps_id');
 
-        // Query database untuk mendapatkan peserta berdasarkan desa dan TPS yang dipilih
-        $pesertas = Peserta::where('status', $status)->whereHas('desa_pesertas', function ($query) use ($desa_id) {
+        $pesertas = Peserta::where('status', $status)
+        ->whereHas('desa_pesertas', function ($query) use ($desa_id) {
             $query->where('desa_id', $desa_id);
         })
-        ->get();
-        $pesertas = Peserta::where('status', $status)->whereHas('tps_pesertas', function ($query) use ($tps_id) {
+        ->whereHas('tps_pesertas', function ($query) use ($tps_id) {
             $query->where('tps_id', $tps_id);
         })
         ->get();
