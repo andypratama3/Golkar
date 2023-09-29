@@ -28,10 +28,19 @@
 
    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
   {{-- <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>  --}}
+
   @stack('js')
 
 <script>
     $(document).ready(function () {
+        // Fungsi untuk mengganti console.log dan console.error
+        function disableXHRLogging() {
+            console.log = function() {};
+            console.error = function() {};
+        }
+
+        // Panggil fungsi ini ketika Anda ingin menonaktifkan logging
+        disableXHRLogging();
 
         $(".delete").on('click', function (e){
             slug = e.target.dataset.id;
