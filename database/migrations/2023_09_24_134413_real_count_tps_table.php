@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('real_count_tps', function (Blueprint $table) {
             // Foreign Key Constraints
-            $table->foreignUuid('realcount_id')->references('id')->on('realcounts');
+            $table->foreignUuid('realcount_id')->references('id')->on('realcounts')->onDelete('cascade');
             $table->foreignUuid('tps_id')->references('id')->on('tps');
             // Setting The Primary Keys
             $table->primary(['realcount_id','tps_id']);

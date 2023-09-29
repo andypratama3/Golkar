@@ -116,7 +116,9 @@
 <script src="{{ asset('assets_dashboard/js/select2.min.js')}}"></script>
 <script>
     $(document).ready(function () {
+        let dataTable = $('#dataTable').DataTable();
         $('.select2').select2();
+
         $('#kecamatan').on('change', function () {
             let id_kecamatan = $('#kecamatan').val();
             $.ajaxSetup({
@@ -134,7 +136,6 @@
                 success: function (response) {
                     $('#desa').html(response);
                     $('#desa').attr('value', response);
-
                 },
                 error: function ($data) {
                     console.log('error', $data);

@@ -117,7 +117,7 @@
 <script>
     $(document).ready(function () {
         $('.select2').select2();
-        let dataTable = $('#dataTable').DataTable()
+        let dataTable = $('#dataTable').DataTable();
         $('#kecamatan').on('change', function () {
             let id_kecamatan = $('#kecamatan').val();
             $.ajaxSetup({

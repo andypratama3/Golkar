@@ -64,7 +64,9 @@ class RealCountController extends Controller
     public function desaRealcount($name)
     {
         $no = 0;
+
         $realcounts = Realcount::all();
+
         return view('dashboard.realcount.tps', compact('realcounts', 'no'));
     }
     public function getTpsDesaCount(Request $request)
