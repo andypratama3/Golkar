@@ -15,6 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Actions\Dashboard\PesertaAction;
 use App\DataTransferObjects\PesertaData;
 use Illuminate\Support\Facades\Redirect;
+use Yajra\DataTables\Facades\DataTables;
 use App\Actions\Dashboard\PesertaActionStore;
 use App\Actions\Dashboard\DeletePesertaAction;
 use App\Http\Requests\Dashboard\PesertaRequest;
@@ -23,15 +24,56 @@ class PesertaController extends Controller
 {
     public function index()
     {
-        $status = 'relawan';
-        $no = 0;
-        $pesertas = Peserta::where('status',$status)->select(['name','nik','hp','tgl_lahir','perekrut','alamat','warna','slug'])->orderBy('name')->get();
-        $pesertas->transform(function ($peserta) {
-            $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
-            return $peserta;
-        });
         $kecamatans = Kecamatan::select(['id','name','slug'])->get();
-        return view('dashboard.peserta.relawan.index', compact('no', 'pesertas', 'kecamatans'));
+        return view('dashboard.peserta.relawan.index', compact('kecamatans'));
+    }
+
+    public function data_table(Request $request)
+    {
+        $status = 'relawan';
+        $query = Peserta::where('status', $status)
+            ->with('kecamatan_pesertas', 'desa_pesertas', 'tps_pesertas')
+            ->orderBy('name', 'asc');
+
+        if ($request->kecamatan) {
+            $query = $query->whereHas('kecamatan_pesertas', function ($query) use ($request) {
+                $query->where('kecamatan_id', $request->kecamatan);
+            });
+        }
+
+        if ($request->desa) {
+            $query = $query->whereHas('desa_pesertas', function ($query) use ($request) {
+                $query->where('desa_id', $request->desa);
+            });
+        }
+
+        if ($request->tps) {
+            $query = $query->whereHas('tps_pesertas', function ($query) use ($request) {
+                $query->where('tps_id', $request->tps);
+            });
+        }
+
+        $pesertas = $query->get();
+
+        $pesertas->each(function ($peserta) {
+            $peserta->umur = now()->diffInYears($peserta->tgl_lahir);
+        });
+
+        return DataTables::of($pesertas)
+            ->addColumn('umur', function ($peserta) {
+                return now()->diffInYears($peserta->tgl_lahir);
+            })
+            ->addColumn('options', function ($row){
+                return
+                '
+                <a href="' . route('dashboard.input.peserta.show', $row->slug) . '" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
+                <a href="' . route('dashboard.input.peserta.edit', $row->slug) . '" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
+                <button data-id="'.$row['slug'].'" class="btn btn-sm btn-danger" id="btn-delete"><bi class="bi-trash"></bi></button>
+                ';
+            })
+            ->rawColumns(['options'])
+            ->addIndexColumn()
+            ->make(true);
     }
 
     public function getAgeAttribute()
@@ -105,23 +147,16 @@ class PesertaController extends Controller
                 return response('Gagal Update Data', 403);
             }
     }
-    public function destroy(DeletePesertaAction $deletePesertaAction, $slug)
+    public function destroy(Request $request)
     {
+        $slug = $request->slug;
         $peserta = Peserta::where('slug', $slug)->firstOrFail();
-        $deletePesertaAction->execute($slug);
-        if($peserta->status == 'relawan'){
-            return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Menghapus Peserta Relawan');
-        }else if($peserta->status == 'simpatisan'){
-            return redirect()->route('dashboard.input.simpatisan.index')->with('success','Berhasil Menghapus Peserta Simpatisan');
-        }else if($peserta->status == 'kordinator_kecamatan'){
-            return redirect()->route('dashboard.input.kordinator.kecamatan.index')->with('success','Berhasil Menghapus Peserta & Kordinator Kecamatan');
-        }else if($peserta->status == 'kordinator_desa'){
-            return redirect()->route('dashboard.input.kordinator.desa.index')->with('success','Berhasil Menghapus Peserta & Kordinator Desa');
-        }else{
-            return response('Gagal Menghapus Data', 403);
+        if ($peserta) {
+            $peserta->delete();
+            return response()->json(['status' => 'success', 'message' => 'Berhasil Menghapus Peserta']);
+        } else {
+            return response()->json(['status' => 'error', 'message' => 'Gagal Menghapus Peserta']);
         }
-
-        return redirect()->route('dashboard.input.peserta.index')->with('success','Berhasil Menghapups Peserta');
     }
 
     //get data drop down
@@ -130,7 +165,7 @@ class PesertaController extends Controller
         $id_kecamatan = $request->id_kecamatan;
         $kecamatans = Kecamatan::where('id',$id_kecamatan)->select(['id','name','slug'])->get();
 
-        $option = "<option>Pilih Desa</option>";
+        $option = "<option value=''>Pilih Desa</option>";
         foreach ($kecamatans as $kecamatan) {
             foreach ($kecamatan->desa as $desa) {
                 $option.= "<option value='$desa->id'>$desa->name</option>";
@@ -142,7 +177,7 @@ class PesertaController extends Controller
     {
         $id_desa = $request->id_desa;
         $desas = Desa::where('id', $id_desa)->orderBy('name')->get();
-        $option = "<option>Pilih Tps</option>";
+        $option = "<option value=''>Pilih Tps</option>";
         foreach ($desas as $key => $desa) {
             foreach ($desa->tps as $tps) {
                     $option.= "<option value='$tps->id'>$tps->name</option>";

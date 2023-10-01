@@ -38,10 +38,6 @@
             console.log = function() {};
             console.error = function() {};
         }
-
-        // Panggil fungsi ini ketika Anda ingin menonaktifkan logging
-        disableXHRLogging();
-
         $(".delete").on('click', function (e){
             slug = e.target.dataset.id;
             e.preventDefault();
@@ -58,7 +54,7 @@
                     }else {
                         //do nothing
                     }
-                });
+            });
         });
     });
 </script>

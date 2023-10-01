@@ -2,18 +2,6 @@
 @section('title', 'Tambah Peserta')
 @push('css')
 <link href="{{ asset('assets_dashboard/css/select/select2.min.css') }}" rel="stylesheet" />
-<style>
-    .map-search-box {
-    position: absolute;
-    top: 620px;
-    left: 30px;
-    z-index: 1;
-    background-color: white;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-}
-</style>
 @endpush
 @section('content')
 <div class="col-lg-12">
@@ -198,27 +186,6 @@
                 $(this).val(nik.substring(0, 16));
             }
         });
-        // $('#kecamatan').on('change', function () {
-        //     const id_kecamatan = $('#kecamatan').val();;
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "{{ route('get.coordinate.kecamatan') }}",
-        //         data: {
-        //             id_kecamatan: id_kecamatan
-        //         },
-        //         cache: false,
-        //         success: function (response) {
-        //             $('#searchInput').html(response.kecamatan.namee);
-        //             const nama_kecamatan = response.kecamatan.name;
-        //             const input = document.getElementById('searchInput').value;
-        //             input.value = nama_kecamatan; // Set the input value with the Kecamatan name
-        //             const autocomplete = new google.maps.places.Autocomplete(input);
-        //         },
-        //         error: function ($data) {
-        //             console.log('error', $data);
-        //         }
-        //     });
-        // });
         $('#inputnik').on('change', function () {
             var nik = $(this).val();
             if (nik.length < 16) {

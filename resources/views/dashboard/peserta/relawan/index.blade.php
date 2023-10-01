@@ -27,7 +27,7 @@
                             <div class="col-md-4 mt-2">
                                 <label for=""><strong>Pilih Kecamatan </strong></label>
                                 <select name="kecamatan" id="kecamatan" class="form-control select2">
-                                    <option selected>Pilih Kecamatan</option>
+                                    <option value="">Pilih Kecamatan</option>
                                     @foreach ($kecamatans as $kecamatan)
                                     <option value="{{ $kecamatan->id }}">{{ $kecamatan->name }}</option>
                                     @endforeach
@@ -35,12 +35,12 @@
                             </div>
                             <div class="col-md-4 mt-2">
                                 <label for=""><strong>Pilih Desa</strong></label>
-                                <select name="desa" id="desa" class="form-control select2">
+                                <select id="desa" class="form-control select2">
                                 </select>
                             </div>
                             <div class="col-md-4 mt-2">
                                 <label for=""><strong>Tps</strong></label>
-                                <select name="" id="tps" class="form-control select2">
+                                <select id="tps" class="form-control select2">
                                 </select>
                             </div>
                         </div>
@@ -62,326 +62,163 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody id="dataTbody" class="dataTbody">
-                                    @foreach ($pesertas as $peserta)
-                                    <tr>
-                                        <td>{{ ++$no }}</td>
-                                        <td>{{ $peserta->name }}</td>
-                                        <td>{{ $peserta->nik }}</td>
-                                        <td>{{ $peserta->hp }}</td>
-                                        <td>{{ date('d-M-Y', strtotime($peserta->tgl_lahir)) }}</td>
-                                        <td>{{ $peserta->umur }} Thn</td>
-                                        <td>{{ $peserta->alamat }}</td>
-                                        <td>
-                                            @if ($peserta->warna === 'kuning')
-                                            <span class="badge bg-warning">{{ $peserta->warna }}</span>
-                                            @elseif ($peserta->warna === 'merah')
-                                            <span class="badge bg-danger">{{ $peserta->warna }}</span>
-                                            @elseif ($peserta->warna === 'abu-abu')
-                                            <span class="badge bg-secondary ">{{ $peserta->warna }}</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ $peserta->perekrut === null ? 'tidak ada Perekrut' : $peserta->perekrut }}
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('dashboard.input.peserta.show', $peserta->slug) }}"
-                                                class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
-                                            <a href="{{ route('dashboard.input.peserta.edit', $peserta->slug) }}"
-                                                class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
-                                            <a href="#" data-id="{{ $peserta->slug }}"
-                                                class="btn btn-danger btn-sm delete" title="Hapus">
-                                                <form
-                                                    action="{{ route('dashboard.input.peserta.destroy', $peserta->slug) }}"
-                                                    id="delete-{{ $peserta->slug }}" method="POST"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('delete')
-                                                </form>
-                                                <i class="bi bi-trash"></i>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-</section>
+    </section>
+<input type="hidden" id="data-table" value="{{ route('dashboard.data_table.relawan') }}">
 @push('js')
-<script src="{{ asset('assets_dashboard/js/jquery-3.6.0.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="{{ asset('assets_dashboard/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets_dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets_dashboard/js/select2.min.js')}}"></script>
 <script>
-    $(document).ready(function () {
-        $('.select2').select2();
-        let dataTable = $('#dataTable').DataTable();
-        $('#kecamatan').on('change', function () {
-            let id_kecamatan = $('#kecamatan').val();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: "{{ route('get.desa') }}",
-                data: {
-                    id_kecamatan: id_kecamatan
-                },
-                cache: false,
-                success: function (response) {
-                    $('#desa').html(response);
-                    $('#desa').attr('value', response);
-
-                },
-                error: function ($data) {
-                    console.log('error', $data);
-                }
-            });
-        });
-        $('#desa').on('change', function () {
-            let id_desa = $('#desa').val();
-            $.ajax({
-                type: "POST",
-                url: "{{ route('get.tps') }}",
-                data: {
-                    id_desa: id_desa
-                },
-                cache: false,
-                success: function (response) {
-                    $('#tps').html(response);
-                    //sorting data
-                    // Sort the options alphabetically by their text (names)
-                    // Sort the options based on the numeric portion of the text
-                    var selectElement = document.getElementById("tps");
-                    var options = Array.from(selectElement.options);
-
-                    options.sort(function (a, b) {
-                        var aNumber = parseInt(a.text.match(/\d+/));
-                        var bNumber = parseInt(b.text.match(/\d+/));
-
-                        return aNumber - bNumber;
-                    });
-
-                    // Clear the existing options
-                    selectElement.innerHTML = "";
-
-                    // Append the sorted options back to the select element
-                    options.forEach(function (option) {
-                        selectElement.appendChild(option);
-                    });
-                },
-                error: function ($data) {
-                    console.log('error', $data);
-                }
-            });
-        });
-        $('#kecamatan').on('change', function () {
-            let id_kecamatan = $('#kecamatan').val();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: "{{ route('get.peserta.relawan') }}",
-                data: {
-                    id_kecamatan: id_kecamatan
-                },
-                success: function (response) {
-                    let data = response.pesertas;
-                    // Access the tbody element
-                    var dataTbody = document.getElementById("dataTbody");
-                    // // Clear existing data in the tbody
-                    dataTbody.innerHTML = "";
-
-                    let counter = 1;
-                    // Loop through the data and render each row
-                    data.forEach(function (peserta) {
-                            // data.data.forEach(function (peserta) {
-                            var row = document.createElement("tr");
-                            row.innerHTML = `
-                            <td>${counter}</td>
-                            <td>${peserta.name}</td>
-                            <td>${peserta.nik}</td>
-                            <td>${peserta.hp}</td>
-                            <td>${peserta.tgl_lahir}</td>
-                            <td>${peserta.umur} Thn</td>
-                            <td>${peserta.alamat}</td>
-                            <td>
-                                ${
-                                peserta.warna === 'kuning'
-                                    ? '<span class="badge bg-warning">' + peserta.warna + '</span>'
-                                    : peserta.warna === 'merah'
-                                    ? '<span class="badge bg-danger">' + peserta.warna + '</span>'
-                                    : peserta.warna === 'abu-abu'
-                                    ? '<span class="badge bg-secondary">' + peserta.warna + '</span>'
-                                    : '' // Handle other cases or leave empty for no badge
-                            }
-                            </td>
-                            <td>${peserta.perekrut === null ? 'tidak ada Perekrut' : peserta.perekrut}</td>
-                            <td>
-                                <a href="peserta/${peserta.slug}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
-                                <a href="peserta/${peserta.slug}/edit" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
-                                <a href="#" data-id="${peserta.slug}" class="btn btn-danger btn-sm delete" title="Hapus">
-                                    <i class="bi bi-trash"></i>
-                                <form action="peserta/${peserta.slug}}/destroy" id="delete-${peserta.slug}" method="POST" enctype="multipart/form-data">
-                                <!-- Include CSRF token and method here if needed -->
-                                </form>
-                                </a>
-                            </td>
-                        `;
-                            dataTbody.appendChild(row);
-                            counter++;
+    function reloadTable(id){
+        var table = $(id).DataTable();
+        table.cleanData;
+        table.ajax.reload();
+    }
+$(document).ready(function () {
+    $('#dataTable').DataTable({
+        ordering: true,
+        serverSide: true,
+        processing: true,
+        ajax: {
+            'url': $('#data-table').val(),
+            'data': function (d) {
+                d.kecamatan = $('#kecamatan').val();
+                d.desa = $('#desa').val();
+                d.tps = $('#tps').val();
+            }
+        },
+        columns: [
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+            { data: 'name', name: 'name' },
+            { data: 'nik', name: 'nik' },
+            { data: 'hp', name: 'hp' },
+            { data: 'tgl_lahir', name: 'tgl_lahir' },
+            { data: 'umur', name: 'umur' },
+            { data: 'alamat', name: 'alamat' },
+            { data: 'warna', name: 'warna' },
+            { data: 'perekrut', name: 'perekrut' },
+            {
+                data: 'options', name: 'options', orderable: false, searchable: false
+            }
+        ],
+    });
+    $('#dataTable').on('click', '#btn-delete', function () {
+        var slug = $(this).data('id');
+        var url = '{{ route("dashboard.input.peserta.destroy", ":slug") }}';
+        url = url.replace(':slug', slug);
+        swal({
+            title: 'Anda yakin?',
+            text: 'Data yang sudah dihapus tidak dapat dikembalikan!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.post(url, { slug: slug }, function (data) {
+                    if (data.status === 'success') {
+                        swal('Berhasil', data.message, 'success').then(() => {
+                        // Reload the page
+                            window.location.href = "{{ route('dashboard.input.peserta.index') }}";
+                        // Reload the page with a success message
                         });
-                },
-                error: function ($data) {
-                    console.log('error', $data);
-                }
-            });
-
-        });
-        $('#desa').on('change', function () {
-            let id_kecamatan = $('#kecamatan').val();
-            let id_desa = $('#desa').val();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: "{{ route('get.peserta.relawan.desa') }}",
-                data: {
-                    id_desa: id_desa,
-                    id_kecamatan: id_kecamatan,
-                },
-                success: function (response) {
-                    let data = response.pesertas;
-                    // Access the tbody element
-                    var dataTbody = document.getElementById("dataTbody");
-                    // // Clear existing data in the tbody
-                    dataTbody.innerHTML = "";
-
-                    let counter = 1;
-                    // Loop through the data and render each row
-                    data.forEach(function (peserta) {
-                            // data.data.forEach(function (peserta) {
-                            var row = document.createElement("tr");
-                            row.innerHTML = `
-                            <td>${counter}</td>
-                            <td>${peserta.name}</td>
-                            <td>${peserta.nik}</td>
-                            <td>${peserta.hp}</td>
-                            <td>${peserta.tgl_lahir}</td>
-                            <td>${peserta.umur} Thn</td>
-                            <td>${peserta.alamat}</td>
-                            <td>
-                                ${
-                                peserta.warna === 'kuning'
-                                    ? '<span class="badge bg-warning">' + peserta.warna + '</span>'
-                                    : peserta.warna === 'merah'
-                                    ? '<span class="badge bg-danger">' + peserta.warna + '</span>'
-                                    : peserta.warna === 'abu-abu'
-                                    ? '<span class="badge bg-secondary">' + peserta.warna + '</span>'
-                                    : '' // Handle other cases or leave empty for no badge
-                            }
-                            </td>
-                            <td>${peserta.perekrut === null ? 'tidak ada Perekrut' : peserta.perekrut}</td>
-                            <td>
-                                <a href="peserta/${peserta.slug}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
-                                <a href="peserta/${peserta.slug}/edit" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
-                                <a href="#" data-id="${peserta.slug}" class="btn btn-danger btn-sm delete" title="Hapus">
-                                    <i class="bi bi-trash"></i>
-                                <form action="peserta/${peserta.slug}}/destroy" id="delete-${peserta.slug}" method="POST" enctype="multipart/form-data">
-                                <!-- Include CSRF token and method here if needed -->
-                                </form>
-                                </a>
-                            </td>
-                        `;
-                            dataTbody.appendChild(row);
-                            counter++;
-                        });
-                },
-                error: function ($data) {
-                    console.log('error', $data);
-                }
-            });
-
-        });
-        $('#tps').on('change', function () {
-            let desa_id = $('#desa').val();
-            let tps_id = $('#tps').val();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: "{{ route('get.peserta.relawan.tps') }}",
-                data: {
-                    desa_id: desa_id,
-                    tps_id: tps_id,
-                },
-                success: function (response) {
-                    let data = response.pesertas;
-                    // Access the tbody element
-                    var dataTbody = document.getElementById("dataTbody");
-                    // // Clear existing data in the tbody
-                    dataTbody.innerHTML = "";
-
-                    let counter = 1;
-                    // Loop through the data and render each row
-                    data.forEach(function (peserta) {
-                            // data.data.forEach(function (peserta) {
-                            var row = document.createElement("tr");
-                            row.innerHTML = `
-                            <td>${counter}</td>
-                            <td>${peserta.name}</td>
-                            <td>${peserta.nik}</td>
-                            <td>${peserta.hp}</td>
-                            <td>${peserta.tgl_lahir}</td>
-                            <td>${peserta.umur} Thn</td>
-                            <td>${peserta.alamat}</td>
-                            <td>
-                                ${
-                                peserta.warna === 'kuning'
-                                    ? '<span class="badge bg-warning">' + peserta.warna + '</span>'
-                                    : peserta.warna === 'merah'
-                                    ? '<span class="badge bg-danger">' + peserta.warna + '</span>'
-                                    : peserta.warna === 'abu-abu'
-                                    ? '<span class="badge bg-secondary">' + peserta.warna + '</span>'
-                                    : '' // Handle other cases or leave empty for no badge
-                            }
-                            </td>
-                            <td>${peserta.perekrut === null ? 'tidak ada Perekrut' : peserta.perekrut}</td>
-                            <td>
-                                <a href="peserta/${peserta.slug}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a>
-                                <a href="peserta/${peserta.slug}/edit" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>
-                                <a href="#" data-id="${peserta.slug}" class="btn btn-danger btn-sm delete" title="Hapus">
-                                    <i class="bi bi-trash"></i>
-                                <form action="peserta/${peserta.slug}}/destroy" id="delete-${peserta.slug}" method="POST" enctype="multipart/form-data">
-                                <!-- Include CSRF token and method here if needed -->
-                                </form>
-                                </a>
-                            </td>
-                        `;
-                            dataTbody.appendChild(row);
-                            counter++;
-                        });
-                },
-                error: function ($data) {
-                    console.log('error', $data);
-                }
-            });
-
+                     } else {
+                        // Reload the page with an error message
+                         swal('Error', data.message, 'error');
+                         window.location.href = "{{ route('dashboard.input.peserta.index') }}";
+                     }
+                });
+            } else {
+                // If the user cancels the deletion, do nothing
+            }
         });
     });
+
+
+    $('#kecamatan').on('change', function () {
+        reloadTable('#dataTable');
+    });
+    $('#desa').change(function() {
+        reloadTable('#dataTable');
+    });
+    $('#tps').change(function() {
+        reloadTable('#dataTable');
+    });
+
+    $('.select2').select2();
+
+    $('#kecamatan').on('change', function () {
+        let id_kecamatan = $('#kecamatan').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "{{ route('get.desa') }}",
+            data: {
+                id_kecamatan: id_kecamatan
+            },
+            cache: false,
+            success: function (response) {
+                $('#desa').html(response);
+                $('#desa').attr('value', response);
+            },
+            error: function ($data) {
+                console.log('error', $data);
+            }
+        });
+    });
+    $('#desa').on('change', function () {
+        let id_desa = $('#desa').val();
+        $.ajax({
+            type: "POST",
+            url: "{{ route('get.tps') }}",
+            data: {
+                id_desa: id_desa
+            },
+            cache: false,
+            success: function (response) {
+                $('#tps').html(response);
+                //sorting data
+                // Sort the options alphabetically by their text (names)
+                // Sort the options based on the numeric portion of the text
+                var selectElement = document.getElementById("tps");
+                var options = Array.from(selectElement.options);
+
+                options.sort(function (a, b) {
+                    var aNumber = parseInt(a.text.match(/\d+/));
+                    var bNumber = parseInt(b.text.match(/\d+/));
+
+                    return aNumber - bNumber;
+                });
+
+                // Clear the existing options
+                selectElement.innerHTML = "";
+
+                // Append the sorted options back to the select element
+                options.forEach(function (option) {
+                    selectElement.appendChild(option);
+                });
+            },
+            error: function ($data) {
+                console.log('error', $data);
+            }
+        });
+    });
+});
 </script>
 
 
