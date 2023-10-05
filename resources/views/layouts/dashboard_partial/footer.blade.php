@@ -15,8 +15,8 @@
   <script src="{{ asset('assets_dashboard/jquery/jquery.js') }}"></script>
 
   {{-- old script use updated script because datatable is not a function --}}
-  <script src="{{ asset('assets_dashboard/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('assets_dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+  {{-- <script src="{{ asset('assets_dashboard/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('assets_dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script> --}}
 
   <!-- Template Main JS File -->
   <script src="{{ asset('assets_dashboard/js/main.js') }}"></script>

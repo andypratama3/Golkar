@@ -1,7 +1,9 @@
 @extends('layouts.dashboard')
-@section('title', 'Peserta Relawan')
+@section('title', 'Peserta Simpatisan')
 @push('css')
 <link href="{{ asset('assets_dashboard/css/select/select2.min.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.2.0/css/scroller.dataTables.min.css">
 @endpush
 @section('content')
 <section class="section">
@@ -10,7 +12,7 @@
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h3 class="m-0 font-weight-bold text-dark text-center">Peserta Relawan
+                    <h3 class="m-0 font-weight-bold text-dark text-center">Peserta Simpatisan
                     </h3>
                 </div>
                 <div class="card">
@@ -47,7 +49,7 @@
                     </div>
                     <hr style="border: 2px solid">
                     <div class="table-responsive p-3">
-                            <table class="table align-items-center table-flush" id="dataTable" style="font-size: 15px;">
+                            <table class="table align-items-center table-flush display nowrap" id="dataTable" style="font-size: 15px;">
                                 <thead class="thead-light">
                                     <tr>
                                         <th>No</th>
@@ -69,11 +71,13 @@
             </div>
         </div>
     </section>
-<input type="hidden" id="data-table" value="{{ route('dashboard.data_table.relawan') }}">
+<input type="hidden" id="data-table" value="{{ route('dashboard.data_table.simpatisan') }}">
 @push('js')
+{{-- <script src="{{ asset('assets_dashboard/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets_dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script> --}}
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="{{ asset('assets_dashboard/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets_dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/scroller/2.2.0/js/dataTables.scroller.min.js"></script>
 <script src="{{ asset('assets_dashboard/js/select2.min.js')}}"></script>
 <script>
     function reloadTable(id){
@@ -84,15 +88,19 @@
 $(document).ready(function () {
     $('#dataTable').DataTable({
         ordering: true,
+        pagination: true,
+        deferRender: true,
         serverSide: true,
         processing: true,
+        pageLength: 50,
         ajax: {
-            'url': $('#data-table').val(),
-            'data': function (d) {
-                d.kecamatan = $('#kecamatan').val();
-                d.desa = $('#desa').val();
-                d.tps = $('#tps').val();
-            }
+                // let out = [];
+                'url': $('#data-table').val(),
+                'data': function (d) {
+                    d.kecamatan = $('#kecamatan').val();
+                    d.desa = $('#desa').val();
+                    d.tps = $('#tps').val();
+                }
         },
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
@@ -130,13 +138,13 @@ $(document).ready(function () {
                     if (data.status === 'success') {
                         swal('Berhasil', data.message, 'success').then(() => {
                         // Reload the page
-                            window.location.href = "{{ route('dashboard.input.peserta.index') }}";
+                            window.location.href = "{{ route('dashboard.input.simpatisan.index') }}";
                         // Reload the page with a success message
                         });
                      } else {
                         // Reload the page with an error message
                          swal('Error', data.message, 'error');
-                         window.location.href = "{{ route('dashboard.input.peserta.index') }}";
+                         window.location.href = "{{ route('dashboard.input.simpatisan.index') }}";
                      }
                 });
             } else {
