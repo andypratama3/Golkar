@@ -71,7 +71,7 @@
             </div>
         </div>
     </section>
-<input type="hidden" id="data-table" value="{{ route('dashboard.data_table.simpatisan') }}">
+<input type="hidden" id="data-table" value="{{ route('dashboard.data_table.relawan') }}">
 @push('js')
 {{-- <script src="{{ asset('assets_dashboard/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets_dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script> --}}
