@@ -14,25 +14,25 @@ class ProfileController extends Controller
         return view('dashboard.profile.index');
     }
     public function updatePassword(Request $request, $id)
-{
-    $request->validate([
-        'password' => 'required',
-        'newpassword' => 'required|string|min:8|confirmed',
-    ]);
-
-    // Check if the current password matches the user's actual password
-    if (Hash::check($request->password, Auth::user()->password)) {
-        // Update the user's password
-        Auth::user()->update([
-            'password' => bcrypt($request->newpassword),
+    {
+        $request->validate([
+            'password' => 'required',
+            'newpassword' => 'required|string|min:8|confirmed',
         ]);
 
-        // Redirect back with a success message
-        return redirect()->route('dashboard.profile.index')->with('success', 'Password Berhasil Di Ganti.');
-    }
+        // Check if the current password matches the user's actual password
+        if (Hash::check($request->password, Auth::user()->password)) {
+            // Update the user's password
+            Auth::user()->update([
+                'password' => bcrypt($request->newpassword),
+            ]);
 
-    // If the current password doesn't match, redirect back with an error message
-    return redirect()->back()->with('error', 'Password Tidak Sama.');
-}
+            // Redirect back with a success message
+            return redirect()->route('dashboard.profile.index')->with('success', 'Password Berhasil Di Ganti.');
+        }
+
+        // If the current password doesn't match, redirect back with an error message
+        return redirect()->back()->with('error', 'Password Tidak Sama.');
+    }
 
 }

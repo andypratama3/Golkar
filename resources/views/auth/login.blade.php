@@ -275,7 +275,7 @@ section{
             <input type="password" name="password" placeholder="password" value="{{ old('password') }}">
             <div class="button">
                 <button class="btn btn-dark btn-sm btn-register" type="submit">Masuk</button>
-                {{-- <a href="{{ route('register') }}" class="btn btn-dark btn-sm btn-login">Daftar</a> --}}
+                <a href="{{ route('password.request') }}" class="btn btn-dark btn-sm btn-login">Lupa Password</a>
                 {{-- <a href="{{ route('password.request') }}" class="btn btn-dark btn-sm btn-forget-pw">Lupa Password?</a> --}}
                 @error('username')
                     <p class="" style="color: black" >{{ $message }}</p>
