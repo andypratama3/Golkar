@@ -40,7 +40,6 @@ class SimpatisanController extends Controller
                 $query->where('tps_id', $request->tps);
             });
         }
-
         $pesertas = $query->get();
 
         $pesertas->each(function ($peserta) {

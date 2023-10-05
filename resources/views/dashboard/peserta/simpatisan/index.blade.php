@@ -93,7 +93,7 @@ $(document).ready(function () {
         serverSide: true,
         responsive: true,
         processing: true,
-        pageLength: 50,
+        pageLength: 100,
         ajax: {
                 // let out = [];
                 'url': $('#data-table').val(),
