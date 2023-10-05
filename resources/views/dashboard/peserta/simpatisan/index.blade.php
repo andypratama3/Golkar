@@ -91,6 +91,7 @@ $(document).ready(function () {
         pagination: true,
         deferRender: true,
         serverSide: true,
+        responsive: true,
         processing: true,
         pageLength: 50,
         ajax: {
@@ -109,8 +110,21 @@ $(document).ready(function () {
             { data: 'hp', name: 'hp' },
             { data: 'tgl_lahir', name: 'tgl_lahir' },
             { data: 'umur', name: 'umur' },
-            { data: 'alamat', name: 'alamat' },
-            { data: 'warna', name: 'warna' },
+            { data: 'alamat', name: 'alamat', width: '20%;'},
+            {
+                data: 'warna', name: 'warna',
+                render: function (data, type, full, meta) {
+                    if (data === 'kuning') {
+                        return '<span class="badge bg-warning">' + data + '</span>';
+                    } else if (data === 'abu-abu') {
+                        return '<span class="badge bg-secondary">' + data + '</span>';
+                    } else if (data === 'merah') {
+                        return '<span class="badge bg-danger">' + data + '</span>';
+                    } else {
+                        return data;
+                    }
+                }
+            },
             { data: 'perekrut', name: 'perekrut' },
             {
                 data: 'options', name: 'options', orderable: false, searchable: false

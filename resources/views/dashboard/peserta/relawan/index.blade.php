@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Peserta Simpatisan')
+@section('title', 'Peserta Relawan')
 @push('css')
 <link href="{{ asset('assets_dashboard/css/select/select2.min.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -12,7 +12,7 @@
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h3 class="m-0 font-weight-bold text-dark text-center">Peserta Simpatisan
+                    <h3 class="m-0 font-weight-bold text-dark text-center">Peserta Relawan
                     </h3>
                 </div>
                 <div class="card">
@@ -91,6 +91,7 @@ $(document).ready(function () {
         pagination: true,
         deferRender: true,
         serverSide: true,
+        responsive: true,
         processing: true,
         pageLength: 50,
         ajax: {
@@ -109,8 +110,21 @@ $(document).ready(function () {
             { data: 'hp', name: 'hp' },
             { data: 'tgl_lahir', name: 'tgl_lahir' },
             { data: 'umur', name: 'umur' },
-            { data: 'alamat', name: 'alamat' },
-            { data: 'warna', name: 'warna' },
+            { data: 'alamat', name: 'alamat', width: '20%;'},
+            {
+                data: 'warna', name: 'warna',
+                render: function (data, type, full, meta) {
+                    if (data === 'kuning') {
+                        return '<span class="badge bg-warning">' + data + '</span>';
+                    } else if (data === 'abu-abu') {
+                        return '<span class="badge bg-secondary">' + data + '</span>';
+                    } else if (data === 'merah') {
+                        return '<span class="badge bg-danger">' + data + '</span>';
+                    } else {
+                        return data;
+                    }
+                }
+            },
             { data: 'perekrut', name: 'perekrut' },
             {
                 data: 'options', name: 'options', orderable: false, searchable: false
