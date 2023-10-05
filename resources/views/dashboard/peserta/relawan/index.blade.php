@@ -110,7 +110,7 @@ $(document).ready(function () {
             { data: 'hp', name: 'hp' },
             { data: 'tgl_lahir', name: 'tgl_lahir' },
             { data: 'umur', name: 'umur' },
-            { data: 'alamat', name: 'alamat', width: '20%;'},
+            { data: 'alamat', name: 'alamat', width: '10%'},
             {
                 data: 'warna', name: 'warna',
                 render: function (data, type, full, meta) {
