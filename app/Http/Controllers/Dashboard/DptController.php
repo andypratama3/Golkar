@@ -42,7 +42,6 @@ class DptController extends Controller
         $fileExtension = pathinfo($dpt->file, PATHINFO_EXTENSION);
         if($fileExtension == "xlsx"){
             $excelFilePath = public_path('storage/file/dpt/' . $dpt->file);
-
             $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($excelFilePath);
             $worksheet = $spreadsheet->getActiveSheet();
             $data = $worksheet->toArray();

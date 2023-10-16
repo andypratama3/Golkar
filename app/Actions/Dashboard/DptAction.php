@@ -11,7 +11,7 @@ class DptAction {
         $file = $dptData->file;
         if ($file) {
             $ext = $file->getClientOriginalExtension();
-            $uploadPath = 'storage/file/dpt/';
+            $uploadPath = public_path('storage/file/dpt/');
             $fileName = 'Dpt_'.Str::slug($dptData->name).'_'.date('YmdHis').".$ext";
             $file->move($uploadPath, $fileName);
         }
