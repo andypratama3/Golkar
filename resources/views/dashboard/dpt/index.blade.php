@@ -29,6 +29,7 @@
                                 <td>{{ $dpt->name }}</td>
                                 <td>{{ $dpt->file }}</td>
                                 <td>
+                                    <a href="{{ route('dashboard.dpt.show', $dpt->id    ) }}" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
                                     <a href="{{ asset('storage/file/dpt/'.$dpt->file)}}" class="btn btn-sm btn-warning"><i class="bi bi-download"></i></a>
                                     <a href="#" data-id="{{ $dpt->slug }}" class="btn btn-danger btn-sm delete" title="Hapus">
                                         <form action="{{ route('dashboard.dpt.destroy', $dpt->slug) }}"
