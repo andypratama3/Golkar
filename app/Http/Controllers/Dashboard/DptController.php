@@ -43,8 +43,8 @@ class DptController extends Controller
         // dd($fileExtension);
         if($fileExtension == "xlsx"){
             $excelFilePath = public_path('storage/file/dpt/' . $dpt->file);
-            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($excelFilePath);
             dd($excelFilePath);
+            // $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($excelFilePath);
             $worksheet = $spreadsheet->getActiveSheet();
             $data = $worksheet->toArray();
             return view('dashboard.dpt.show_excel', compact('data'));
